@@ -29,4 +29,10 @@ Napjainkban az elearning felületeket az iskolák csak igénybe veszik, de nem a
 
 # Fogalomszótár
 
-...
+- E-learning: Számítógépes hálózaton/Digitálisan elérhető képzési forma
+- PHP: programozási nyelv, weboldalak készítésére használják
+- Releváns - fontos, lényeges, meghatározó, jelentős
+- Corrective Maintenance: A felhasználók által felfedezett és "user reportban" elküldött hibák kijavítása.
+- Adaptive Maintenance: A program naprakészen tartása és finomhangolása.
+- Perfective Maintenance: A szoftver hosszútávú használata érdekében végzett módosítások, új funkciók, a szoftver teljesítményének és működési megbízhatóságának javítása.
+- Preventive Maintenance: Olyan problémák elhárítása, amelyek még nem tűnnek fontosnak, de később komoly problémákat okozhatnak.
