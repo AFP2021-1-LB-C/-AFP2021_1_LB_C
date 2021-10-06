@@ -9,12 +9,16 @@ Napjainkban az elearning felületeket az iskolák csak igénybe veszik, de nem a
 
 # Vágyálomrendszer
 
-...
+A projekt célja egy webes tanulásszervezési rendszer, ahol az elérhető funkciók felhasználói kategóriánként eltérőek, például egy diák számára más funkciók elérhetőek mint egy tanár számára, ezért a funkciók csak sikeres regisztráció és bejelentkezés után használhatóak.
+Az alap felhasználókon felül kell egy magasabb rendű felhasználó, egy adminisztrátor, aki teljes hozzáféréssel rendelkezik a rendszerben. Az esetleges hibákat neki jelzik a felhasználók. Az admin korlátlanul módosíthatja, törölheti bármelyik kurzust valamint a felhasználók adatait is módosíthatja vagy adhat hozzá új felhasználót.
+A többi felhasználó jelentkezhet a kurzusokra de nem módosíthatja azt, csak a sajátjait. 
+Adminisztrátori vagy tanári jogosultsági szinttel a felhasználók létrehozhatnak kurzusokat amelyekben tananyagokat, teszteket, feladatokat tölthetnek fel. A kurzusok létrehozása során, készíthetnek komplexebb vagy szimplább kurzusokat, függően attól, hogy milyen céllal, milyen témával fog rendelkezni.
 
 
 # Jelenlegi üzleti folyamatok modellje
 
-...
+Az oktatási rendszer jelenleg nem használja ki a már meglévő technológiákat arra, hogy a tanulást hatékonyabbá tegye, azáltal hogy szórakoztatóbbá és interaktívabbá tenné azt. Általánosságban Magyarországon a diákok tankönyvekből tanulnak és papír alapon adnak számot legtöbbször lexikális tudásukról, amely a XXI. században elavultnak számít. Ez egy részt rengeteg nyomdai és nyomtatási költséget jelent, másrészt rengeteg időt és energiát emészt fel amit a mai technológiákkal egyszerűen megspórolhatnának. 
+Az oktatók nem tudnak párhuzamosan foglalkozni a diákokkal, sőt rengeteg időt elvesz az idejükből az órák és dolgozatok előkészítése, ezen felül a dolgozatok egyesével való kijavítása. Illetve a dolgozatok megírása papíron is sokkal időigényesebb, mintha különböző alkalmazásokat használnánk a diákok számonkérésére és értékelésére. 
 
 
 # Igényelt üzleti folyamatok modellje
