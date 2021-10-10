@@ -18,13 +18,17 @@ Felhasználói szintek:
 - Adminisztrátor
 - Tanár
 - Tanuló
-Látogatóként és újonnan regisztrált felhasználóként csak a kezdőlap látható, illetve a regisztráció és a bejelentkezés. Tanuló jogosultságot csak tanár és adminisztrátor adhat. 
+
+Látogatóként és újonnan regisztrált felhasználóként csak a kezdőlap látható, illetve a regisztráció és a bejelentkezés. Tanuló jogosultságot csak tanár és adminisztrátor adhat.
+
 Tanárok által elérhető funkciók:
 - létrehozhat/ feltölthet tananyagokat
 - létrehozhat/ feltölthet tesztanyagok, kérdések
+
 Tanulók által elérhető funkciók
 - tananyagok
 - tesztek
+
 Adminisztrátornak mindenhez van jogosultsága
 
 
