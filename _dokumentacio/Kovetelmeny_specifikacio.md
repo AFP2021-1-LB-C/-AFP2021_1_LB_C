@@ -6,6 +6,7 @@ Ez azért szükséges, hogy a kurzusokban tárolni tudjuk a tanárok által mego
 - Diákok: csatlakozhatnak kurzushoz, megtekinthetik illetve leadhatják a már felvett kurzust.
 - Vendég: csak megtekintheti a kurzusokat, de nem csatlakozhat illetve nem is hozhat létre új kurzust.
 A tanárok a kurzusokban létrehozhatnak teszteket, feltölthetnek fájlokat és videókat és válaszolhatnak a diákok által feltett kérdésekre.
+A diákok teljesítményét a tesztekre kapott értékelések segítségével lehet nyomon követni. A tesztek kitöltése után a diákok megnézhetik, hogy mit rontottak el és azt is megtekinthetik, hogy mi lett volna a helyes válasz. A diák láthatja a feladatokat, így nyomon tudja követni, hogy mely feladatok várnak még megoldásra.
 
 # Jelenlegi helyzet
 
