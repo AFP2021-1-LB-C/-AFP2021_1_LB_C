@@ -39,11 +39,11 @@ Az oktatók nem tudnak párhuzamosan foglalkozni a diákokkal, sőt rengeteg id�
 
 # Igényelt üzleti folyamatok modellje
 
-I. Bejelentkezés
+I. **Bejelentkezés**
 
-II. Regisztráció
+II. **Regisztráció**
 
-III. Kurzusok
+III. **Kurzusok**
 
 a) vendég felhasználóval:
 - Kurzus megtekintése
@@ -59,13 +59,13 @@ c) tanár felhasználóval:
 - Kurzus szerkesztése
 - Kurzus törlése
 
-IV. Előrehaladás megtekintése
+IV. **Előrehaladás megtekintése**
 
 - Megtekintett tananyagok
 - Kitöltött feladatok
 - Teljesített feladatok
 
-V. Beállítások
+V. **Beállítások**
 
 - Felhasználónév módosítása
 - Jelszó módosítása
