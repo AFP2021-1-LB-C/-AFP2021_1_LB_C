@@ -1,6 +1,20 @@
 # Bevezetés
 
-...
+A rendszer egy tanulást és oktatást segítő alkalmazást próbál megvalósítani a leendő tanulók és tanárok számára. 
+A rendszer lényege az, hogy a felhasználók különböző kurzusokat hozhatnak létre illetve meglévő kurzusokhoz csatlakothatnak. 
+Az alkalmazásnak meg kell valósítania a felhasználó rendszert, hogy csak azok a diákok csatlakozhassanak kurzushoz és csak azok a tanárok hozhassanak létre kurzust, akik regisztráltak és be vannak jelentkezve.
+Ez azért szükséges, hogy a kurzusokban tárolni tudjuk a tanárok által megosztott új tananyagokat és nyomonkövethessük a diákok előrehaladását és teljesítményét. 
+Ezeket az adatokat egy adatbázisban kell tárolnunk, hogy később is lekérdezhetőek és módosíthatóak legyenek. 
+Sikeres regisztráció után tudunk létrehozni kurzust illetve jelentkezni kurzusra. 
+A felhasználók megtekinthetik, teljesíthetik a kurzusokat valamint lehetőséget kell biztosítani az esetleges kérdések feltevésére a tananyaggal kapcsolatban. 
+A felhasználókat jogosultsági szintek alapján 3 csoportba lehet osztani:
+- **Tanárok:** létrehozhatnak kurzust, megtekinthetik, szerkeszthetik és törölhetik a már meglévő kurzusaikat.
+- **Diákok:** csatlakozhatnak kurzushoz, megtekinthetik illetve leadhatják a már felvett kurzust.
+- **Vendég:** csak megtekintheti a kurzusokat, de nem csatlakozhat illetve nem is hozhat létre új kurzust.
+A tanárok a kurzusokban létrehozhatnak teszteket, feltölthetnek fájlokat és videókat és válaszolhatnak a diákok által feltett kérdésekre.
+A diákok teljesítményét a tesztekre kapott értékelések segítségével lehet nyomon követni. 
+A tesztek kitöltése után a diákok megnézhetik, hogy mit rontottak el és azt is megtekinthetik, hogy mi lett volna a helyes válasz. 
+A diák láthatja a feladatokat, így nyomon tudja követni, hogy mely feladatok várnak még megoldásra.
 
 # Jelenlegi helyzet
 
