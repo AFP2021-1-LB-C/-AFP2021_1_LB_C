@@ -1,6 +1,6 @@
 # Bevezetés
 
-...
+A rendszer egy tanulást és oktatást segítő alkalmazást próbál megvalósítani a leendő tanulók és tanárok számára. A rendszer lényege az, hogy a felhasználók különböző kurzusokat hozhatnak létre illetve meglévő kurzusokhoz csatlakothatnak. Az alkalmazásnak meg kell valósítania a felhasználó rendszert, hogy csak azok a diákok csatlakozhassanak kurzushoz és csak azok a tanárok hozhassanak létre kurzust, akik regisztráltak és be vannak jelentkezve.
 
 # Jelenlegi helyzet
 
