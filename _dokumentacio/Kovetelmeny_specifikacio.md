@@ -8,9 +8,11 @@ Ezeket az adatokat egy adatbázisban kell tárolnunk, hogy később is lekérdez
 Sikeres regisztráció után tudunk létrehozni kurzust illetve jelentkezni kurzusra. 
 A felhasználók megtekinthetik, teljesíthetik a kurzusokat valamint lehetőséget kell biztosítani az esetleges kérdések feltevésére a tananyaggal kapcsolatban. 
 A felhasználókat jogosultsági szintek alapján 3 csoportba lehet osztani:
+
 - **Tanárok:** létrehozhatnak kurzust, megtekinthetik, szerkeszthetik és törölhetik a már meglévő kurzusaikat.
 - **Diákok:** csatlakozhatnak kurzushoz, megtekinthetik illetve leadhatják a már felvett kurzust.
 - **Vendég:** csak megtekintheti a kurzusokat, de nem csatlakozhat illetve nem is hozhat létre új kurzust.
+
 A tanárok a kurzusokban létrehozhatnak teszteket, feltölthetnek fájlokat és videókat és válaszolhatnak a diákok által feltett kérdésekre.
 A diákok teljesítményét a tesztekre kapott értékelések segítségével lehet nyomon követni. 
 A tesztek kitöltése után a diákok megnézhetik, hogy mit rontottak el és azt is megtekinthetik, hogy mi lett volna a helyes válasz. 
@@ -37,7 +39,36 @@ Az oktatók nem tudnak párhuzamosan foglalkozni a diákokkal, sőt rengeteg id�
 
 # Igényelt üzleti folyamatok modellje
 
-...
+I. **Bejelentkezés**
+
+II. **Regisztráció**
+
+III. **Kurzusok**
+
+a) vendég felhasználóval:
+- Kurzus megtekintése
+
+b) diák felhasználóval:
+- Kurzus megtekintése
+- Kurzus felvétele
+- Kurzus leadása
+
+c) tanár felhasználóval:
+- Kurzus létrehozása
+- Kurzus megtekintése
+- Kurzus szerkesztése
+- Kurzus törlése
+
+IV. **Előrehaladás megtekintése**
+
+- Megtekintett tananyagok
+- Kitöltött feladatok
+- Teljesített feladatok
+
+V. **Beállítások**
+
+- Felhasználónév módosítása
+- Jelszó módosítása
 
 
 # Követelménylista
