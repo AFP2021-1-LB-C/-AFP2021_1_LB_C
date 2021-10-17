@@ -1,4 +1,4 @@
-# Bevezetés
+# 1. Bevezetés
 
 A rendszer egy tanulást és oktatást segítő alkalmazást próbál megvalósítani a leendő tanulók és tanárok számára. 
 A rendszer lényege az, hogy a felhasználók különböző kurzusokat hozhatnak létre illetve meglévő kurzusokhoz csatlakothatnak. 
@@ -18,12 +18,12 @@ A diákok teljesítményét a tesztekre kapott értékelések segítségével le
 A tesztek kitöltése után a diákok megnézhetik, hogy mit rontottak el és azt is megtekinthetik, hogy mi lett volna a helyes válasz. 
 A diák láthatja a feladatokat, így nyomon tudja követni, hogy mely feladatok várnak még megoldásra.
 
-# Jelenlegi helyzet
+# 2. Jelenlegi helyzet
 
 Napjainkban az elearning felületeket az iskolák csak igénybe veszik, de nem az iskola terméke a felület. Emiatt az oktatás felülete, körülményei nem teljes mértékben felelnek meg az tanulók igényeinek. A rendszerek problémája még, hogy nem elég gyakorlat orinentáltak a képzések, sokkal inkább elméleti alapokon nyugszik. A felkészüléshez használt tananyagok esetenként nem vagy nehezen érthetően. Illetve az anyag elsajátítása során felmerülő kérdésekre körülményes a válasz megtalálása, mivel nincs egy gyakorlatvezető, aki a válasz megtalálásában segíthetné a felhasználót. Napjainkban többnyire az elearning oldalak fizetősek további nincs lehetőség arra, hogy kurzus diákjai egymás közt megosszák tapasztalataikat a tananyagról. Továbbá nem igazén felhasználóbarát az elearning anyagok mobil felülete.
 
 
-# Vágyálomrendszer
+# 3. Vágyálomrendszer
 
 A projekt célja egy webes tanulásszervezési rendszer, ahol az elérhető funkciók felhasználói kategóriánként eltérőek, például egy diák számára más funkciók elérhetőek mint egy tanár számára, ezért a funkciók csak sikeres regisztráció és bejelentkezés után használhatóak.
 Az alap felhasználókon felül kell egy magasabb rendű felhasználó, egy adminisztrátor, aki teljes hozzáféréssel rendelkezik a rendszerben. Az esetleges hibákat neki jelzik a felhasználók. Az admin korlátlanul módosíthatja, törölheti bármelyik kurzust valamint a felhasználók adatait is módosíthatja vagy adhat hozzá új felhasználót.
@@ -31,13 +31,13 @@ A többi felhasználó jelentkezhet a kurzusokra de nem módosíthatja azt, csak
 Adminisztrátori vagy tanári jogosultsági szinttel a felhasználók létrehozhatnak kurzusokat amelyekben tananyagokat, teszteket, feladatokat tölthetnek fel. A kurzusok létrehozása során, készíthetnek komplexebb vagy szimplább kurzusokat, függően attól, hogy milyen céllal, milyen témával fog rendelkezni.
 
 
-# Jelenlegi üzleti folyamatok modellje
+# 4. Jelenlegi üzleti folyamatok modellje
 
 Az oktatási rendszer jelenleg nem használja ki a már meglévő technológiákat arra, hogy a tanulást hatékonyabbá tegye, azáltal hogy szórakoztatóbbá és interaktívabbá tenné azt. Általánosságban Magyarországon a diákok tankönyvekből tanulnak és papír alapon adnak számot legtöbbször lexikális tudásukról, amely a XXI. században elavultnak számít. Ez egy részt rengeteg nyomdai és nyomtatási költséget jelent, másrészt rengeteg időt és energiát emészt fel amit a mai technológiákkal egyszerűen megspórolhatnának. 
 Az oktatók nem tudnak párhuzamosan foglalkozni a diákokkal, sőt rengeteg időt elvesz az idejükből az órák és dolgozatok előkészítése, ezen felül a dolgozatok egyesével való kijavítása. Illetve a dolgozatok megírása papíron is sokkal időigényesebb, mintha különböző alkalmazásokat használnánk a diákok számonkérésére és értékelésére. 
 
 
-# Igényelt üzleti folyamatok modellje
+# 5. Igényelt üzleti folyamatok modellje
 
 I. **Bejelentkezés**
 
@@ -71,7 +71,7 @@ V. **Beállítások**
 - Jelszó módosítása
 
 
-# Követelménylista
+# 6. Követelménylista
 
 1. A regisztrációs felületen a felhasználó e-mail cím, felhasználónév és jelszó megadásával tud regisztrálni. Amennyiben egy adat hibás, vagy nem felel meg a követelménynek, a felhasználó hibaüzenetet kap.
 
@@ -96,7 +96,7 @@ V. **Beállítások**
 11. A felhasználók részletes adatai, kurzusokon elért eredményeik az adatlapon találhatóak.
 
 
-# Fogalomszótár
+# 7. Fogalomszótár
 
 - E-learning: Számítógépes hálózaton/Digitálisan elérhető képzési forma
 - PHP: programozási nyelv, weboldalak készítésére használják
