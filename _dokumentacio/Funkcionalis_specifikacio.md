@@ -38,7 +38,7 @@ Adminisztrátornak mindenhez van jogosultsága
 ...
 
 
-# 6.Képernyőtervek
+# 6. Képernyőtervek
 
 ...
 
