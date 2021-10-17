@@ -1,18 +1,18 @@
-# Bevezetés
+# 1. Bevezetés
 
 Megrendelő részéről kaptunk egy olyan elképzelt weboldalt amely segíti a munkájukat a tananyagok elkészítésében és könnyíti ezen anyagok eljutását a diákokhoz. 
 
-# Célok
+# 2. Célok
 
 ...
 
 
-# Jelenlegi helyzet
+# 3. Jelenlegi helyzet
 
 ...
 
 
-# Követelménylista
+# 4. Követelménylista
 
 Felhasználói szintek:
 - Adminisztrátor
@@ -33,17 +33,17 @@ Adminisztrátornak mindenhez van jogosultsága
 
 
 
-# Használati esetek
+# 5. Használati esetek
 
 ...
 
 
-# Képernyőtervek
+# 6.Képernyőtervek
 
 ...
 
 
-# Forgatókönyvek
+# 7. Forgatókönyvek
 
 Regisztráció: Az e-learning felület megnyitását követően a kezdőlapon található regisztráció gombra kattintva tudunk regisztrálni. A gombra kattintás után  megadhatjuk a szükséges adatokat, valamint kiválaszthatjuk, hogy Tanárként vagy Tanulóként kívánunk regisztrálni. A Regisztráció gombra kattintva a kezdőlap jelenik meg, amennyiben helyes adatokat adtunk meg.
 
@@ -60,6 +60,6 @@ Tesztek kezelése tanárként: Tanár fiókba bejelentkezve, az általunk létre
 Hozzáférés megadása tanulónak: Tanár fiókkal bejelentkezve a Kérések menüpontban láthatjuk azon diákok felhasználóneveit akik az általunk létrehozott tananyagokhoz szeretnének hozzáférni. A felhasználónév mellett található checkbox bepipálásával, majd a Hozzáférés megadása gombra kattintva engedélyezhetjük a tananyagok és tesztek megtekintését.
 Adminisztrátor jogosultságú felhasználó minden tananyaghoz tartozó kérést jóvá tud hagyni, nem csak az általa létrehozottakhoz tartozót.
 
-# Fogalomszótár
+# 8. Fogalomszótár
 
 ...
