@@ -4,12 +4,15 @@ Megrendelő részéről kaptunk egy olyan elképzelt weboldalt amely segíti a m
 
 # 2. Célok
 
-...
+A fejlesztett e-learning alkalmazás célja az oktatás, ismeretanyag átadása a felhasználók számára. A e-learning programot használva kurzusokon vehet részt a regisztrációt és bejelentkezést követően az alkalmazást használó személy. A tananyag elsajátítását kurzusokon keresztül teheti meg, ahol specializást tudásanyagot kaphat az egyes kurzusokon való részvétel által.
 
+ A felhasználő teszteken keresztül ellenőrizheti tudását, mellyel visszajelzést kap az anyag elsajátításának mértékéről. Az oldal felhasználói között eltérő jogosultságok kerülnek kiosztásra. A diákok és a tanárok megkülönböztetése céljából. A tanárok felügyelik a diákok munkáját és segítik a tanulókat a tananyag elsajátításában. Továbbá admin jogosultság is szerepel a josogultságok között, aki a például a diákot tudja hozzárendelni az adott képzéshez, kurzushoz.
 
 # 3. Jelenlegi helyzet
 
-...
+Napjainkban egyre nagyobb igény mutatkozik a távoktatás iránt, de a meglévő alkalmazások még nem minden téren tudják kiszolgálni a tanulni vágyó felhasználókat. A közelmúltban a Covid-19 világjárvány végett a távoktatás világszerte nagyot fejlődött, de még mindig nem eléggé felhasználóbarát a kezelőfelület, nem kap kellően elegendő visszajelzést a felhasználó stb. 
+
+Alkalmazásunk erre nyújt megoldást. A kurzusok leírása kellően informatív, a kurzusokra való jelentkezés egyszerű. A kurzus kezelő felülete nagyon egyszerű, akár kisiskolások számára is könnyen kezelhető. A diákok alapos visszajelzést kapnak a tanyagagban szereplő tesztek által.
 
 
 # 4. Követelménylista
