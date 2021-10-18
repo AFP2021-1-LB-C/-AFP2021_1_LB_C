@@ -42,7 +42,7 @@ Adminisztrátornak mindenhez van jogosultsága
 
 Képernyőterv a diák / vendég felhasználó szemszögéből:
 
-![Képernyőterv a diák / vendég felhasználó szemszögéből](kepernyoterv1.png "kepernyoterv1")
+![image info](./pictures/kepernyoterv1.png)
 
 
 # 7. Forgatókönyvek
