@@ -40,7 +40,9 @@ Adminisztrátornak mindenhez van jogosultsága
 
 # 6. Képernyőtervek
 
-...
+Képernyőterv a diák / vendég felhasználó szemszögéből:
+
+![image info](./pictures/kepernyoterv1.png)
 
 
 # 7. Forgatókönyvek
