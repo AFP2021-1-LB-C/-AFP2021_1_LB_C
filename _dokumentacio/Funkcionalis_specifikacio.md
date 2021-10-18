@@ -44,6 +44,9 @@ Képernyőterv a diák / vendég felhasználó szemszögéből:
 
 ![image info](./pictures/kepernyoterv1.png)
 
+Képernyőterv a tanár / admin felhasználó szemszögéből:
+
+![image info](./pictures/kepernyoterv2.png)
 
 # 7. Forgatókönyvek
 
