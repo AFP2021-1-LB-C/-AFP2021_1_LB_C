@@ -73,27 +73,20 @@ V. **Beállítások**
 
 # 6. Követelménylista
 
-1. A regisztrációs felületen a felhasználó e-mail cím, felhasználónév és jelszó megadásával tud regisztrálni. Amennyiben egy adat hibás, vagy nem felel meg a követelménynek, a felhasználó hibaüzenetet kap.
+Név | Kifejtés
+--- | ----------------------------------------------------------------------
+Regisztrációs felület | A regisztrációs felületen a felhasználó e-mail cím, felhasználónév és jelszó megadásával tud regisztrálni. Amennyiben egy adat hibás, vagy nem felel meg a követelménynek, a felhasználó hibaüzenetet kap.
+Bejelentkezési felület | A felhasználó a bejelentkezési felületen jelentkezhet be, felhasználóneve és jelszava segítségével. Hibás adatok esetén a felhasználó hibaüzenetet kap.
+Elfelejtett felhasználónév / jelszó | Abban az esetben, ha a felhasználó elfelejtette jelszavát vagy felhasználónevét, az Elfelejtett felhasználónév vagy jelszó funkcióval az adminhoz tud fordulni.
+Felhasználónév módosítása | A felhasználó módosítása felületen a felhasználó módosíthatja saját felhasználónevét, a régi és az új felhasználónév, valamint a jelszó megadásával.
+Jelszó módosítása | A felhasználónak lehetősége van jelszavának módosítására is. Ehhez a régi és az új jelszó megadása, valamint az új jelszó megerősítése szükséges.
+Jogosultsági szintek | -Admin <br> -Tanár <br> -Tanuló
+Kurzus létrehozása | Kurzus létrehozása funkció segítségével az admin és tanár jogosultságú felhasználó kurzusokat tud létrehozni.
+Kurzus kiválasztása | Kurzus kiválasztásával a diák jogosultságú felhasználó kiválaszthatja azokat a kurzusokat amelyekre szüksége van.
+Kurzus szerkesztése | Az admin és tanár felhasználóknak lehetőségük van szerkeszteni saját kurzusaikat.
+Kurzus törlése | Az admi és tanár jogosultsággal rendelkező felhasználóknak a kurzusaik törlésére is van lehetőségük.
+Adatlap | A felhasználók részletes adatai, kurzusokon elért eredményeik az adatlapon találhatóak.
 
-2. A felhasználó a bejelentkezési felületen jelentkezhet be, felhasználóneve és jelszava segítségével. Hibás adatok esetén a felhasználó hibaüzenetet kap.
-
-3. Abban az esetben, ha a felhasználó elfelejtette jelszavát vagy felhasználónevét, az Elfelejtett felhasználónév vagy jelszó funkcióval az adminhoz tud fordulni.
-
-4. A felhasználó módosítása felületen a felhasználó módosíthatja saját felhasználónevét, a régi és az új felhasználónév, valamint a jelszó megadásával.
-
-5. A felhasználónak lehetősége van jelszavának módosítására is. Ehhez a régi és az új jelszó megadása, valamint az új jelszó megerősítése szükséges.
-
-6. Jogosultsági szintek: Admin, Tanár, Diák
-
-7. Kurzus létrehozása funkció segítségével az admin és tanár jogosultságú felhasználó kurzusokat tud létrehozni.
-
-8. Kurzus kiválasztásával a diák jogosultságú felhasználó kiválaszthatja azokat a kurzusokat amelyekre szüksége van.
-
-9. Az admin és tanár felhasználóknak lehetőségük van szerkeszteni saját kurzusaikat.
-
-10. Az admi és tanár jogosultsággal rendelkező felhasználóknak a kurzusaik törlésére is van lehetőségük.
-
-11. A felhasználók részletes adatai, kurzusokon elért eredményeik az adatlapon találhatóak.
 
 
 # 7. Fogalomszótár
