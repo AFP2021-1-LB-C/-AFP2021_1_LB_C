@@ -38,7 +38,43 @@ Adminisztrátornak mindenhez van jogosultsága
 
 # 5. Használati esetek
 
-...
+Felahasználók:
+
+ - **Adminisztrátor**
+ - **Tanár**
+ - **Diák**
+ - **Vendég**
+
+Tevékenységek:
+
+**Tanár:**
+ - Regisztráció
+ - Bejelentkezés tanárként
+ - Kurzusok létrehozása, megtekintése, szerkesztése és törlése
+ - Tananyagok létrehozása, megtekintése, szerkesztése és törlése
+ - Feladatok létrehozása, megtekintése, szerkesztése és törlése
+ - Diákok előrehaladásának megtekintése
+ - Tananyag kategóriák szerkesztése
+ - Osztályok létrehozása
+ - Felhasználók jogainak menedzselése
+ - Jelszó változtatása
+
+**Adminisztrátor:**
+ - Regisztráció
+ - Bejelentkezés bármely felhasználóként
+ - Tanár státusz kiosztása
+ - Kurzusok és Felhasználók szerkesztése, törlése
+
+**Diák:**
+ - Regisztráció
+ - Bejelentkezés diákként
+ - Tananyag megtekintése
+ - Tesztek megoldása
+ - Megoldott tesztek megtekintése
+ - Jelszó változtatása
+
+**Vendég:**
+ - Kurzus megtekintése
 
 
 # 6. Képernyőtervek
