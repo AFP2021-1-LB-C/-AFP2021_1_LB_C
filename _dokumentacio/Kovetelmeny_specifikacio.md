@@ -2,32 +2,28 @@
 
 A rendszer egy tanulást és oktatást segítő alkalmazást próbál megvalósítani a leendő tanulók és tanárok számára. 
 A rendszer lényege az, hogy a felhasználók különböző kurzusokat hozhatnak létre illetve meglévő kurzusokhoz csatlakothatnak. 
+
+
 Az alkalmazásnak meg kell valósítania a felhasználó rendszert, hogy csak azok a diákok csatlakozhassanak kurzushoz és csak azok a tanárok hozhassanak létre kurzust, akik regisztráltak és be vannak jelentkezve.
-Ez azért szükséges, hogy a kurzusokban tárolni tudjuk a tanárok által megosztott új tananyagokat és nyomonkövethessük a diákok előrehaladását és teljesítményét. 
-Ezeket az adatokat egy adatbázisban kell tárolnunk, hogy később is lekérdezhetőek és módosíthatóak legyenek. 
-Sikeres regisztráció után tudunk létrehozni kurzust illetve jelentkezni kurzusra. 
-A felhasználók megtekinthetik, teljesíthetik a kurzusokat valamint lehetőséget kell biztosítani az esetleges kérdések feltevésére a tananyaggal kapcsolatban. 
-A felhasználókat jogosultsági szintek alapján 3 csoportba lehet osztani:
 
-- **Tanárok:** létrehozhatnak kurzust, megtekinthetik, szerkeszthetik és törölhetik a már meglévő kurzusaikat.
-- **Diákok:** csatlakozhatnak kurzushoz, megtekinthetik illetve leadhatják a már felvett kurzust.
-- **Vendég:** csak megtekintheti a kurzusokat, de nem csatlakozhat illetve nem is hozhat létre új kurzust.
-
-A tanárok a kurzusokban létrehozhatnak teszteket, feltölthetnek fájlokat és videókat és válaszolhatnak a diákok által feltett kérdésekre.
-A diákok teljesítményét a tesztekre kapott értékelések segítségével lehet nyomon követni. 
-A tesztek kitöltése után a diákok megnézhetik, hogy mit rontottak el és azt is megtekinthetik, hogy mi lett volna a helyes válasz. 
-A diák láthatja a feladatokat, így nyomon tudja követni, hogy mely feladatok várnak még megoldásra.
 
 # 2. Jelenlegi helyzet
 
-Napjainkban az elearning felületeket az iskolák csak igénybe veszik, de nem az iskola terméke a felület. Emiatt az oktatás felülete, körülményei nem teljes mértékben felelnek meg az tanulók igényeinek. A rendszerek problémája még, hogy nem elég gyakorlat orinentáltak a képzések, sokkal inkább elméleti alapokon nyugszik. A felkészüléshez használt tananyagok esetenként nem vagy nehezen érthetően. Illetve az anyag elsajátítása során felmerülő kérdésekre körülményes a válasz megtalálása, mivel nincs egy gyakorlatvezető, aki a válasz megtalálásában segíthetné a felhasználót. Napjainkban többnyire az elearning oldalak fizetősek további nincs lehetőség arra, hogy kurzus diákjai egymás közt megosszák tapasztalataikat a tananyagról. Továbbá nem igazén felhasználóbarát az elearning anyagok mobil felülete.
+Napjainkban az elearning felületeket az iskolák csak igénybe veszik, de nem az iskola terméke a felület. Emiatt az oktatás felülete, körülményei nem teljes mértékben felelnek meg az tanulók igényeinek. A rendszerek problémája még, hogy nem elég gyakorlat orinentáltak a képzések, sokkal inkább elméleti alapokon nyugszik.
+
+
+ A felkészüléshez használt tananyagok esetenként nem vagy nehezen érthetően. Illetve az anyag elsajátítása során felmerülő kérdésekre körülményes a válasz megtalálása, mivel nincs egy gyakorlatvezető, aki a válasz megtalálásában segíthetné a felhasználót. Napjainkban többnyire az elearning oldalak fizetősek további nincs lehetőség arra, hogy kurzus diákjai egymás közt megosszák tapasztalataikat a tananyagról. Továbbá nem igazén felhasználóbarát az elearning anyagok mobil felülete.
 
 
 # 3. Vágyálomrendszer
 
 A projekt célja egy webes tanulásszervezési rendszer, ahol az elérhető funkciók felhasználói kategóriánként eltérőek, például egy diák számára más funkciók elérhetőek mint egy tanár számára, ezért a funkciók csak sikeres regisztráció és bejelentkezés után használhatóak.
+
+
 Az alap felhasználókon felül kell egy magasabb rendű felhasználó, egy adminisztrátor, aki teljes hozzáféréssel rendelkezik a rendszerben. Az esetleges hibákat neki jelzik a felhasználók. Az admin korlátlanul módosíthatja, törölheti bármelyik kurzust valamint a felhasználók adatait is módosíthatja vagy adhat hozzá új felhasználót.
 A többi felhasználó jelentkezhet a kurzusokra de nem módosíthatja azt, csak a sajátjait. 
+
+
 Adminisztrátori vagy tanári jogosultsági szinttel a felhasználók létrehozhatnak kurzusokat amelyekben tananyagokat, teszteket, feladatokat tölthetnek fel. A kurzusok létrehozása során, készíthetnek komplexebb vagy szimplább kurzusokat, függően attól, hogy milyen céllal, milyen témával fog rendelkezni.
 
 
