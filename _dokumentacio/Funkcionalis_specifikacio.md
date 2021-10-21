@@ -70,7 +70,9 @@ Adminisztrátor jogosultságú felhasználó minden tananyaghoz tartozó kérés
 
 # 8. Fogalomszótár
 
-...
+E-learning: Egy számítógépes hálózaton elérhető képzési forma, amely a tanítási-tanulási folyamatot teljes egészében a digitális térbe ülteti.
+
+Kurzus: Tanórák vagy előadások sora, amelyeket befejezve a tanuló új ismereteket és képességeket szerez, amiről oklevelet kap.
 
 # 9. Vágyálomrendszer
 
