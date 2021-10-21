@@ -4,12 +4,15 @@ Megrendelő részéről kaptunk egy olyan elképzelt weboldalt amely segíti a m
 
 # 2. Célok
 
-...
+A fejlesztett e-learning alkalmazás célja az oktatás, ismeretanyag átadása a felhasználók számára. A e-learning programot használva kurzusokon vehet részt a regisztrációt és bejelentkezést követően az alkalmazást használó személy. A tananyag elsajátítását kurzusokon keresztül teheti meg, ahol specializást tudásanyagot kaphat az egyes kurzusokon való részvétel által.
 
+ A felhasználő teszteken keresztül ellenőrizheti tudását, mellyel visszajelzést kap az anyag elsajátításának mértékéről. Az oldal felhasználói között eltérő jogosultságok kerülnek kiosztásra. A diákok és a tanárok megkülönböztetése céljából. A tanárok felügyelik a diákok munkáját és segítik a tanulókat a tananyag elsajátításában. Továbbá admin jogosultság is szerepel a josogultságok között, aki a például a diákot tudja hozzárendelni az adott képzéshez, kurzushoz.
 
 # 3. Jelenlegi helyzet
 
-...
+Napjainkban egyre nagyobb igény mutatkozik a távoktatás iránt, de a meglévő alkalmazások még nem minden téren tudják kiszolgálni a tanulni vágyó felhasználókat. A közelmúltban a Covid-19 világjárvány végett a távoktatás világszerte nagyot fejlődött, de még mindig nem eléggé felhasználóbarát a kezelőfelület, nem kap kellően elegendő visszajelzést a felhasználó stb. 
+
+Alkalmazásunk erre nyújt megoldást. A kurzusok leírása kellően informatív, a kurzusokra való jelentkezés egyszerű. A kurzus kezelő felülete nagyon egyszerű, akár kisiskolások számára is könnyen kezelhető. A diákok alapos visszajelzést kapnak a tanyagagban szereplő tesztek által.
 
 
 # 4. Követelménylista
@@ -35,7 +38,43 @@ Adminisztrátornak mindenhez van jogosultsága
 
 # 5. Használati esetek
 
-...
+Felahasználók:
+
+ - **Adminisztrátor**
+ - **Tanár**
+ - **Diák**
+ - **Vendég**
+
+Tevékenységek:
+
+**Tanár:**
+ - Regisztráció
+ - Bejelentkezés tanárként
+ - Kurzusok létrehozása, megtekintése, szerkesztése és törlése
+ - Tananyagok létrehozása, megtekintése, szerkesztése és törlése
+ - Feladatok létrehozása, megtekintése, szerkesztése és törlése
+ - Diákok előrehaladásának megtekintése
+ - Tananyag kategóriák szerkesztése
+ - Osztályok létrehozása
+ - Felhasználók jogainak menedzselése
+ - Jelszó változtatása
+
+**Adminisztrátor:**
+ - Regisztráció
+ - Bejelentkezés bármely felhasználóként
+ - Tanár státusz kiosztása
+ - Kurzusok és Felhasználók szerkesztése, törlése
+
+**Diák:**
+ - Regisztráció
+ - Bejelentkezés diákként
+ - Tananyag megtekintése
+ - Tesztek megoldása
+ - Megoldott tesztek megtekintése
+ - Jelszó változtatása
+
+**Vendég:**
+ - Kurzus megtekintése
 
 
 # 6. Képernyőtervek
@@ -67,4 +106,17 @@ Adminisztrátor jogosultságú felhasználó minden tananyaghoz tartozó kérés
 
 # 8. Fogalomszótár
 
-...
+E-learning: Egy számítógépes hálózaton elérhető képzési forma, amely a tanítási-tanulási folyamatot teljes egészében a digitális térbe ülteti.
+
+Kurzus: Tanórák vagy előadások sora, amelyeket befejezve a tanuló új ismereteket és képességeket szerez, amiről oklevelet kap.
+
+# 9. Vágyálomrendszer
+
+A projekt célja egy webes tanulásszervezési rendszer, ahol az elérhető funkciók felhasználói kategóriánként eltérőek, például egy diák számára más funkciók elérhetőek mint egy tanár számára, ezért a funkciók csak sikeres regisztráció és bejelentkezés után használhatóak.
+
+
+Az alap felhasználókon felül kell egy magasabb rendű felhasználó, egy adminisztrátor, aki teljes hozzáféréssel rendelkezik a rendszerben. Az esetleges hibákat neki jelzik a felhasználók. Az admin korlátlanul módosíthatja, törölheti bármelyik kurzust valamint a felhasználók adatait is módosíthatja vagy adhat hozzá új felhasználót.
+A többi felhasználó jelentkezhet a kurzusokra de nem módosíthatja azt, csak a sajátjait. 
+
+
+Adminisztrátori vagy tanári jogosultsági szinttel a felhasználók létrehozhatnak kurzusokat amelyekben tananyagokat, teszteket, feladatokat tölthetnek fel. A kurzusok létrehozása során, készíthetnek komplexebb vagy szimplább kurzusokat, függően attól, hogy milyen céllal, milyen témával fog rendelkezni.
