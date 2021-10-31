@@ -52,7 +52,22 @@ Project ütemterve:
 
 # 10. Implementációs terv
 
-...
+A webes felület HTML, CSS, PHP és Java Scipt nyelven fog elkészülni. A különböző technológiákat amennyire lehet, külön fájlokba írva készítjük el, úgy csatoljuk egymáshoz. Így átláthatóbb, könnyebben változtatható és bővíthető lesz. Az oldal felhasználóinak adatait MySQL adatbázisban fogjuk eltárolni. Backend részen a kiszolgáló egy PHP-ban készült szolgáltatás lesz.
+
+Funkciók:
+
+Regisztráció
+Login
+Logout
+Jelszóváltoztatás
+Tananyagok létrehozása,
+olvasás
+új/szerkesztése
+törlése
+Tesztek létrehozása, módosítása
+eredmények megjelenítése (felhasználókra bontva)
+teszt és eredmények törlése
+Jogosultságok kiosztása a tananyag és teszt hozzáférésekhez (tanári és admin fiók)
 
 # 11. Tesztterv
 
