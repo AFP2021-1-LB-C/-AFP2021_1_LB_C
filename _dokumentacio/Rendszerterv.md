@@ -4,7 +4,23 @@
 
 # 2. Projekt terv
 
-...
+A projekt egy e-learning alkalmazás, ami PHP alapokon nyugszik. E mellett HTML-t, CSS-t és JavaScript-et használunk. Az adatbázis MySQL. Minden részt a fejlesztőcsapat minden tagja fejleszti. 
+A feladatok kiosztását és ütemtervét Trelloban vezetjük, a projectet pedig GIT használatával fejlesztjük közösen. A kommunikáció discordon folyik hang és szöveges csatornákon. 
+
+Project ütemterve:
+
+1. Alkalmazásötlet egyztetése
+2. A fejlesztőkörnyezetek egyeztetése
+3. Ütemterv
+4. Követelmény specifikáció
+5. Funkcionális specifikáció
+6. Rendszerterv
+7. Adatbázis kialakítása
+8. Backend funkciók elkészítése
+9. Frontend design megtervezése
+10. Felhasználói felület kialakítása
+11. Tesztelés
+12. Bemutatás / Átadás
 
 # 3. Üzleti folyamatok modellje
 
