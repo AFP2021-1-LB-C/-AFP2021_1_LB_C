@@ -57,7 +57,24 @@ Project ütemterve:
 
 # 9. Adatbázis terv
 
-...
+A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasználói és tananyagok adatai, továbbá a teszteléshez szükséges adatok is.
+
+Az adatbázis adattáblái:
+
+
+User Tábla (A felhasználók adatait leíró tábla):
+
+id: A felhasználó azonosítója int típusú mező.
+username: A felhasználó felhasználónevét tároló varchar típusú mező.
+password: A felhasználó hashelt jelszavát tároló varchar típusú mező.
+created_at: A felhasználó fiókjának készítésének idejét tároló timestamp típusú mező.
+permission: A felhasználó jogosultságát tároló tinyiint típusú mező.
+ClassID: A felhasználó osztályának azonosítóját tároló int típusú mező.
+
+User_class Tábla (A felhasználóhoz tartozó osztályokat leíró tábla):
+
+ID: Az osztály azonosítóját tároló int típusú mező.
+Name: A osztály nevét tároló varchar típusú mező.
 
 # 10. Implementációs terv
 
