@@ -82,18 +82,18 @@ A webes felület HTML, CSS, PHP és Java Scipt nyelven fog elkészülni. A kül�
 
 Funkciók:
 
-Regisztráció
-Login
-Logout
-Jelszóváltoztatás
-Tananyagok létrehozása,
-olvasás
-új/szerkesztése
-törlése
-Tesztek létrehozása, módosítása
-eredmények megjelenítése (felhasználókra bontva)
-teszt és eredmények törlése
-Jogosultságok kiosztása a tananyag és teszt hozzáférésekhez (tanári és admin fiók)
+- Regisztráció
+- Login
+- Logout
+- Jelszóváltoztatás
+- Tananyagok létrehozása,
+- olvasás
+- új/szerkesztése
+- törlése
+- Tesztek létrehozása, módosítása
+- eredmények megjelenítése (felhasználókra bontva)
+- teszt és eredmények törlése
+- Jogosultságok kiosztása a tananyag és teszt hozzáférésekhez (tanári és admin fiók)
 
 # 11. Tesztterv
 
