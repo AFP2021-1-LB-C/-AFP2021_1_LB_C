@@ -59,7 +59,31 @@ Project ütemterve:
 
 # 4. Követelmények
 
-...
+**Funkcionális követelmények**
+
+- Regisztráció
+- Bejelentkezés
+- Kijelentkezés
+- Jelszó visszaállítása
+- Felhasználói adatok megtekintése, módosítása
+- Tananyag létrehozása, módosítása, törlése
+- Tesztek létrehozása, módosítása, törlése
+- Kurzusra jelentkezés
+- Kurzus jelentkezés elfogadása
+- Tesztek kitöltése
+- Tesztek eredményének megtekintése
+- Hiba esetén az adminisztrátor értesítése
+
+**Nem funkcionális követelmények**
+
+- A felhasználók más adataihoz nem férnek hozzá
+- A diákok nem tudják módosítani és törölni a kurzusokat és teszteket
+- Vendégek számára nem elérhetőek a kurzusok
+- Bejelentkezett felhasználók számára nem elérhető a regisztráció és a bejelentkezés gomb.
+
+**Törvényi előírások, szabványok**
+
+- GDPR
 
 # 5. Funkcionális terv
 
