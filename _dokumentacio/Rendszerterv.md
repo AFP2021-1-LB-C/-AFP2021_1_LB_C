@@ -103,7 +103,7 @@ Project ütemterve:
     - Kurzus felvétel
     - Kurzus leadás
 
-    - **Tanár**
+  - **Tanár**
     - Kurzusok megtekintése
     - Kurzus létrehozása
     - Kurzus szerkesztése
