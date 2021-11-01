@@ -29,8 +29,29 @@ Adminisztrátori vagy tanári jogosultsági szinttel a felhasználók létrehozh
 
 # 4. Jelenlegi üzleti folyamatok modellje
 
-Az oktatási rendszer jelenleg nem használja ki a már meglévő technológiákat arra, hogy a tanulást hatékonyabbá tegye, azáltal hogy szórakoztatóbbá és interaktívabbá tenné azt. Általánosságban Magyarországon a diákok tankönyvekből tanulnak és papír alapon adnak számot legtöbbször lexikális tudásukról, amely a XXI. században elavultnak számít. Ez egy részt rengeteg nyomdai és nyomtatási költséget jelent, másrészt rengeteg időt és energiát emészt fel amit a mai technológiákkal egyszerűen megspórolhatnának. 
-Az oktatók nem tudnak párhuzamosan foglalkozni a diákokkal, sőt rengeteg időt elvesz az idejükből az órák és dolgozatok előkészítése, ezen felül a dolgozatok egyesével való kijavítása. Illetve a dolgozatok megírása papíron is sokkal időigényesebb, mintha különböző alkalmazásokat használnánk a diákok számonkérésére és értékelésére. 
+I. **Regisztráció**
+
+II. **Bejelentkezés**
+
+III. **Felhasználói jogosultságok**
+
+- vendég felhasználó:
+    - Kurzus megtekintése
+
+- diák felhasználó:
+    - Kurzus megtekintése, felvétele és leadása
+
+- tanár felhasználó:
+    - Kurzus létrehozása, megtekintése, szerkesztése és törlése
+
+- adminisztrátor:
+    - Kurzus létrehozása, megtekintése, szerkesztése és törlése 
+    - Felhasználok kurzusokhoz való hozzáférésének kezelése
+
+IV. **Felhasználói beállítások**
+
+- Email módosítása
+- Jelszó módosítása
 
 
 # 5. Igényelt üzleti folyamatok modellje
