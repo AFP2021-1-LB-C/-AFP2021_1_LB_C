@@ -33,11 +33,57 @@ Project ütemterve:
 
 # 3. Üzleti folyamatok modellje
 
-...
+- Üzleti szereplők:
+  - Felhasználók: Felhasználóvá a felületen történő regisztrációval válhat a látogató. A regisztráció során szerzett jogosultság határozza meg, hogy a felhasználó milyen funkciókhoz férhozzá a felületen. A felhasználóknak 3 csoportját különböztetjük meg:
+    - Tanár: A tanár jogosultsággal rendelkező felhasználók képesek kurzusokat létrehozni, tananyagokat feltölteni, teszteket létrehozni. A tanárok hagyják jóvá a diákok kurzusra történő jelentkezését. Továbbá adatlapuk megtekintésére és szerkesztésére is lehetőségük van.
+	- Diák: A diák jogosultságal endelkező felhasználők képesek azon kurzusok tananyagát/tesztjeit megtekinteni/kitölteni amelyekhez hozzáférést kaptak. Továbbá megtekinthetik és szerkeszthetik adalapjukat.
+	- Adminisztrátor: Az adminidztrátor jogkört nem igényelheti a felhasználó. Azt a rendszer üzemeltetője osztja ki. Teljes hozzáféréssel rendelkeznek az összes funkcióhoz. Képes a tananyagok és tesztek teljeskörű menedzselésére, valamint a hibakezelések is az ő jogkörébe tartoznak.
+
+- Üzleti folyamatok: 
+  
+  - Felhasználó regisztrációja: A felhasználó egy regisztrációs form kitöltésével tud regisztrálni. A sikeres regisztrációhoz az alábbi adatok megadása szükséges.    
+    - Felhasználónév: Egyedinek kell lennie.
+	- Jelszó: Legalább 6 karakter hosszúságúnak kell lennie.
+	- Jelszó megerősítése: A megadott jelszóval megegyezőnek kell lennie.
+	
+	A jelszavalók hashelve kerülnek az adatbázisba.
+	
+  - Felhasználó azonosítása: A felhasználó a bejelentkezés során a megfelelő mezőkbe megadja felhasználónevét és jelszavát, majd a rendszer ellenőrzi, hogy a felhasználó szerepel-e az adatbázisban. Amennyiben szerepel, a jelszóea a megfelelő titkosítási algoritmust alkalmazza és ellenőrzi, hogy a felhasználóhoz tárolt jelszó megegyezik-e a felhasználó által bevittel. Ha az azonosítás sikeres, a felhasználó az e-learnng nyitó oldalára kerül. Amennyiben az azonosítás sikertelen, a rendszer a megfelelő hibaüzenettel értesíti a felhasználót.
+  - Jelszó visszaállítása: Ez a funkció lehetőséget biztosít a jelszó visszaállítására, ha a felhasználó elfelejtette azt. Új jelszó beállítása során a felhasználónak meg kell adnia felhasználónevét, az új jelszót és a jelszó megerősítése érdekében újra az új jelszót. Az új jelszónak is legalább 6 karakter hosszúnak kell lennie.
+  - Profiladatok módosítása: A felhasználók számára biztosít lehetőséget hogy felhasználónevüket és/vagy jelszavukat módosítsák. Módosítás során az adatoknak a regisztráció során felsorolt tényezőknek kell megfelelni.
+  - Tananyag feltöltése: Taná jogosultságú felhasználónak lehetősége van új tananyagokat feltölteni,a feltöltött anyagot módosítani és törölni is. Ezeket a tananyagokat azok a diákok tudják olvasni, akik hozzáférést kaptak a tananyagokhoz.
+  - Tesztek feltöltése: A rendszer lehetőséget biztosít a tanárok számára az általuk létrehozott tananyagokhoz tesztek feltöltésére. Ezen tesztek kitöltésével tudják a tnulók tudását ellenőrizni.
+  - Hozzáférés igénylése: Diákok számára elérhető funkció, mellyel a számukra szükséges tananyagokhoz igényelhetnek hozzáférést, amit a tananyagot létrehozó tanár tud megadni.
+  - Tesztek megírása: Diákok számára lehetséges a tananyag elolvasása után a tananyaghoz tartozó teszteket megírni.
+  - Tesztek eredménye: A tesztek megírása után egy értékelés látható a tesztek végeredményével.
 
 # 4. Követelmények
 
-...
+**Funkcionális követelmények**
+
+- Regisztráció
+- Bejelentkezés
+- Kijelentkezés
+- Jelszó visszaállítása
+- Felhasználói adatok megtekintése, módosítása
+- Tananyag létrehozása, módosítása, törlése
+- Tesztek létrehozása, módosítása, törlése
+- Kurzusra jelentkezés
+- Kurzus jelentkezés elfogadása
+- Tesztek kitöltése
+- Tesztek eredményének megtekintése
+- Hiba esetén az adminisztrátor értesítése
+
+**Nem funkcionális követelmények**
+
+- A felhasználók más adataihoz nem férnek hozzá
+- A diákok nem tudják módosítani és törölni a kurzusokat és teszteket
+- Vendégek számára nem elérhetőek a kurzusok
+- Bejelentkezett felhasználók számára nem elérhető a regisztráció és a bejelentkezés gomb.
+
+**Törvényi előírások, szabványok**
+
+- GDPR
 
 # 5. Funkcionális terv
 
@@ -57,7 +103,24 @@ Project ütemterve:
 
 # 9. Adatbázis terv
 
-...
+A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasználói és tananyagok adatai, továbbá a teszteléshez szükséges adatok is.
+
+Az adatbázis adattáblái:
+
+
+User Tábla (A felhasználók adatait leíró tábla):
+
+id: A felhasználó azonosítója int típusú mező.
+username: A felhasználó felhasználónevét tároló varchar típusú mező.
+password: A felhasználó hashelt jelszavát tároló varchar típusú mező.
+created_at: A felhasználó fiókjának készítésének idejét tároló timestamp típusú mező.
+permission: A felhasználó jogosultságát tároló tinyiint típusú mező.
+ClassID: A felhasználó osztályának azonosítóját tároló int típusú mező.
+
+User_class Tábla (A felhasználóhoz tartozó osztályokat leíró tábla):
+
+ID: Az osztály azonosítóját tároló int típusú mező.
+Name: A osztály nevét tároló varchar típusú mező.
 
 # 10. Implementációs terv
 
@@ -65,22 +128,31 @@ A webes felület HTML, CSS, PHP és Java Scipt nyelven fog elkészülni. A kül�
 
 Funkciók:
 
-Regisztráció
-Login
-Logout
-Jelszóváltoztatás
-Tananyagok létrehozása,
-olvasás
-új/szerkesztése
-törlése
-Tesztek létrehozása, módosítása
-eredmények megjelenítése (felhasználókra bontva)
-teszt és eredmények törlése
-Jogosultságok kiosztása a tananyag és teszt hozzáférésekhez (tanári és admin fiók)
+- Regisztráció
+- Login
+- Logout
+- Jelszóváltoztatás
+- Tananyagok létrehozása,
+- olvasás
+- új/szerkesztése
+- törlése
+- Tesztek létrehozása, módosítása
+- eredmények megjelenítése (felhasználókra bontva)
+- teszt és eredmények törlése
+- Jogosultságok kiosztása a tananyag és teszt hozzáférésekhez (tanári és admin fiók)
 
 # 11. Tesztterv
 
-...
+A tesztelések célja a rendszer minden funkciójának vizsgálata és annak ellenőrzése, hogy minden megfelelően működik.
+
+- Adatbázis tesztelése
+- Adatok beolvasása és visszaadása
+- Linkek és gombok tesztelése
+- Megtekintés Létrehozás Törlés és Módosítás funkciók tesztelése
+- Biztonság ellenőrzése (megfelelően védve vannak e az adatok, jelszavak, kijelentkezés ellenőrzése)
+- Hibaüzenetek tesztelése (felhasználó által bevitt hibás adatok esetén)
+- Az alkalmazás tesztelése különböző böngészőkben
+
 
 # 12. Telepítési terv
 
