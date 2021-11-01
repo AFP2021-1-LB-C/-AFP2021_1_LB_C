@@ -87,7 +87,31 @@ Project ütemterve:
 
 # 5. Funkcionális terv
 
-...
+**Rendszerszereplők:**
+  - Adminisztrátor
+  - Tanár
+  - Diák
+  - Vendég
+
+**Rendszerhasználati esetek és lefutásaik:**
+  - **Adminisztrátor**
+    - Felhasználók adatainak módosítása, felhasználók törlése
+    - Kurzusok hozzáadása, kurzusok módosítása és törlése
+
+  - **Diák**
+    - Kurzusok megtekintése
+    - Kurzus felvétel
+    - Kurzus leadás
+
+    - **Tanár**
+    - Kurzusok megtekintése
+    - Kurzus létrehozása
+    - Kurzus szerkesztése
+
+  - **Vendég**
+    - Kurzusok megtekintése
+
+**Menü-hierarchiák:**
 
 # 6. Fizikai környezet
 
