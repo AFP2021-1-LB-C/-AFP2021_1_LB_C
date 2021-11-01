@@ -148,7 +148,7 @@ A tesztelések célja a rendszer minden funkciójának vizsgálata és annak ell
 - Adatbázis tesztelése
 - Adatok beolvasása és visszaadása
 - Linkek és gombok tesztelése
-- Megtekintés Létrehozás Törlés és Módosítás funkciók tesztelése
+- Megtekintés, Létrehozás, Törlés és Módosítás funkciók tesztelése
 - Biztonság ellenőrzése (megfelelően védve vannak e az adatok, jelszavak, kijelentkezés ellenőrzése)
 - Hibaüzenetek tesztelése (felhasználó által bevitt hibás adatok esetén)
 - Az alkalmazás tesztelése különböző böngészőkben
