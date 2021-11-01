@@ -91,7 +91,13 @@ Project ütemterve:
 
 # 6. Fizikai környezet
 
-...
+- A projektet webalkalmazásként valósítjuk meg
+- Csak szabad felhasználású komponenseket használ
+- Fejlesztői eszközök:
+  - Visual Studio Code
+- Keretrendszer:
+  - Laravel
+
 
 # 7. Absztrakt domain modell
 
