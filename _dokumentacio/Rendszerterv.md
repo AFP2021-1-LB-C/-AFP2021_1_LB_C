@@ -87,11 +87,41 @@ Project ütemterve:
 
 # 5. Funkcionális terv
 
-...
+**Rendszerszereplők:**
+  - Adminisztrátor
+  - Tanár
+  - Diák
+  - Vendég
+
+**Rendszerhasználati esetek és lefutásaik:**
+  - **Adminisztrátor**
+    - Felhasználók adatainak módosítása, felhasználók törlése
+    - Kurzusok hozzáadása, kurzusok módosítása és törlése
+
+  - **Diák**
+    - Kurzusok megtekintése
+    - Kurzus felvétel
+    - Kurzus leadás
+
+  - **Tanár**
+    - Kurzusok megtekintése
+    - Kurzus létrehozása
+    - Kurzus szerkesztése
+
+  - **Vendég**
+    - Kurzusok megtekintése
+
+**Menü-hierarchiák:**
 
 # 6. Fizikai környezet
 
-...
+- A projektet webalkalmazásként valósítjuk meg
+- Csak szabad felhasználású komponenseket használ
+- Fejlesztői eszközök:
+  - Visual Studio Code
+- Keretrendszer:
+  - Laravel
+
 
 # 7. Absztrakt domain modell
 
@@ -156,4 +186,15 @@ A tesztelések célja a rendszer minden funkciójának vizsgálata és annak ell
 
 # 12. Telepítési terv
 
-...
+ 1. Egy webszerver telepítése, ami futtatni tud PHP szkripteket és támogatja a MySQL-t.
+ 2. Egy modern webböngészőt futtatni képes operációs rendszer
+például:
+ - Windows
+ - Linux
+ 3. Egy modern webböngésző ami futtatni képes az alkalmazást
+például:
+ - Mozilla Firefox
+ - Google Chrome
+ 4. Tárhely amely képes eltárolni az adatokat és támogatja a PHP szkripteket és a MySQL-t.
+ 5. Egy program, amellyel feltölthetők az alkalmazás fájljai.
+ 6. Forráskód és adatok importálása
