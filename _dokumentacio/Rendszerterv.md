@@ -183,6 +183,26 @@ A tesztelések célja a rendszer minden funkciójának vizsgálata és annak ell
 - Hibaüzenetek tesztelése (felhasználó által bevitt hibás adatok esetén)
 - Az alkalmazás tesztelése különböző böngészőkben
 
+### Teszt lépések
+
+| Teszt sorszáma | Tesztlépés | Siker / Hibaüzenet |
+|-----------|---------------|-------------------|
+| 1.  | Az alkalmazás megnyitása | A program lefut, minden megfelelően megjelenik |
+| 2.  | Regisztrációs oldal megnyitása | Az oldal megnyitható/elérhető |
+| 3.  | Regisztráció kipróbálása helyes adatokkal | A regisztráció sikeres |
+| 4.  | Regisztráció kipróbálása helytelen adatokkal | A hibaüzenet megjelenik, a regisztráció sikertelen |
+| 5.  | Már létező felhasználó regisztrálása | A hibaüzenet megjelenik, a regisztráció sikertelen |
+| 6.  | Bejelentkezés oldal megnyitása | Az oldal megnyitható/elérhető |
+| 7.  | Bejelentkezés kipróbálása egy létező felhasználóval | A bejelentkezés sikeres |
+| 8.  | Bejelentkezés egy nem létező felhasználóval | A hibaüzenet megjelenik, a bejelentkezés sikertelen |
+| 9.  | Bejelentkezés hibás jelszóval | A hibaüzenet megjelenik, "elfelejtett jelszó" opció megjelenése |
+| 10.  | Kurzusok oldal megnyitása |  Az oldal minden tartalma megjelenik  |
+| 11.  | Tananyag oldal megnyitása |  Az oldal minden tartalma megjelenik  |
+| 12.  | Feladat oldal megnyitása  |  Az oldal minden tartalma megjelenik  |
+| 13.  | Kurzusok kipróbálása | A kurzusok létrehozhatóak, törölhetőek, szerkeszthetőek és megtekinthetőek (felhasználótól függően) |
+| 14.  | Tananyagok kipróbálása | A tananyagok létrehozhatóak, törölhetőek, szerkeszthetőek és megtekinthetőek (felhasználótól függően) |
+| 15.  | Feladatok kipróbálása | A feladatok létrehozhatóak, törölhetőek, szerkeszthetőek és megtekinthetőek (felhasználótól függően) |
+| 16.  | Kijelentkezés tesztelése | A felhasználó valóban kijelentkezett, a vendég felhasználó az aktív |
 
 # 12. Telepítési terv
 
