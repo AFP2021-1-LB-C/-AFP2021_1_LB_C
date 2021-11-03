@@ -186,4 +186,15 @@ A tesztelések célja a rendszer minden funkciójának vizsgálata és annak ell
 
 # 12. Telepítési terv
 
-...
+ 1. Egy webszerver telepítése, ami futtatni tud PHP szkripteket és támogatja a MySQL-t.
+ 2. Egy modern webböngészőt futtatni képes operációs rendszer
+például:
+ - Windows
+ - Linux
+ 3. Egy modern webböngésző ami futtatni képes az alkalmazást
+például:
+ - Mozilla Firefox
+ - Google Chrome
+ 4. Tárhely amely képes eltárolni az adatokat és támogatja a PHP szkripteket és a MySQL-t.
+ 5. Egy program, amellyel feltölthetők az alkalmazás fájljai.
+ 6. Forráskód és adatok importálása
