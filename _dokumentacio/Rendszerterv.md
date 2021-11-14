@@ -125,7 +125,7 @@ Project ütemterve:
 
 # 7. Absztrakt domain modell
 
-...
+![image info](./pictures/modell.png)
 
 # 8. Architekturális terv
 
