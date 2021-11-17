@@ -53,19 +53,20 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-CREATE TABLE `courses` (**\<br>**
-  `id` int(11) NOT NULL, PRIMARY KEY**\<br>**
-  `name` varchar(100) NOT NULL,**\<br>**
-  `user_id` int(11) NOT NULL,**\<br>**
-  `description` text NOT NULL**\<br>**
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;**\<br>**
-
-CREATE TABLE `lessons` (**\<br>**
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `name` varchar(100) NOT NULL,
+`user_id` int(11) NOT NULL,
+  `description` text NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  
+  CREATE TABLE `lessons` (
   `id` int(11) NOT NULL, PRIMARY KEY
   `topic` varchar(100) NOT NULL,
   `course_id` int(11) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 CREATE TABLE `lessons` (
   `id` int(11) NOT NULL, PRIMARY KEY
