@@ -53,19 +53,72 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-User Tábla (A felhasználók adatait leíró tábla):
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `name` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-id: A felhasználó azonosítója int típusú mező.
-username: A felhasználó felhasználónevét tároló varchar típusú mező.
-password: A felhasználó hashelt jelszavát tároló varchar típusú mező.
-created_at: A felhasználó fiókjának készítésének idejét tároló timestamp típusú mező.
-permission: A felhasználó jogosultságát tároló tinyiint típusú mező.
-ClassID: A felhasználó osztályának azonosítóját tároló int típusú mező.
+CREATE TABLE `lessons` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `topic` varchar(100) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-User_class Tábla (A felhasználóhoz tartozó osztályokat leíró tábla):
+CREATE TABLE `lessons` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `topic` varchar(100) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ID: Az osztály azonosítóját tároló int típusú mező.
-Name: A osztály nevét tároló varchar típusú mező.
+CREATE TABLE `quiz_questions` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `question` varchar(255) NOT NULL,
+  `answer_1` varchar(255) NOT NULL,
+  `answer_2` varchar(255) NOT NULL,
+  `answer_3` varchar(255) NOT NULL,
+  `answer_4` varchar(255) NOT NULL,
+  `correct_answer` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `quiz_results` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `quiz_question_id` int(11) NOT NULL,
+  `answer` tinyint(4) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `quiz_types` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `schedules` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `type` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `course_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL, PRIMARY KEY
+  `name` varchar(255) NOT NULL,
+  `age` tinyint(4) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `registration_date` datetime NOT NULL,
+  `last_login_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 # 10. Implementációs terv
 
@@ -77,7 +130,7 @@ Funkciók:
 - Login
 - Logout
 - Jelszóváltoztatás
-- Tananyagok létrehozása,
+- Tananyagok létrehozása
 - olvasás
 - új/szerkesztése
 - törlése
