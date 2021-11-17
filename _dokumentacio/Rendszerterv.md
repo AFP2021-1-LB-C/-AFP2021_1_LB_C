@@ -54,11 +54,12 @@ Az adatbázis adattáblái:
 
 
 CREATE TABLE `courses` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(100) NOT NULL,
-`user_id` int(11) NOT NULL,
-  `description` text NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    `id` int(11) NOT NULL, **PRIMARY KEY**
+    `name` varchar(100) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `description` text NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
   
   CREATE TABLE `lessons` (
   `id` int(11) NOT NULL, PRIMARY KEY
