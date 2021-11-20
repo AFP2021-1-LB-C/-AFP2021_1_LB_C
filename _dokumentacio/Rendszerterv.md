@@ -54,59 +54,58 @@ Az adatbázis adattáblái:
 
 
 **Courses Tábla** (A kurzus adatait leíró tábla)<br>
-    **id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**<br>
-    **name: varchar** típusú mező, a kurzus neve<br>
-    **user_id:** **int** típusú mező<br>
-    **description:** **text** típusú mező<br>
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    name | varchar típusú mező | a kurzus neve.
+    user_id | int típusú mező | 
+    description | text típusú mező | 
     
-    **id: int** típusú mező | a kurzus azonosítója.
-    **name: varchar** típusú mező | a kurzus neve.
+
 
 **Users Tábla** (A felhasználók adatait leíró tábla)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **name: varchar** típusú mező
-    **age: tinyint** típusú mező
-    **role_ide: int** típusú mező
-    **username: varchar** típusú mező
-    **email: varchar** típusú mező, email címet tartalmaző mező
-    **password: varchar** típusú mező, jelszót tartalmaző mező
-    **registration_date: datetime** típusú mező, regisztráció dátuma
-    **last_login_date: datetime** típusú mező, utolsó bejelentkezés dátuma
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    name | varchar típusú mező |
+    age | tinyint típusú mező |
+    role_ide | int típusú mező |
+    username | varchar típusú mező |
+    email | varchar típusú mező | email címet tartalmaző mező
+    password | varchar típusú mező | jelszót tartalmaző mező
+    registration_date | datetime típusú mező | regisztráció dátuma
+    last_login_date | datetime típusú mező | utolsó bejelentkezés dátuma
 
 **Lessons Tábla** (Órák adatait leíró tábla)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **topic: varchar** típusú mező
-    **course_id: int** típusú mező
-    **content: text** típusú mező
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    topic | varchar típusú mező |
+    course_id | int típusú mező |
+    content | text típusú mező |
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **question: varchar** típusú mező, a kérdést tároló mező
-    **answer_1: varchar** típusú mező, az első választ tároló mező
-    **answer_2: varchar** típusú mező, a máasodik választ tároló mező
-    **answer_3: varchar** típusú mező, a harmadik választ tároló mező
-    **answer_4: varchar** típusú mező, a nagyedik választ tároló mező
-    **correct_answer: tinyint** típusú mező, a helyes válasz sorszáma
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    question | varchar típusú mező | a kérdést tároló mező
+    answer_1 | varchar típusú mező | az első választ tároló mező
+    answer_2 | varchar típusú mező | a máasodik választ tároló mező
+    answer_3 | varchar típusú mező | a harmadik választ tároló mező
+    answer_4 | varchar típusú mező | a nagyedik választ tároló mező
+    correct_answer | tinyint típusú mező | a helyes válasz sorszáma
 
 **Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **quiz_result: int** típusú mező
-    **answer: tinyint** típusú mező
-    **user_id: int** típusú mező
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    quiz_result | int típusú mező |
+    answer | tinyint típusú mező |
+    user_id | int típusú mező |
 
 **Quiz_types Tábla** (Kvízek típusai)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **name: varchar** típusú mező
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    name | varchar típusú mező |
 
 **Roles Tábla** (Szerepkörök)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **name: varchar** típusú mező
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    name | varchar típusú mező |
 
 **Scheuldes Tábla** (Vizsga menetrend)
-    **id: int** típusú mező, **ELSŐDLEGES KULCS**
-    **type: int** típusú mező
-    **date: datetime** típusú mező
-    **course_id: int** típusú mező
+    id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
+    type | int típusú mező |
+    date | datetime típusú mező |
+    course_id | int típusú mező |
 
 
 
