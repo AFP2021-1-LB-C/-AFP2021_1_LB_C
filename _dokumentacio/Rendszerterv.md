@@ -54,10 +54,18 @@ Az adatbázis adattáblái:
 
 
 **Courses Tábla** (A kurzus adatait leíró tábla)<br>
+    |mező | típus | leírás |
+    ------------------------
     | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
     | name | varchar típusú mező | a kurzus neve.|
     | user_id | int típusú mező  |
     | description | text típusú mező  |
+
+| mező 	| típus 	| leírás           	|   	|   	|
+|------	|-------	|------------------	|---	|---	|
+| id   	| int   	| elsődleges kulcs 	|   	|   	|
+|      	|       	|                  	|   	|   	|
+|      	|       	|                  	|   	|   	|
     
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
@@ -79,7 +87,7 @@ Az adatbázis adattáblái:
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
    | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | question | varchar típusú mező | a kérdést tároló mező|
+   | question | varchar típusú mező | a kérdést tároló mező        |
    | answer_1 | varchar típusú mező | az első választ tároló mező|
    | answer_2 | varchar típusú mező | a máasodik választ tároló mező|
    | answer_3 | varchar típusú mező | a harmadik választ tároló mező|
