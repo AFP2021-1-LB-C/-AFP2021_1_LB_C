@@ -138,73 +138,79 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-**Courses Tábla** (A kurzus adatait leíró tábla)
-**id:* **int** típusú mező, a kurzus azonosítója, ELSŐDLEGES KULCS
-**name:** **varchar** típusú mező, a kurzus neve
-**user_id:** **int** típusú mező
-**description:** **text** típusú mező
-
-  
-  CREATE TABLE `lessons` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `topic` varchar(100) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Courses Tábla** (A kurzus adatait leíró tábla)<br>
+| Mező        	| Típus   	| Leírás                               	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| name        	| varchar 	| kurzus neve                          	|
+| user_id     	| int     	| felhasználó azonosítója               |
+| description 	| text    	| kurzus leírása                        |
 
 
-CREATE TABLE `lessons` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `topic` varchar(100) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    
 
-CREATE TABLE `quiz_questions` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `question` varchar(255) NOT NULL,
-  `answer_1` varchar(255) NOT NULL,
-  `answer_2` varchar(255) NOT NULL,
-  `answer_3` varchar(255) NOT NULL,
-  `answer_4` varchar(255) NOT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Users Tábla** (A felhasználók adatait leíró tábla)<br>
+| Mező              	| Típus  	|        Leírás                	|
+|-------------------	|----------	|-----------------------------	|
+| name               	| varchar  	| felhasználó neve             	|
+| age               	| tinyint  	| felhasználó kora             	|
+| role_id          	    | int      	| szerepkör                     |
+| username          	| varchar  	| felhasználónév              	|
+| email             	| varchar  	| email címet tartalmaző mező 	|
+| password          	| varchar  	| jelszót tartalmazó mező     	|
+| registration_date 	| datetime 	| regisztráció dátuma         	|
+| last_login_date 	    | datetime 	| utolsó bejelentkezés dátuma   |
 
-CREATE TABLE `quiz_results` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `quiz_question_id` int(11) NOT NULL,
-  `answer` tinyint(4) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `quiz_types` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Lessons Tábla** (Órák adatait leíró tábla)<br>
+| Mező        	| Típus   	| Leírás                              	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| topic        	| varchar 	|                                    	|
+| course_id     | int     	| kurzus kódja                         	|
+| content   	| text    	|                                      	|
 
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| question       	| varchar 	| kérdést tároló mező    	            |
+| answer_1       	| varchar 	| 1. válasz              	            |
+| answer_2       	| varchar 	| 2. válasz                         	|
+| answer_3       	| varchar 	| 3. válasz                         	|
+| answer_4       	| varchar 	| 4. válasz                         	|
+| correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
 
-CREATE TABLE `schedules` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `type` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)<br>
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| quiz_result       | varchar 	| eredmény                              |
+| answer       	    | tinyint 	| válasz sorszáma  	                    |
+| user_id       	| int 	    |  felhasználó azonosító               	|
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(255) NOT NULL,
-  `age` tinyint(4) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `registration_date` datetime NOT NULL,
-  `last_login_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+**Quiz_types Tábla** (Kvízek típusai)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|---------------------------------------- |
+| id            	| int     | teszt/kvíz azonosítója, elsődleges kulcs|
+| name              | varchar | a teszt neve                            |
+
+**Roles Tábla** (Szerepkörök)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|----------------------------------------	|
+| id            	| int     | szerepkör azonosítója, elsődleges kulcs |
+| name              | varchar | szerepkör neve                          |
+
+**Scheuldes Tábla** (Vizsga menetrend)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|----------------------------------------	|
+| id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
+| type              | int     |   vizsga típusa                         |
+| date              | datetime|  vizsga dátuma                          |
+| course_id         | int     |  vizsga azonosítója                     |
+
+
 
 # 10. Implementációs terv
 
