@@ -58,8 +58,8 @@ Az adatbázis adattáblái:
 |-------------	|---------	|--------------------------------------	|
 | id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
 | name        	| varchar 	| kurzus neve                          	|
-| user_id     	| int     	|                                      	|
-| description 	| text    	|                                      	|
+| user_id     	| int     	| felhasználó azonosítója               |
+| description 	| text    	| kurzus leírása                        |
 
 
     
@@ -67,10 +67,10 @@ Az adatbázis adattáblái:
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
 | Mező              	| Típus  	|        Leírás                	|
 |-------------------	|----------	|-----------------------------	|
-| name               	| varchar  	|                             	|
-| age               	| tinyint  	|                             	|
-| role_ide          	| int      	|                             	|
-| username          	| varchar  	|                             	|
+| name               	| varchar  	| felhasználó neve             	|
+| age               	| tinyint  	| felhasználó kora             	|
+| role_id          	    | int      	| szerepkör                     |
+| username          	| varchar  	| felhasználónév              	|
 | email             	| varchar  	| email címet tartalmaző mező 	|
 | password          	| varchar  	| jelszót tartalmazó mező     	|
 | registration_date 	| datetime 	| regisztráció dátuma         	|
@@ -82,7 +82,7 @@ Az adatbázis adattáblái:
 |-------------	|---------	|--------------------------------------	|
 | id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
 | topic        	| varchar 	|                                    	|
-| course_id     | int     	|                                      	|
+| course_id     | int     	| kurzus kódja                         	|
 | content   	| text    	|                                      	|
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
@@ -100,30 +100,30 @@ Az adatbázis adattáblái:
 | Mező          	| Típus   	| Leírás                              	|
 |-------------	    |---------	|--------------------------------------	|
 | id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
-| quiz_result       | varchar 	|    	                                |
-| answer       	    | tinyint 	|               	                    |
-| user_id       	| int 	    |                                      	|
+| quiz_result       | varchar 	| eredmény                              |
+| answer       	    | tinyint 	| válasz sorszáma  	                    |
+| user_id       	| int 	    |  felhasználó azonosító               	|
 
 
 **Quiz_types Tábla** (Kvízek típusai)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|---------------------------------------- |
-| id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
-| name              | varchar |                                         |
+| id            	| int     | teszt/kvíz azonosítója, elsődleges kulcs|
+| name              | varchar | a teszt neve                            |
 
 **Roles Tábla** (Szerepkörök)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|----------------------------------------	|
-| id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
-| name              | varchar |                                         |
+| id            	| int     | szerepkör azonosítója, elsődleges kulcs |
+| name              | varchar | szerepkör neve                          |
 
 **Scheuldes Tábla** (Vizsga menetrend)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|----------------------------------------	|
 | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
-| type              | int     |                                         |
-| date              | datetime|                                         |
-| course_id         | int     |                                         |
+| type              | int     |   vizsga típusa                         |
+| date              | datetime|  vizsga dátuma                          |
+| course_id         | int     |  vizsga azonosítója                     |
 
 
 
