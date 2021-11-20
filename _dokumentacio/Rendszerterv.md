@@ -54,10 +54,10 @@ Az adatbázis adattáblái:
 
 
 **Courses Tábla** (A kurzus adatait leíró tábla)
-**id:* **int** típusú mező, a kurzus azonosítója, ELSŐDLEGES KULCS
-**name:** **varchar** típusú mező, a kurzus neve
-**user_id:** **int** típusú mező
-**description:** **text** típusú mező
+**ENTER****id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**
+**ENTER****name:** **varchar** típusú mező, a kurzus neve
+**ENTER****user_id:** **int** típusú mező
+**ENTER****description:** **text** típusú mező
 
   
   CREATE TABLE `lessons` (
