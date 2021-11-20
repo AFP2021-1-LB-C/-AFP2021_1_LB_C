@@ -54,36 +54,36 @@ Az adatbázis adattáblái:
 
 
 **Courses Tábla** (A kurzus adatait leíró tábla)<br>
-    |mező | típus | leírás |
-    ------------------------
-    | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-    | name | varchar típusú mező | a kurzus neve.|
-    | user_id | int típusú mező  |
-    | description | text típusú mező  |
+| Mező        	| Típus   	| Leírás                               	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| name        	| varchar 	| kurzus neve                          	|
+| user_id     	| int     	|                                      	|
+| description 	| text    	|                                      	|
 
-| mező 	| típus 	| leírás           	|   	|   	|
-|------	|-------	|------------------	|---	|---	|
-| id   	| int   	| elsődleges kulcs 	|   	|   	|
-|      	|       	|                  	|   	|   	|
-|      	|       	|                  	|   	|   	|
+
     
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | name | varchar típusú mező |
-   | age | tinyint típusú mező |
-   | role_ide | int típusú mező |
-   | username | varchar típusú mező |
-   | email | varchar típusú mező | email címet tartalmaző mező|
-   | password | varchar típusú mező | jelszót tartalmaző mező|
-   | registration_date | datetime típusú mező | regisztráció dátuma|
-   | last_login_date | datetime típusú mező | utolsó bejelentkezés dátuma|
+| Mező              	| Típus  	|        Leírás                	|
+|-------------------	|----------	|-----------------------------	|
+| name               	| varchar  	|                             	|
+| age               	| tinyint  	|                             	|
+| role_ide          	| int      	|                             	|
+| username          	| varchar  	|                             	|
+| email             	| varchar  	| email címet tartalmaző mező 	|
+| password          	| varchar  	| jelszót tartalmazó mező     	|
+| registration_date 	| datetime 	| regisztráció dátuma         	|
+| last_login_date 	    | datetime 	| utolsó bejelentkezés dátuma   |
+
 
 **Lessons Tábla** (Órák adatait leíró tábla)<br>
-   |id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | topic | varchar típusú mező |
-   | course_id | int típusú mező |
-   | content | text típusú mező|
+| Mező        	| Típus   	| Leírás                              	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| topic        	| varchar 	|                                    	|
+| course_id     | int     	|                                      	|
+| content   	| text    	|                                      	|
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
    | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
