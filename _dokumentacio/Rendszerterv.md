@@ -60,7 +60,6 @@ Az adatbázis adattáblái:
     description | text típusú mező | 
     
 
-
 **Users Tábla** (A felhasználók adatait leíró tábla)
     id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.
     name | varchar típusú mező |
