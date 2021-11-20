@@ -86,33 +86,44 @@ Az adatbázis adattáblái:
 | content   	| text    	|                                      	|
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | question | varchar típusú mező | a kérdést tároló mező        |
-   | answer_1 | varchar típusú mező | az első választ tároló mező|
-   | answer_2 | varchar típusú mező | a máasodik választ tároló mező|
-   | answer_3 | varchar típusú mező | a harmadik választ tároló mező|
-   | answer_4 | varchar típusú mező | a nagyedik választ tároló mező|
-   | correct_answer | tinyint típusú mező | a helyes válasz sorszáma|
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| question       	| varchar 	| kérdést tároló mező    	            |
+| answer_1       	| varchar 	| 1. válasz              	            |
+| answer_2       	| varchar 	| 2. válasz                         	|
+| answer_3       	| varchar 	| 3. válasz                         	|
+| answer_4       	| varchar 	| 4. válasz                         	|
+| correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
 
 **Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | quiz_result | int típusú mező |
-   |answer | tinyint típusú mező |
-   | user_id | int típusú mező |
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| quiz_result       | varchar 	|    	                                |
+| answer       	    | tinyint 	|               	                    |
+| user_id       	| int 	    |                                      	|
+
 
 **Quiz_types Tábla** (Kvízek típusai)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | name | varchar típusú mező |
+    | Mező          	| Típus   | Leírás                                 	|
+    |-------------	    |---------|--------------------------------------	|
+    | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
+    | name              | varchar |                                         |
 
 **Roles Tábla** (Szerepkörök)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   | name | varchar típusú mező |
+    | Mező          	| Típus   | Leírás                                 	|
+    |-------------	    |---------|--------------------------------------	|
+    | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
+    | name              | varchar |                                         |
 
 **Scheuldes Tábla** (Vizsga menetrend)<br>
-   | id | int típusú mező | a kurzus azonosítója,ELSŐDLEGES KULCS.|
-   |type | int típusú mező |
-   | date | datetime típusú mező |
-   | course_id | int típusú mező |
+    | Mező          	| Típus   | Leírás                                 	|
+    |-------------	    |---------|--------------------------------------	|
+    | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
+    | type              | int     |                                         |
+    | date              | datetime|                                         |
+    | course_id         | int     |                                         |
 
 
 
