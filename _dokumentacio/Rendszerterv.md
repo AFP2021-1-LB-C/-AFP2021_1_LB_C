@@ -138,19 +138,20 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-CREATE TABLE `courses` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+**Courses Tábla** (A kurzus adatait leíró tábla)
+**id:* **int** típusú mező, a kurzus azonosítója, ELSŐDLEGES KULCS
+**name:** **varchar** típusú mező, a kurzus neve
+**user_id:** **int** típusú mező
+**description:** **text** típusú mező
 
-CREATE TABLE `lessons` (
+  
+  CREATE TABLE `lessons` (
   `id` int(11) NOT NULL, PRIMARY KEY
   `topic` varchar(100) NOT NULL,
   `course_id` int(11) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 CREATE TABLE `lessons` (
   `id` int(11) NOT NULL, PRIMARY KEY
