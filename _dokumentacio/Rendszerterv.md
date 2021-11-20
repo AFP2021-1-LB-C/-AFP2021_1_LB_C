@@ -54,72 +54,58 @@ Az adatbázis adattáblái:
 
 
 **Courses Tábla** (A kurzus adatait leíró tábla)
-**ENTER****id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**
-**ENTER****name:** **varchar** típusú mező, a kurzus neve
-**ENTER****user_id:** **int** típusú mező
-**ENTER****description:** **text** típusú mező
+**id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**
+***name:** **varchar** típusú mező, a kurzus neve
+**user_id:** **int** típusú mező
+**description:** **text** típusú mező
 
-  
-  CREATE TABLE `lessons` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `topic` varchar(100) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ **Users Tábla** (A felhasználók adatait leíró tábla)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**name: varchar** típusú mező
+**age: tinyint** típusú mező
+**role_ide: int** típusú mező
+**username: varchar** típusú mező
+**email: varchar** típusú mező, email címet tartalmaző mező
+**password: varchar** típusú mező, jelszót tartalmaző mező
+**registration_date: datetime** típusú mező, regisztráció dátuma
+**last_login_date: datetime** típusú mező, utolsó bejelentkezés dátuma
+
+**Lessons Tábla** (Órák adatait leíró tábla)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**topic: varchar** típusú mező
+**course_id: int** típusú mező
+**content: text** típusú mező
+
+**Quiz_questions Tábla** (Kérdéseket leíró tábla)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**question: varchar** típusú mező, a kérdést tároló mező
+**answer_1: varchar** típusú mező, az első választ tároló mező
+**answer_2: varchar** típusú mező, a máasodik választ tároló mező
+**answer_3: varchar** típusú mező, a harmadik választ tároló mező
+**answer_4: varchar** típusú mező, a nagyedik választ tároló mező
+**correct_answer: tinyint** típusú mező, a helyes válasz sorszáma
+
+**Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**quiz_result: int** típusú mező
+**answer: tinyint** típusú mező
+**user_id: int** típusú mező
+
+**Quiz_types Tábla** (Kvízek típusai)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**name: varchar** típusú mező
+
+**Roles Tábla** (Szerepkörök)
+**id: int** típusú mező, **ELSŐDLEGES KULCS**
+**name: varchar** típusú mező
+
+\<br>**Scheuldes Tábla** (Vizsga menetrend)
+\<br>**id: int** típusú mező, **ELSŐDLEGES KULCS**
+\<br>**type: int** típusú mező
+\<br>**date: datetime** típusú mező
+\<br>**course_id: int** típusú mező
 
 
-CREATE TABLE `lessons` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `topic` varchar(100) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `quiz_questions` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `question` varchar(255) NOT NULL,
-  `answer_1` varchar(255) NOT NULL,
-  `answer_2` varchar(255) NOT NULL,
-  `answer_3` varchar(255) NOT NULL,
-  `answer_4` varchar(255) NOT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `quiz_results` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `quiz_question_id` int(11) NOT NULL,
-  `answer` tinyint(4) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `quiz_types` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `schedules` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `type` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL, PRIMARY KEY
-  `name` varchar(255) NOT NULL,
-  `age` tinyint(4) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `registration_date` datetime NOT NULL,
-  `last_login_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 # 10. Implementációs terv
 
