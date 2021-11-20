@@ -53,11 +53,14 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-**Courses Tábla** (A kurzus adatait leíró tábla)
-    **id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**
-    **name: varchar** típusú mező, a kurzus neve
-    **user_id:** **int** típusú mező
-    **description:** **text** típusú mező
+**Courses Tábla** (A kurzus adatait leíró tábla)<br>
+    **id: int** típusú mező, a kurzus azonosítója, **ELSŐDLEGES KULCS**<br>
+    **name: varchar** típusú mező, a kurzus neve<br>
+    **user_id:** **int** típusú mező<br>
+    **description:** **text** típusú mező<br>
+    
+    **id: int** típusú mező | a kurzus azonosítója.
+    **name: varchar** típusú mező | a kurzus neve.
 
 **Users Tábla** (A felhasználók adatait leíró tábla)
     **id: int** típusú mező, **ELSŐDLEGES KULCS**
