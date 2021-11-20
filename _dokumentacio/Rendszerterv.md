@@ -107,19 +107,19 @@ Az adatbázis adattáblái:
 
 **Quiz_types Tábla** (Kvízek típusai)<br>
     | Mező          	| Típus   | Leírás                                 	|
-    |-------------	    |---------|--------------------------------------	|
+    |------------------ |---------|---------------------------------------- |
     | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
     | name              | varchar |                                         |
 
 **Roles Tábla** (Szerepkörök)<br>
     | Mező          	| Típus   | Leírás                                 	|
-    |-------------	    |---------|--------------------------------------	|
+    |------------------ |---------|----------------------------------------	|
     | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
     | name              | varchar |                                         |
 
 **Scheuldes Tábla** (Vizsga menetrend)<br>
     | Mező          	| Típus   | Leírás                                 	|
-    |-------------	    |---------|--------------------------------------	|
+    |------------------ |---------|----------------------------------------	|
     | id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
     | type              | int     |                                         |
     | date              | datetime|                                         |
