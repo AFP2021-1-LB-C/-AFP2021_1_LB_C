@@ -129,7 +129,10 @@ Project ütemterve:
 
 # 8. Architekturális terv
 
-...
+A webalkalmazás PHP nyelven íródik, Laravel keretrendszerben.
+Rendszerünkhöz az MVC (Model View Controller) szoftvertervezési mintát alkalmazzuk.
+
+Adatbáziskezelésre MySQL-t használunk. A megjelenítésért a Bootstrap felel.
 
 # 9. Adatbázis terv
 
