@@ -113,32 +113,32 @@ Project ütemterve:
 
 **Menü-hierarchiák:**
  - **Adminisztrátor**
-      | Kurzusok | \| | Tananyagok | \| | Feladatok | \| | Felhasználók | \| | Profil                 |
-      |----------|----|------------|----|-----------|----|--------------|----|------------------------|
-      |          | \| |            | \| |           | \| |              | \| | Adataim                |
-      |          | \| |            | \| |           | \| |              | \| | Jelszó megváltoztatása |
-      |          | \| |            | \| |           | \| |              | \| | Kijelentkezés          |
+      | Kurzusok | Tananyagok | Feladatok | Felhasználók | Profil                 |
+      |----------|------------|-----------|--------------|------------------------|
+      |          |            |           |              | Adataim                |
+      |          |            |           |              | Jelszó megváltoztatása |
+      |          |            |           |              | Kijelentkezés          |
     
 
   - **Diák**
-      | Kurzusok                 | \| | Feladatok | \| | Profil              |
-      |--------------------------|----|-----------|----|------------------------|
-      | {Felvett aktív kurzusok listája} | \| |           | \| | Adataim                |
-      | Összes felvett kurzus    | \| |           | \| | Jelszó megváltoztatása |
-      | Elérhető kurzusok        | \| |           | \| | Kijelentkezés          |
+      | Kurzusok                 | Feladatok | Profil              |
+      |--------------------------|-----------|------------------------|
+      | {Felvett aktív kurzusok listája} |           | Adataim                |
+      | Összes felvett kurzus    |           | Jelszó megváltoztatása |
+      | Elérhető kurzusok        |           | Kijelentkezés          |
 
   - **Tanár**
-      | Kurzusok                       | \| | Feladatok | \| | Profil                 |
-      |--------------------------------|----|-----------|----|------------------------|
-      | {Aktív saját kurzusok listája} | \| |           | \| | Adataim                |
-      | Összes kurzus                  | \| |           | \| | Jelszó megváltoztatása |
-      | Elérhető kurzusok              | \| |           | \| | Kijelentkezés          |
-      | Új kurzus                      | \| |           | \| |                        |
+      | Kurzusok                       | Feladatok | Profil                 |
+      |--------------------------------|-----------|------------------------|
+      | {Aktív saját kurzusok listája} |           | Adataim                |
+      | Összes kurzus                  |           | Jelszó megváltoztatása |
+      | Elérhető kurzusok              |           | Kijelentkezés          |
+      | Új kurzus                      |           |                        |
 
   - **Vendég**
 
-      | Elérhető kurzusok | \| | Regisztráció | \| | Bejelentkezés |
-      |-------------------|----|--------------|----|---------------|
+      | Elérhető kurzusok | Regisztráció | Bejelentkezés |
+      |-------------------|--------------|---------------|
 
 
 # 6. Fizikai környezet
