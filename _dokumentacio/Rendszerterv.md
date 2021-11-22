@@ -112,13 +112,47 @@ Project ütemterve:
     - Kurzusok megtekintése
 
 **Menü-hierarchiák:**
+ - **Adminisztrátor**
+      | Kurzusok | Tananyagok | Feladatok | Felhasználók | Profil                 |
+      |----------|------------|-----------|--------------|------------------------|
+      |          |            |           |              | Adataim                |
+      |          |            |           |              | Jelszó megváltoztatása |
+      |          |            |           |              | Kijelentkezés          |
+    
+
+  - **Diák**
+      | Kurzusok                 | Feladatok | Profil              |
+      |--------------------------|-----------|------------------------|
+      | {Felvett aktív kurzusok listája} |           | Adataim                |
+      | Összes felvett kurzus    |           | Jelszó megváltoztatása |
+      | Elérhető kurzusok        |           | Kijelentkezés          |
+
+  - **Tanár**
+      | Kurzusok                       | Feladatok | Profil                 |
+      |--------------------------------|-----------|------------------------|
+      | {Aktív saját kurzusok listája} |           | Adataim                |
+      | Összes kurzus                  |           | Jelszó megváltoztatása |
+      | Elérhető kurzusok              |           | Kijelentkezés          |
+      | Új kurzus                      |           |                        |
+
+  - **Vendég**
+
+      | Elérhető kurzusok | Regisztráció | Bejelentkezés |
+      |-------------------|--------------|---------------|
+
 
 # 6. Fizikai környezet
 
 - A projektet webalkalmazásként valósítjuk meg
 - Csak szabad felhasználású komponenseket használ
+- Fizikai alrendszerek
+  - Webszerver: 80-as porton elérhető HTTP szolgáltatás
+  - Mysql alapu adatbázis 
+  - Kliens gépek: böngésző futtatására alkalmas eszközök
 - Fejlesztői eszközök:
   - Visual Studio Code
+  - XAMPP szerver
+  - phpMyAdmin
 - Keretrendszer:
   - Laravel
 
