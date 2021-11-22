@@ -112,13 +112,47 @@ Project ütemterve:
     - Kurzusok megtekintése
 
 **Menü-hierarchiák:**
+ - **Adminisztrátor**
+      | Kurzusok | \| | Tananyagok | \| | Feladatok | \| | Felhasználók | \| | Profil                 |
+      |----------|----|------------|----|-----------|----|--------------|----|------------------------|
+      |          | \| |            | \| |           | \| |              | \| | Adataim                |
+      |          | \| |            | \| |           | \| |              | \| | Jelszó megváltoztatása |
+      |          | \| |            | \| |           | \| |              | \| | Kijelentkezés          |
+    
+
+  - **Diák**
+      | Kurzusok                 | \| | Feladatok | \| | Profil              |
+      |--------------------------|----|-----------|----|------------------------|
+      | {Felvett aktív kurzusok listája} | \| |           | \| | Adataim                |
+      | Összes felvett kurzus    | \| |           | \| | Jelszó megváltoztatása |
+      | Elérhető kurzusok        | \| |           | \| | Kijelentkezés          |
+
+  - **Tanár**
+      | Kurzusok                       | \| | Feladatok | \| | Profil                 |
+      |--------------------------------|----|-----------|----|------------------------|
+      | {Aktív saját kurzusok listája} | \| |           | \| | Adataim                |
+      | Összes kurzus                  | \| |           | \| | Jelszó megváltoztatása |
+      | Elérhető kurzusok              | \| |           | \| | Kijelentkezés          |
+      | Új kurzus                      | \| |           | \| |                        |
+
+  - **Vendég**
+
+      | Elérhető kurzusok | \| | Regisztráció | \| | Bejelentkezés |
+      |-------------------|----|--------------|----|---------------|
+
 
 # 6. Fizikai környezet
 
 - A projektet webalkalmazásként valósítjuk meg
 - Csak szabad felhasználású komponenseket használ
+- Fizikai alrendszerek
+  - Webszerver: 80-as porton elérhető HTTP szolgáltatás
+  - Mysql alapu adatbázis 
+  - Kliens gépek: böngésző futtatására alkalmas eszközök
 - Fejlesztői eszközök:
   - Visual Studio Code
+  - XAMPP szerver
+  - phpMyAdmin
 - Keretrendszer:
   - Laravel
 
@@ -129,7 +163,10 @@ Project ütemterve:
 
 # 8. Architekturális terv
 
-...
+A webalkalmazás PHP nyelven íródik, Laravel keretrendszerben.
+Rendszerünkhöz az MVC (Model View Controller) szoftvertervezési mintát alkalmazzuk.
+
+Adatbáziskezelésre MySQL-t használunk. A megjelenítésért a Bootstrap felel.
 
 # 9. Adatbázis terv
 
@@ -138,19 +175,79 @@ A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasznál�
 Az adatbázis adattáblái:
 
 
-User Tábla (A felhasználók adatait leíró tábla):
+**Courses Tábla** (A kurzus adatait leíró tábla)<br>
+| Mező        	| Típus   	| Leírás                               	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| name        	| varchar 	| kurzus neve                          	|
+| user_id     	| int     	| felhasználó azonosítója               |
+| description 	| text    	| kurzus leírása                        |
 
-id: A felhasználó azonosítója int típusú mező.
-username: A felhasználó felhasználónevét tároló varchar típusú mező.
-password: A felhasználó hashelt jelszavát tároló varchar típusú mező.
-created_at: A felhasználó fiókjának készítésének idejét tároló timestamp típusú mező.
-permission: A felhasználó jogosultságát tároló tinyiint típusú mező.
-ClassID: A felhasználó osztályának azonosítóját tároló int típusú mező.
 
-User_class Tábla (A felhasználóhoz tartozó osztályokat leíró tábla):
+    
 
-ID: Az osztály azonosítóját tároló int típusú mező.
-Name: A osztály nevét tároló varchar típusú mező.
+**Users Tábla** (A felhasználók adatait leíró tábla)<br>
+| Mező              	| Típus  	|        Leírás                	|
+|-------------------	|----------	|-----------------------------	|
+| name               	| varchar  	| felhasználó neve             	|
+| age               	| tinyint  	| felhasználó kora             	|
+| role_id          	    | int      	| szerepkör                     |
+| username          	| varchar  	| felhasználónév              	|
+| email             	| varchar  	| email címet tartalmaző mező 	|
+| password          	| varchar  	| jelszót tartalmazó mező     	|
+| registration_date 	| datetime 	| regisztráció dátuma         	|
+| last_login_date 	    | datetime 	| utolsó bejelentkezés dátuma   |
+
+
+**Lessons Tábla** (Órák adatait leíró tábla)<br>
+| Mező        	| Típus   	| Leírás                              	|
+|-------------	|---------	|--------------------------------------	|
+| id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| topic        	| varchar 	|                                    	|
+| course_id     | int     	| kurzus kódja                         	|
+| content   	| text    	|                                      	|
+
+**Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| question       	| varchar 	| kérdést tároló mező    	            |
+| answer_1       	| varchar 	| 1. válasz              	            |
+| answer_2       	| varchar 	| 2. válasz                         	|
+| answer_3       	| varchar 	| 3. válasz                         	|
+| answer_4       	| varchar 	| 4. válasz                         	|
+| correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
+
+**Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)<br>
+| Mező          	| Típus   	| Leírás                              	|
+|-------------	    |---------	|--------------------------------------	|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
+| quiz_result       | varchar 	| eredmény                              |
+| answer       	    | tinyint 	| válasz sorszáma  	                    |
+| user_id       	| int 	    |  felhasználó azonosító               	|
+
+
+**Quiz_types Tábla** (Kvízek típusai)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|---------------------------------------- |
+| id            	| int     | teszt/kvíz azonosítója, elsődleges kulcs|
+| name              | varchar | a teszt neve                            |
+
+**Roles Tábla** (Szerepkörök)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|----------------------------------------	|
+| id            	| int     | szerepkör azonosítója, elsődleges kulcs |
+| name              | varchar | szerepkör neve                          |
+
+**Scheuldes Tábla** (Vizsga menetrend)<br>
+| Mező          	| Típus   | Leírás                                 	|
+|------------------ |---------|----------------------------------------	|
+| id            	| int     | kurzus azonosítója, elsődleges kulcs 	|
+| type              | int     |   vizsga típusa                         |
+| date              | datetime|  vizsga dátuma                          |
+| course_id         | int     |  vizsga azonosítója                     |
+
+
 
 # 10. Implementációs terv
 
@@ -162,7 +259,7 @@ Funkciók:
 - Login
 - Logout
 - Jelszóváltoztatás
-- Tananyagok létrehozása,
+- Tananyagok létrehozása
 - olvasás
 - új/szerkesztése
 - törlése
