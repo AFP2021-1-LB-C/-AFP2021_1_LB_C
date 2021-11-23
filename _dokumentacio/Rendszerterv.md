@@ -201,9 +201,9 @@ Az adatbázis adattáblái:
 | Mező        	| Típus   	| Leírás                              	|
 |-------------	|---------	|--------------------------------------	|
 | id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
-| topic        	| varchar 	|                                    	|
+| topic        	| varchar 	| kurzus témaköre                      	|
 | course_id     | int     	| kurzus kódja                         	|
-| content   	| text    	|                                      	|
+| content   	| text    	| kurzus tananyaga                     	|
 
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
