@@ -269,6 +269,15 @@ Az adatbázis adattáblái:
 | grade        		| tinyint 	| jegy                                   	|
 | date          	| datetime 	| rögzítés időpontja                       	|
 
+**Quizzes Tábla** (Kvízek)<br>
+| Mező          	| Típus     | Leírás                                 	|
+|------------------ |---------  |----------------------------------------	|
+| id            	| int       | azonosító, elsődleges kulcs               |
+| started_at        | datetime  | kezdés időpontja                          |
+| submitted_at     	| datetime  | befejezés időpontja                       |
+| type_id           | int       | típusa                                    |
+| course_id         | int       | kurzus azonosítója                        |
+
 # 10. Implementációs terv
 
 A webes felület HTML, CSS, PHP és Java Scipt nyelven fog elkészülni. A különböző technológiákat amennyire lehet, külön fájlokba írva készítjük el, úgy csatoljuk egymáshoz. Így átláthatóbb, könnyebben változtatható és bővíthető lesz. Az oldal felhasználóinak adatait MySQL adatbázisban fogjuk eltárolni. Backend részen a kiszolgáló egy PHP-ban készült szolgáltatás lesz.
