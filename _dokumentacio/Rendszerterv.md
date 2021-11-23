@@ -245,7 +245,7 @@ Az adatbázis adattáblái:
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|----------------------------------------	|
 | id            	| int     |  azonosító, elsődleges kulcs 	        |
-| type              | int     |  vizsga típusa                          |
+| type              | int     |  vizsga típus                           |
 | date              | datetime|  vizsga dátuma                          |
 | course_id         | int     |  vizsga azonosítója                     |
 
