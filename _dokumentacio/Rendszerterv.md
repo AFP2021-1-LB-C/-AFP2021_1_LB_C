@@ -218,7 +218,7 @@ Az adatbázis adattáblái:
 | correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
 
 
-**Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)<br>
+**Quiz_result Tábla** (Az eredményeket tartalmazó tábla)<br>
 | Mező          	| Típus   	| Leírás                              	|
 |-------------	    |---------	|--------------------------------------	|
 | id            	| int     	| azonosító, elsődleges kulcs          	|
