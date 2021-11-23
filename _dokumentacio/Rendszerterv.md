@@ -216,6 +216,7 @@ Az adatbázis adattáblái:
 | answer_3       	| varchar 	| 3. válasz                         	|
 | answer_4       	| varchar 	| 4. válasz                         	|
 | correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
+| quiz_id       	| int    	| kvíz azonosítója 	                    |
 
 
 **Quiz_result Tábla** (Az eredményeket tartalmazó tábla)<br>
@@ -258,6 +259,15 @@ Az adatbázis adattáblái:
 | user_id       	| int		| felhasználó azonosítója              	    |
 | date        		| datetime 	| jelentkezés ideje                        	|
 | status        	| boolean 	| elvan-e fogadva                         	|
+
+**Grades** (Jegyeket tartalmazó tábla)<br>
+| Mező          	| Típus   	| Leírás                              		|
+|-------------	   	|---------	|--------------------------------------		|
+| id            	| int     	| azonosító, elsődleges kulcs          		|
+| user_id       	| int		| felhasználó azonosítója		   	       	|
+| qiuz_id       	| int		| kvíz azonosítója              	        |
+| grade        		| tinyint 	| jegy                                   	|
+| date          	| datetime 	| rögzítés időpontja                       	|
 
 # 10. Implementációs terv
 
