@@ -180,7 +180,6 @@ Az adatbázis adattáblái:
 |-------------	|---------	|--------------------------------------	|
 | id          	| int     	| kurzus azonosítója, elsődleges kulcs 	|
 | name        	| varchar 	| kurzus neve                          	|
-| user_id     	| int     	| felhasználó azonosítója               |
 | description 	| text    	| kurzus leírása                        |
     
 
