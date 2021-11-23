@@ -201,9 +201,9 @@ Az adatbázis adattáblái:
 | Mező        	| Típus   	| Leírás                              	|
 |-------------	|---------	|--------------------------------------	|
 | id          	| int     	| azonosító, elsődleges kulcs       	|
-| topic        	| varchar 	| kurzus témaköre                      	|
-| course_id     | int     	| kurzus kódja                         	|
-| content   	| text    	| kurzus tananyaga                     	|
+| topic        	| varchar 	| kurzus azonosítója                   	|
+| course_id     | int     	| kurzus kód                        	|
+| content   	| text    	| kurzus tananyag                     	|
 
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
@@ -230,14 +230,14 @@ Az adatbázis adattáblái:
 **Quiz_types Tábla** (Kvízek típusai)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|---------------------------------------- |
-| id            	| int     | azonosító, elsődleges kulcs|
+| id            	| int     | azonosító, elsődleges kulcs             |
 | name              | varchar | a teszt neve                            |
 
 
 **Roles Tábla** (Szerepkörök)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|----------------------------------------	|
-| id            	| int     | azonosítója, elsődleges kulcs           |
+| id            	| int     | azonosító, elsődleges kulcs             |
 | name              | varchar | szerepkör neve                          |
 
 
