@@ -182,8 +182,6 @@ Az adatbázis adattáblái:
 | name        	| varchar 	| kurzus neve                          	|
 | user_id     	| int     	| felhasználó azonosítója               |
 | description 	| text    	| kurzus leírása                        |
-
-
     
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
@@ -207,6 +205,7 @@ Az adatbázis adattáblái:
 | course_id     | int     	| kurzus kódja                         	|
 | content   	| text    	|                                      	|
 
+
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
 | Mező          	| Típus   	| Leírás                              	|
 |-------------	    |---------	|--------------------------------------	|
@@ -218,13 +217,14 @@ Az adatbázis adattáblái:
 | answer_4       	| varchar 	| 4. válasz                         	|
 | correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
 
+
 **Quiz_result Tábla** (AZ eredményeket tartalmazó tábla)<br>
 | Mező          	| Típus   	| Leírás                              	|
 |-------------	    |---------	|--------------------------------------	|
 | id            	| int     	| kurzus azonosítója, elsődleges kulcs 	|
 | quiz_result       | varchar 	| eredmény                              |
 | answer       	    | tinyint 	| válasz sorszáma  	                    |
-| user_id       	| int 	    |  felhasználó azonosító               	|
+| user_id       	| int 	    | felhasználó azonosító               	|
 
 
 **Quiz_types Tábla** (Kvízek típusai)<br>
@@ -233,11 +233,13 @@ Az adatbázis adattáblái:
 | id            	| int     | teszt/kvíz azonosítója, elsődleges kulcs|
 | name              | varchar | a teszt neve                            |
 
+
 **Roles Tábla** (Szerepkörök)<br>
 | Mező          	| Típus   | Leírás                                 	|
 |------------------ |---------|----------------------------------------	|
 | id            	| int     | szerepkör azonosítója, elsődleges kulcs |
 | name              | varchar | szerepkör neve                          |
+
 
 **Scheuldes Tábla** (Vizsga menetrend)<br>
 | Mező          	| Típus   | Leírás                                 	|
@@ -248,6 +250,14 @@ Az adatbázis adattáblái:
 | course_id         | int     |  vizsga azonosítója                     |
 
 
+**Courses_users Tábla** (Megadja, hogy a felhasználók mely kurzusokra jelentkeztek)<br>
+| Mező          	| Típus   	| Leírás                              		|
+|-------------	   	|---------	|--------------------------------------		|
+| id            	| int     	| kurzus azonosítója, elsődleges kulcs 		|
+| course_id       	| int		| kurzus kódja		   	     	        	|
+| user_id       	| int		| felhasználó azonosítója              	    |
+| date        		| datetime 	| jelentkezés ideje                        	|
+| status        	| varchar 	| elvan-e fogadva                         	|
 
 # 10. Implementációs terv
 
