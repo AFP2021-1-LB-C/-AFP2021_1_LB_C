@@ -71,7 +71,13 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Course::where('id', $id) -> first();
+        
+        return view('course.course_edit',[
+            'name' => $data -> name,
+            'description' => $data -> description,
+            'id' => $data -> id,
+        ]);
     }
 
     /**
@@ -83,7 +89,13 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $new = Course::where('id', $id) -> update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->to('/');
     }
 
     /**
