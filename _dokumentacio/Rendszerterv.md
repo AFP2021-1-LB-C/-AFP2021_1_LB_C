@@ -223,7 +223,7 @@ Az adatbázis adattáblái:
 | Mező          	| Típus   	| Leírás                              	|
 |-------------	    |---------	|--------------------------------------	|
 | id            	| int     	| azonosító, elsődleges kulcs          	|
-| quiz_result       | varchar 	| eredmény                              |
+| quiz_question_id       | int 	| kvíz kérdés azonosítója                              |
 | answer       	    | tinyint 	| válasz sorszáma  	                    |
 | user_id       	| int 	    | felhasználó azonosító               	|
 
