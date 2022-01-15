@@ -14,7 +14,11 @@ class QuizTypeController extends Controller
      */
     public function index()
     {
-        //
+        $data = QuizType::all();
+        
+        return view('quiz.quiz_types_list',[
+            'items' => $data ,
+        ]);
     }
 
     /**
@@ -32,7 +36,7 @@ class QuizTypeController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/quiz-type');
     }
 
     public function create_form()
@@ -93,7 +97,7 @@ class QuizTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/quiz-type');
     }
 
     /**
