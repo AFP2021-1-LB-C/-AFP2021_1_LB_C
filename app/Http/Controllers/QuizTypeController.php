@@ -70,8 +70,14 @@ class QuizTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = QuizType::where('id', $id) -> first();
+        
+        return view('quiz.quiz_types_edit',[
+            'name' => $data -> name,
+            'id' => $data -> id,
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -82,7 +88,12 @@ class QuizTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $new = QuizType::where('id', $id) -> update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->to('/');
     }
 
     /**
