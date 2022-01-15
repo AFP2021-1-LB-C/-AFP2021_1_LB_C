@@ -22,6 +22,9 @@ Route::get('/', function () {
 // Quiz
 Route::get('/admin/quiz-type/create', [QuizTypeController::class, 'create_form']);
 Route::post('/admin/quiz-type/create', [QuizTypeController::class, 'create']);
+Route::get('/admin/quiz-type/edit/{id}', [QuizTypeController::class, 'edit']);
+Route::post('/admin/quiz-type/edit/{id}', [QuizTypeController::class, 'update']);
+
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
