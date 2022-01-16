@@ -16,7 +16,7 @@
     <td>{{$item -> submitted_at	}}</td>
     <td>{{$item -> type_id}}</td>
     <td>{{$item -> course_id}}</td>
-    <td><a href="/admin/quiz-type/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td><a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a></td>
   </tr>  
   @endforeach
 
