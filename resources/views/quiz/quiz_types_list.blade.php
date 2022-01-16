@@ -13,7 +13,7 @@
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td>
-    <td><a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td><a href="/admin/quiz-type/edit/{{$item -> id}}">Szerkesztés</a></td>
   </tr>  
   @endforeach
 
