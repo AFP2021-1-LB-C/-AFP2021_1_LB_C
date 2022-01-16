@@ -21,9 +21,22 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //dd($request->request);  // dump and die
+
+        $new = Quizze::create([
+            'name' => $request->name,
+        ]);
+                
+        $new->save();
+
+        return redirect()->to('/admin/quiz');
+    }
+
+    public function create_form()
+    {
+            return view('quiz.quiz_create');
     }
 
     /**
@@ -56,7 +69,12 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Quizze::where('id', $id) -> first();
+        
+        return view('quiz.quiz_edit',[
+            'name' => $data -> name,
+            'id' => $data -> id,
+        ]);
     }
 
     /**
@@ -68,7 +86,11 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = Quizze::where('id', $id) -> update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->to('/admin/quiz');
     }
 
     /**
