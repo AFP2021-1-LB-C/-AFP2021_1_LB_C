@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quizze;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -13,7 +14,11 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        $data = Quizze::all();
+        
+        return view('quiz.quiz_list',[
+            'items' => $data ,
+        ]);
     }
 
     /**

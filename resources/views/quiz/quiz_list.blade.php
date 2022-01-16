@@ -4,8 +4,12 @@
 <thead>
   <tr>
     <th>Azonosító</th>
+    <th>Kezdő dátum</th>
+    <th>Befejező dátumk</th>
     <th>Kvíz típus neve</th>
+    <th>Kurzus neve</th>
     <th>Műveletek</th>
+
   </tr>
 </thead>
 <tbody>
