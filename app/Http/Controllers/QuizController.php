@@ -14,7 +14,13 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $data = Quizze::all();
+        $data = Quizze::with(['course', 'type'])
+        ->select('quizzes.*')
+        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
+        ->get();
+
+        //dd($data);
         
         return view('quiz.quiz_list',[
             'items' => $data ,
