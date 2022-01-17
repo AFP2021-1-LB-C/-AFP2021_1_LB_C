@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Quizze;
+use App\Models\QuizType;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -37,7 +39,10 @@ class QuizController extends Controller
         //dd($request->request);  // dump and die
 
         $new = Quizze::create([
-            'name' => $request->name,
+            'started_at' => $request->started_at,
+            'submitted_at' => $request->submitted_at,
+            'type_id' => $request->type_id,
+            'course_id' => $request->course_id,
         ]);
                 
         $new->save();
@@ -47,7 +52,16 @@ class QuizController extends Controller
 
     public function create_form()
     {
-            return view('quiz.quiz_create');
+        $types = QuizType::get();
+        $courses = Course::get();
+
+            return view('quiz.quiz_create',[
+
+                'types' => $types,
+                'courses' => $courses,
+            ]);
+            
+
     }
 
     /**
@@ -81,10 +95,20 @@ class QuizController extends Controller
     public function edit($id)
     {
         $data = Quizze::where('id', $id) -> first();
+
+        $types = QuizType::get();
+
+        $courses = Course::get();
+        
         
         return view('quiz.quiz_edit',[
-            'name' => $data -> name,
             'id' => $data -> id,
+            'started_at' => $data -> started_at,
+            'submitted_at' => $data -> submitted_at,
+            'type_id' => $data -> type_id,
+            'course_id' => $data -> course_id,
+            'types' => $types,
+            'courses' => $courses,
         ]);
     }
 
@@ -98,7 +122,10 @@ class QuizController extends Controller
     public function update(Request $request, $id)
     {
         $new = Quizze::where('id', $id) -> update([
-            'name' => $request->name,
+            'started_at' => $request->started_at,
+            'submitted_at' => $request->submitted_at,
+            'type_id' => $request->type_id,
+            'course_id' => $request->course_id,
         ]);
 
         return redirect()->to('/admin/quiz');
