@@ -18,6 +18,8 @@ class CourseController extends Controller
         
         return view('course.course_list',[
             'items' => $data ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 

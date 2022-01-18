@@ -26,6 +26,8 @@ class QuizController extends Controller
         
         return view('quiz.quiz_list',[
             'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 

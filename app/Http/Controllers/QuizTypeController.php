@@ -18,6 +18,8 @@ class QuizTypeController extends Controller
         
         return view('quiz.quiz_types_list',[
             'items' => $data ,
+            'page_title' => 'Feladat típusok' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 
