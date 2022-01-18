@@ -39,5 +39,5 @@ Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
 Route::post('/admin/course/edit/{id}', [CourseController::class, 'update']);
 Route::get('/admin/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
-
+Route::get('/admin/course', [CourseController::class, 'index']);
 

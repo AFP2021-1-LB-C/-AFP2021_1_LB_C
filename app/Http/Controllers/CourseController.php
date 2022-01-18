@@ -14,7 +14,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $data = Course::all();
+        
+        return view('course.course_list',[
+            'items' => $data ,
+        ]);
     }
 
     /**
