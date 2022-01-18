@@ -28,7 +28,20 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
   </head>
   <body class="bg-light">
   @include('layout.menu') 
+  <main class="container">
+
+  <!-- Oldal címe -->
+  <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+    <img class="me-3" src="/images/logo.png" alt="" width="48" height="38">
+    <div class="lh-1">
+      <h1 class="h6 mb-0 text-white lh-1">Oldal címe</h1>
+      <small>Alcím</small>
+    </div>
+  </div>
+
+  <!-- Oldal tartalma -->
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
