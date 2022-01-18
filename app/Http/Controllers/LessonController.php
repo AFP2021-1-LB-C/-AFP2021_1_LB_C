@@ -22,6 +22,11 @@ class LessonController extends Controller
         
         return view('lesson.lesson_list',[
             'items' => $data ,
+            'page_title' => 'Tananyagok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
+            ] ,
         ]);
     }
 

@@ -15,7 +15,7 @@
           <a class="nav-link" href="/admin/course">Kurzusok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tananyagok</a>
+          <a class="nav-link" href="/admin/lesson">Tananyagok</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/quiz">Feladatok</a>
