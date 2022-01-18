@@ -12,16 +12,19 @@
           <a class="nav-link active" aria-current="page" href="#">Kezdőlap</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Oldal1</a>
+          <a class="nav-link" href="#">Kurzusok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Oldal2</a>
+          <a class="nav-link" href="#">Tananyagok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Oldal3</a>
+          <a class="nav-link" href="/admin/quiz">Feladatok</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Felhasználók</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Oldal4</a>
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown01">
             <li><a class="dropdown-item" href="#">Aloldal1</a></li>
             <li><a class="dropdown-item" href="#">Aloldal2</a></li>
