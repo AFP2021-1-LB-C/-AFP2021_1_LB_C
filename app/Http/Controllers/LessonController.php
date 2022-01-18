@@ -55,7 +55,6 @@ class LessonController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -75,7 +74,10 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Lesson::where('id', $id) -> first();    
+        return view('lesson.lesson_content',[ 
+            'content' => $data -> content,
+        ]);
     }
 
     /**

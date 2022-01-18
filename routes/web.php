@@ -47,4 +47,5 @@ Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
 Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update']);
 Route::get('/admin/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
+Route::get('/admin/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/admin/lesson', [LessonController::class, 'index']);
