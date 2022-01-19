@@ -1,7 +1,7 @@
 @include('layout.header')
 
-<table>
-<thead>
+<table class="table">
+  <thead class="table-secondary">
   <tr>
     <th>Azonosító</th>
     <th>Felhasználói szerepkör neve</th>
