@@ -16,9 +16,10 @@
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> topic}}</td>
-    <td>{{$item -> content	}}</td>
+    <td>{{substr($item -> content, 0, 50)."..."}}</td>
     <td>{{$item -> course -> name}}</td>
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td><a href="/admin/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
   </tr>  
   @endforeach
 

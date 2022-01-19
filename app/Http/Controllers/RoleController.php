@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lesson;
-use App\Models\Course;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class LessonController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +14,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $data = Lesson::with(['course'])
-        ->select('lessons.*')
-        ->get();
-
-        
-        return view('lesson.lesson_list',[
-            'items' => $data ,
-            'page_title' => 'Tananyagok' ,
-            'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
-            ] ,
-        ]);
+        //
     }
 
     /**
@@ -39,25 +26,18 @@ class LessonController extends Controller
     {
         //dd($request->request);  // dump and die
 
-        $new = Lesson::create([
-            
-            'topic' => $request->topic,
-            'content' => $request->content,
-            'course_id' => $request->course_id,
+        $new = Role::create([
+            'name' => $request->name,            
         ]);
                 
         $new->save();
 
-        return redirect()->to('/admin/lesson');
+        return redirect()->to('/');
     }
 
     public function create_form()
     {
-        $courses = Course::get();
-            
-        return view('lesson.lesson_create',[ 
-            'courses' => $courses,
-        ]);
+        return view('user.roles_create');
     }
 
     /**
@@ -79,10 +59,7 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        $data = Lesson::where('id', $id) -> first();    
-        return view('lesson.lesson_content',[ 
-            'content' => $data -> content,
-        ]);
+        //
     }
 
     /**
@@ -93,16 +70,11 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $data = Lesson::where('id', $id) -> first();
-        $courses = Course::get();
-
-        return view('lesson.lesson_edit',[
-            
+        $data = Role::where('id', $id) -> first();
+        
+        return view('user.roles_edit',[
+            'name' => $data -> name,
             'id' => $data -> id,
-            'topic' => $data -> topic,
-            'content' => $data -> content,
-            'course_id' => $data -> course_id,
-            'courses' => $courses,
         ]);
     }
 
@@ -115,14 +87,12 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $new = Lesson::where('id', $id) -> update([
-            
-            'topic' => $request->topic,
-            'content' => $request->content,
-            'course_id' => $request->course_id,
+        
+        $new = Role::where('id', $id) -> update([
+            'name' => $request->name,
         ]);
 
-        return redirect()->to('/admin/lesson');
+        return redirect()->to('/');
     }
 
     /**
