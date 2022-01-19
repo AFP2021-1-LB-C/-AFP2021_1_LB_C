@@ -18,6 +18,11 @@ class CourseController extends Controller
         
         return view('course.course_list',[
             'items' => $data ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'] ,
+            ] ,
         ]);
     }
 
@@ -42,7 +47,10 @@ class CourseController extends Controller
 
     public function create_form()
     {
-            return view('course.course_create');
+            return view('course.course_create', [
+                'page_title' => 'Kurzusok' ,
+                'page_subtitle' => 'Létrehozás' ,
+            ]);
     }
 
     /**
@@ -81,6 +89,8 @@ class CourseController extends Controller
             'name' => $data -> name,
             'description' => $data -> description,
             'id' => $data -> id,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Szerkesztés' ,
         ]);
     }
 

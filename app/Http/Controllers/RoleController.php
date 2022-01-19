@@ -14,7 +14,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data = Role::all();
+        
+        return view('user.roles_list',[
+            'items' => $data ,
+            'page_title' => 'Szerepkörök' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
     }
 
     /**
@@ -37,7 +43,10 @@ class RoleController extends Controller
 
     public function create_form()
     {
-        return view('user.roles_create');
+        return view('user.roles_create', [
+            'page_title' => 'Szerepkörök' ,
+            'page_subtitle' => 'Létrehozás' ,
+        ]);
     }
 
     /**
@@ -75,6 +84,11 @@ class RoleController extends Controller
         return view('user.roles_edit',[
             'name' => $data -> name,
             'id' => $data -> id,
+            'page_title' => 'Szerepkörök' ,
+            'page_subtitle' => 'Szerkesztés' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/role/create'] ,
+            ] ,
         ]);
     }
 
