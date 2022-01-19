@@ -5,6 +5,8 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\QuizTypeController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +51,17 @@ Route::get('/admin/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/admin/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/admin/lesson', [LessonController::class, 'index']);
+
+// Role
+Route::get('/admin/role/create', [RoleController::class, 'create_form']);
+Route::post('/admin/role/create', [RoleController::class, 'create']);
+Route::get('/admin/role/edit/{id}', [RoleController::class, 'edit']);
+Route::post('/admin/role/edit/{id}', [RoleController::class, 'update']);
+Route::get('/admin/role', [RoleController::class, 'index']);
+
+// User
+Route::get('/admin/user/create', [UserController::class, 'create_form']);
+Route::post('/admin/user/create', [UserController::class, 'create']);
+Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
+Route::post('/admin/user/edit/{id}', [UserController::class, 'update']);
+Route::get('/admin/user', [UserController::class, 'index']);
