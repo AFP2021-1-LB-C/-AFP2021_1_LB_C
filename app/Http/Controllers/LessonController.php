@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class LessonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::all();
+        $data = Lesson::with(['course'])
+        ->select('lessons.*')
+        ->get();
+
         
-        return view('course.course_list',[
+        return view('lesson.lesson_list',[
             'items' => $data ,
         ]);
     }
@@ -30,19 +34,25 @@ class CourseController extends Controller
     {
         //dd($request->request);  // dump and die
 
-        $new = Course::create([
-            'name' => $request->name,
-            'description' => $request->description,
+        $new = Lesson::create([
+            
+            'topic' => $request->topic,
+            'content' => $request->content,
+            'course_id' => $request->course_id,
         ]);
                 
         $new->save();
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/lesson');
     }
 
     public function create_form()
     {
-            return view('course.course_create');
+        $courses = Course::get();
+            
+        return view('lesson.lesson_create',[ 
+            'courses' => $courses,
+        ]);
     }
 
     /**
@@ -64,7 +74,10 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Lesson::where('id', $id) -> first();    
+        return view('lesson.lesson_content',[ 
+            'content' => $data -> content,
+        ]);
     }
 
     /**
@@ -75,12 +88,16 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $data = Course::where('id', $id) -> first();
-        
-        return view('course.course_edit',[
-            'name' => $data -> name,
-            'description' => $data -> description,
+        $data = Lesson::where('id', $id) -> first();
+        $courses = Course::get();
+
+        return view('lesson.lesson_edit',[
+            
             'id' => $data -> id,
+            'topic' => $data -> topic,
+            'content' => $data -> content,
+            'course_id' => $data -> course_id,
+            'courses' => $courses,
         ]);
     }
 
@@ -93,13 +110,14 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $new = Course::where('id', $id) -> update([
-            'name' => $request->name,
-            'description' => $request->description,
+        $new = Lesson::where('id', $id) -> update([
+            
+            'topic' => $request->topic,
+            'content' => $request->content,
+            'course_id' => $request->course_id,
         ]);
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/lesson');
     }
 
     /**
