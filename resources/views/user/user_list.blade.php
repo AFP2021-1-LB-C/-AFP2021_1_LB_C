@@ -12,6 +12,7 @@
     <th>Jelszó</th>
     <th>Regisztrálás Dátuma</th>
     <th>Utolsó Bejelentkezés Dátuma</th>
+    <th>Műveletek</th>
 
   </tr>
 </thead>
