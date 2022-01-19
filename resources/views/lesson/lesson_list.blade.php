@@ -8,6 +8,7 @@
     <th>Tananyag</th>
     <th>Kurzus neve</th>
     <th>Műveletek</th>
+    <th>Tananyag</th>
 
   </tr>
 </thead>
