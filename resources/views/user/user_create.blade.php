@@ -13,8 +13,8 @@
         <input type="text" name="username" placeholder="Felhasználónév"><br>
         <input type="email" name="email" placeholder="Email"><br>
         <input type="password" name="password" placeholder="Jelszó"><br>
-        <input type="datetime_local" name="registration_date" placeholder="Regisztrálás Dátuma"><br>
-        <input type="datetime_local" name="last_login_date" placeholder="Utolsó Bejelentkezés Dátuma"><br>
+        <input type="datetime-local" name="registration_date" placeholder="Regisztrálás Dátuma"><br>
+        <input type="datetime-local" name="last_login_date" placeholder="Utolsó Bejelentkezés Dátuma"><br>
         <button type="submit">Létrehozás</button>
     </form>
 

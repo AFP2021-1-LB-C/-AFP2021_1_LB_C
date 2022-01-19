@@ -14,8 +14,8 @@
         <input type="text" name="username" placeholder="Felhasználónév" value="{{$username}}"><br>
         <input type="email" name="email" placeholder="Email" value="{{$email}}"><br>
         <input type="password" name="password" placeholder="Jelszó" value="{{$password}}"><br>
-        <input type="datetime_local" name="registration_date" placeholder="Regisztrálás Dátuma" value="{{$registration_date}}"><br>
-        <input type="datetime_local" name="last_login_date" placeholder="Utolsó Bejelentkezés Dátuma"value="{{$last_login_date}}"><br>
+        <input type="datetime-local" name="registration_date" placeholder="Regisztrálás Dátuma" value="{{$registration_date}}"><br>
+        <input type="datetime-local" name="last_login_date" placeholder="Utolsó Bejelentkezés Dátuma"value="{{$last_login_date}}"><br>
         <button type="submit">Módosítás</button>
     </form>
 
