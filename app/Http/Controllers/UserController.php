@@ -24,6 +24,8 @@ class UserController extends Controller
         
         return view('user.user_list',[
             'items' => $data ,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 
@@ -59,6 +61,8 @@ class UserController extends Controller
         return view('user.user_create',[
 
             'roles' => $roles,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Létrehozás' ,
         ]);
 
         //return view('user.roles_create');
@@ -108,7 +112,9 @@ class UserController extends Controller
             'password' => $data -> password,
             'registration_date' => str_replace(' ', 'T', $data->registration_date),
             'last_login_date' => str_replace(' ', 'T', $data->last_login_date),
-            'roles' => $roles
+            'roles' => $roles,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Szerkesztés' ,
         ]);
     }
 

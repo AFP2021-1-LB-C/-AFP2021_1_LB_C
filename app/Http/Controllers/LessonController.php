@@ -57,6 +57,8 @@ class LessonController extends Controller
             
         return view('lesson.lesson_create',[ 
             'courses' => $courses,
+            'page_title' => 'Tananyagok' ,
+            'page_subtitle' => 'Létrehozás' ,
         ]);
     }
 
@@ -103,6 +105,8 @@ class LessonController extends Controller
             'content' => $data -> content,
             'course_id' => $data -> course_id,
             'courses' => $courses,
+            'page_title' => 'Tananyagok' ,
+            'page_subtitle' => 'Szerkesztés' ,
         ]);
     }
 
