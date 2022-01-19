@@ -14,4 +14,10 @@ class Role extends Model
 
     // Időbélyeg használata (updated_at és created_at mezők a táblában)
     public $timestamps = false;
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
+
 }

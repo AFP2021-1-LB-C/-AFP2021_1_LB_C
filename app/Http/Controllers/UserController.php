@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,14 @@ class UserController extends Controller
 
     public function create_form()
     {
-            return view('user.user_create');
+        $roles = Role::get();
+        
+        return view('user.user_create',[
+
+            'roles' => $roles,
+        ]);
+
+        //return view('user.roles_create');
     }
 
     /**
@@ -87,10 +95,20 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = User::where('id', $id) -> first();
+
+        $roles = Role::get();
         
         return view('user.user_edit',[
-            'name' => $data -> name,
             'id' => $data -> id,
+            'name' => $data -> name,
+            'age' => $data -> age,
+            'role_id' => $data -> role_id,
+            'username' => $data -> username,
+            'email' => $data -> email,
+            'password' => $data -> password,
+            'registration_date' => str_replace(' ', 'T', $data->registration_date),
+            'last_login_date' => str_replace(' ', 'T', $data->last_login_date),
+            'roles' => $roles
         ]);
     }
 
@@ -103,8 +121,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $roles = Role::get();
+
         $new = User::where('id', $id) -> update([
-            'name' => $request->name,
+            'name' => $request-> name,
+            'age' => $request -> age,
+            'role_id' => $request -> role_id,
+            'username' => $request -> username,
+            'email' => $request -> email,
+            'password' => $request -> password,
+            'registration_date' => $request -> registration_date,
+            'last_login_date' => $request -> last_login_date,
+            
+            //'roles' => $roles
         ]);
 
         return redirect()->to('/admin/user');

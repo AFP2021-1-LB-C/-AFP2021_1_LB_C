@@ -14,11 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
-        
-        return view('user.roles_list',[
-            'items' => $data ,
-        ]);
+        //
     }
 
     /**
@@ -31,17 +27,17 @@ class RoleController extends Controller
         //dd($request->request);  // dump and die
 
         $new = Role::create([
-            'name' => $request->name,
+            'name' => $request->name,            
         ]);
                 
         $new->save();
 
-        return redirect()->to('/admin/role');
+        return redirect()->to('/');
     }
 
     public function create_form()
     {
-            return view('user.roles_create');
+        return view('user.roles_create');
     }
 
     /**
@@ -82,7 +78,6 @@ class RoleController extends Controller
         ]);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +92,7 @@ class RoleController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->to('/admin/role');
+        return redirect()->to('/');
     }
 
     /**
