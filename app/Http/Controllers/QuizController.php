@@ -28,6 +28,9 @@ class QuizController extends Controller
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
+            ] ,
         ]);
     }
 

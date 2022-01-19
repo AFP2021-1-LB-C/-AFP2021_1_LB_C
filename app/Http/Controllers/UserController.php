@@ -26,6 +26,9 @@ class UserController extends Controller
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
+            ] ,
         ]);
     }
 

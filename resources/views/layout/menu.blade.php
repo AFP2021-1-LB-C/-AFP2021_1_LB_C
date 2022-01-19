@@ -21,7 +21,7 @@
           <a class="nav-link" href="/admin/quiz">Feladatok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Felhasználók</a>
+          <a class="nav-link" href="/admin/user">Felhasználók</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>

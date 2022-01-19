@@ -20,6 +20,9 @@ class QuizTypeController extends Controller
             'items' => $data ,
             'page_title' => 'Feladat típusok' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz-type/create'] ,
+            ] ,
         ]);
     }
 

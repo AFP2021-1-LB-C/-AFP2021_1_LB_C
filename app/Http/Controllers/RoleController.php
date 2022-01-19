@@ -86,6 +86,9 @@ class RoleController extends Controller
             'id' => $data -> id,
             'page_title' => 'Szerepkörök' ,
             'page_subtitle' => 'Szerkesztés' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/role/create'] ,
+            ] ,
         ]);
     }
 

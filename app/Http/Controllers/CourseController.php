@@ -20,6 +20,9 @@ class CourseController extends Controller
             'items' => $data ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'] ,
+            ] ,
         ]);
     }
 
