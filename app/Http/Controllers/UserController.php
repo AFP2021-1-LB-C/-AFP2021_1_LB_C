@@ -16,6 +16,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $data = User::with(['role'])
@@ -26,8 +27,12 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
-            'items' => $data,
-            
+            'items' => $data ,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
+            ] ,
         ]);
     }
 
