@@ -19,4 +19,5 @@ class User extends Model
     {
         return $this->belongsTo('App\Models\Role');
     }
+
 }
