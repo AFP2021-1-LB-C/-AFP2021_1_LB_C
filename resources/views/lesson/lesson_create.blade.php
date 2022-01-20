@@ -20,7 +20,7 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Kurzus</label>
         <div class="col-sm-10">
-        <select name="course_id" class="form-control">
+        <select name="course_id" class="form-select">
         @foreach ($courses as $course )             
             <option value="{{$course -> id}}">{{$course -> name}}</option>       
         @endforeach
