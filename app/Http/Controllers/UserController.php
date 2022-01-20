@@ -142,12 +142,18 @@ class UserController extends Controller
                 'password'          =>      'required|min:6',
                 'confirm_password'  =>      'required|same:password',
                 'age'               =>      'required',
-                'role_id'           =>      'required'
+                
             ]);
 
         $input          =           $request->all();
 
-        // if validation success then create an input array
+        $role = 1;
+        if (User::exists()){
+            $role = 2;
+         }
+        
+// if validation success then create an input array
+
         $inputArray      =           array(
             // 'first_name'        =>      $request->first_name,
             // 'last_name'         =>      $request->last_name,
@@ -156,7 +162,7 @@ class UserController extends Controller
             'email'             =>      $request->email,
             'password'          =>      Hash::make($request->password),
             'age'               =>      $request->age,
-            'role_id'           =>      $request->role_id,
+            'role_id'           =>      $role,
             'registration_date' =>      $date,
             'last_login_date'   =>      $date,         
         );
