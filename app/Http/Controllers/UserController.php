@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 class UserController extends Controller
 {
     /**
@@ -36,14 +41,55 @@ class UserController extends Controller
         ]);
     }
 
-    public function r_index()
-{
-    $roles = Role::get();
 
-    return view('user.registration', [
-        'roles' => $roles,
-    ]);
-}
+    public function r_index()
+    {
+        $roles = Role::get();
+
+        return view('user.registration', [
+            'roles' => $roles,
+        ]);
+    }
+
+    // -------------------- [ User login view ] -----------------------
+    public function userLoginIndex() 
+    {
+        return view('login.login');
+    }
+
+
+    // --------------------- [ User login ] ---------------------
+    public function userPostLogin(Request $request) 
+    {
+
+        $request->validate([
+            "email"           =>    "required|email",
+            "password"        =>    "required|min:6"
+        ]);
+
+        $userCredentials = $request->only('email', 'password');
+
+        if (Auth::attempt($userCredentials)) 
+        {
+            return redirect()->intended('admin/lesson');
+        }
+
+        else 
+        {
+            return back()->with('error', 'Hoppá! Nem megfelelő felhasználónév vagy jelszó.');
+        }
+    }
+
+    // ------------------- [ User logout function ] ----------------------
+    public function logout(Request $request ) 
+    {
+        $request->session()->flush();
+        Auth::logout();
+        return Redirect('/login');
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

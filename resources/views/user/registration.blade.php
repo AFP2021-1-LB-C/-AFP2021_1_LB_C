@@ -65,7 +65,6 @@
                             {!! $errors->first('age', '<small class="text-danger">A kor :message</small>') !!}
                         </div>
 
-
                     </div>
                     <div class="card-footer d-inline-block">
                         <button type="submit" class="btn btn-success"> Regisztráció </button>
