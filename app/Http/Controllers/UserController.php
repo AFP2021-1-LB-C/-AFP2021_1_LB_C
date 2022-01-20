@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+
 
 class UserController extends Controller
 {
@@ -23,10 +26,19 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
-            'items' => $data ,
+            'items' => $data,
+            
         ]);
     }
 
+    public function r_index()
+{
+    $roles = Role::get();
+
+    return view('user.registration', [
+        'roles' => $roles,
+    ]);
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -63,6 +75,53 @@ class UserController extends Controller
 
         //return view('user.roles_create');
     }
+
+    public function userPostRegistration(Request $request) {
+
+        //jelenlegi dátum
+        $date = Carbon::now();
+        // validate form fields
+        $request->validate([
+                'first_name'        =>      'required',
+                'last_name'         =>      'required',
+                'username'          =>      'required',
+                'email'             =>      'required|email',
+                'password'          =>      'required|min:6',
+                'confirm_password'  =>      'required|same:password',
+                'age'               =>      'required',
+                'role_id'           =>      'required'
+            ]);
+
+        $input          =           $request->all();
+
+        // if validation success then create an input array
+        $inputArray      =           array(
+            // 'first_name'        =>      $request->first_name,
+            // 'last_name'         =>      $request->last_name,
+            'username'          =>      $request->username,
+            'name'              =>      $request->first_name . " ". $request->last_name,
+            'email'             =>      $request->email,
+            'password'          =>      Hash::make($request->password),
+            'age'               =>      $request->age,
+            'role_id'           =>      $request->role_id,
+            'registration_date' =>      $date,
+            'last_login_date'   =>      $date,         
+        );
+
+        // register user
+        $user           =           User::create($inputArray);
+
+        // if registration success then return with success message
+        if(!is_null($user)) {
+            return back()->with('success', 'Sikeres regisztráció!.');
+        }
+
+        // else return with error message
+        else {
+            return back()->with('error', 'Hoppá, hiba történt a regisztráció során. Próbáld újra.');
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
