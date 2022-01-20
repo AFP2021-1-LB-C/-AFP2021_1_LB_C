@@ -19,7 +19,7 @@
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Szerepkör</label>
         <div class="col-sm-10">
-            <select name="role_id" class="form-control">
+            <select name="role_id" class="form-select">
                 @foreach ($roles as $role)
                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                 @endforeach
