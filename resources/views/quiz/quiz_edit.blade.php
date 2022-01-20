@@ -30,7 +30,7 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Kvíz típus</label>
         <div class="col-sm-10">
-        <select name="type_id" class="form-select>
+        <select name="type_id" class="form-select">
         @foreach ($types as $type )             
             <option value="{{$type -> id}}">{{$type -> name}}</option>       
         @endforeach
