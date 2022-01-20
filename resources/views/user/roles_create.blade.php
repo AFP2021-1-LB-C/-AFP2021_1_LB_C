@@ -3,8 +3,16 @@
     {{-- LÉTREHOZÁS --}}
     <form action="/admin/role/create" method="post">
         @csrf
-        <input type="text" name="name" placeholder="Megnevezés"><br>
-        <button type="submit">Létrehozás</button>
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Utolsó bejelentkezés dátuma</label>
+        <div class="col-sm-10">
+        <input type="text" name="name" placeholder="Megnevezés">
+        </div>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Létrehozás</button>
+        </div>
     </form>
 
 @include('layout.footer')
