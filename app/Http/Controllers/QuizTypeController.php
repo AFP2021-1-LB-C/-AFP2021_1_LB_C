@@ -18,6 +18,11 @@ class QuizTypeController extends Controller
         
         return view('quiz.quiz_types_list',[
             'items' => $data ,
+            'page_title' => 'Feladat típusok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz-type/create'] ,
+            ] ,
         ]);
     }
 
@@ -41,7 +46,10 @@ class QuizTypeController extends Controller
 
     public function create_form()
     {
-            return view('quiz.quiz_types_create');
+            return view('quiz.quiz_types_create',[
+                'page_title' => 'Feladat típusok' ,
+                'page_subtitle' => 'Létrehozás' ,
+            ]);
     }
 
     /**
@@ -79,6 +87,8 @@ class QuizTypeController extends Controller
         return view('quiz.quiz_types_edit',[
             'name' => $data -> name,
             'id' => $data -> id,
+            'page_title' => 'Feladat típusok' ,
+            'page_subtitle' => 'Szerkesztés' ,
         ]);
     }
 

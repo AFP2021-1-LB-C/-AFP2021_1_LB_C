@@ -1,13 +1,14 @@
 @include('layout.header')
 
-<table>
-<thead>
+<table class="table">
+  <thead class="table-secondary">
   <tr>
     <th>Tananyag Azonosítója</th>
     <th>Tananyag megnevezése</th>
     <th>Tananyag</th>
     <th>Kurzus neve</th>
     <th>Műveletek</th>
+    <th>Tananyag</th>
 
   </tr>
 </thead>

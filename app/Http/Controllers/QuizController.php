@@ -26,6 +26,11 @@ class QuizController extends Controller
         
         return view('quiz.quiz_list',[
             'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
+            ] ,
         ]);
     }
 
@@ -59,6 +64,8 @@ class QuizController extends Controller
 
                 'types' => $types,
                 'courses' => $courses,
+                'page_title' => 'Feladatok' ,
+                'page_subtitle' => 'Létrehozás' ,
             ]);
             
 
@@ -109,6 +116,8 @@ class QuizController extends Controller
             'course_id' => $data -> course_id,
             'types' => $types,
             'courses' => $courses,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Szerkesztés' ,
         ]);
     }
 
