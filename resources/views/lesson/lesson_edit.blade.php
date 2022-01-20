@@ -6,7 +6,7 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Tananyag megnevezése</label>
         <div class="col-sm-10">
-        <input type="text" name="topic" class="form-control" placeholder="Tananyag megnevezése" value="{{$topic}}"><br>
+        <input type="text" name="topic" class="form-control" placeholder="Tananyag megnevezése" value="{{$topic}}">
         </div>
         </div>
 
@@ -31,7 +31,7 @@
          <div class="col-auto">
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
-        
+
     </form>
 
 @include('layout.footer')
