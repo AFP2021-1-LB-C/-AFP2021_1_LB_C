@@ -67,7 +67,7 @@
 
                          <div class="form-group">
                          <label for="age"> Szerepkör </label><br>
-                            <select name="role_id" id="role_id" class="form_control" value="{{ old('age') }}">
+                            <select name="role_id" id="role_id" class="form_control" value="{{ old('role') }}">
                             @foreach ($roles as $role)             
                             <option value="{{$role -> id}}">{{$role -> name}}</option>       
                             @endforeach
