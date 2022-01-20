@@ -3,19 +3,44 @@
     {{-- LÉTREHOZÁS --}}
     <form action="/admin/quiz/create" method="post">
         @csrf
-        <input type="datetime-local" name="started_at" placeholder="Kezdő dátum"><br>
-        <input type="datetime-local" name="submitted_at" placeholder="Befejező dátum"><br>
-         <select name="course_id">
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Kezdő dátum</label>
+        <div class="col-sm-10">
+        <input type="datetime-local" name="started_at" class="form-control" placeholder="Kezdő dátum">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Befejező dátum</label>
+        <div class="col-sm-10">
+        <input type="datetime-local" name="submitted_at" class="form-control" placeholder="Befejező dátum">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Kurzus</label>
+        <div class="col-sm-10">
+         <select name="course_id" class="form-select">
         @foreach ($courses as $course )             
             <option value="{{$course -> id}}">{{$course -> name}}</option>       
         @endforeach
          </select>
-        <select name="type_id">
+        </div>
+        </div>
+
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Kvíz típus</label>
+        <div class="col-sm-10">
+        <select name="type_id" class="form-select">
         @foreach ($types as $type )             
             <option value="{{$type -> id}}">{{$type -> name}}</option>       
         @endforeach
          </select>
-        <button type="submit">Létrehozás</button>
+        </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Létrehozás</button>
+        </div>
     </form>
 
 @include('layout.footer')
