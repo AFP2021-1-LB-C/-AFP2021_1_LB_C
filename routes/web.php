@@ -65,7 +65,17 @@ Route::post('/admin/user/create', [UserController::class, 'create']);
 Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/admin/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/admin/user', [UserController::class, 'index']);
-//oute::get('/registration', [UserController::class, 'userPostRegistration']);
-//Route::post('/registration', [UserController::class, 'registration']);
+
+//Registration
 Route::get('/registration', [UserController::class, 'r_index']);
-Route::post('user-store', [UserController::class, 'userPostRegistration']);
+Route::post('/user-store', [UserController::class, 'userPostRegistration']);
+//Route::get('/registration', [UserController::class, 'userPostRegistration']);
+//Route::post('/registration', [UserController::class, 'registration']);
+
+// Login
+Route::get('/login', [UserController::class, 'userLoginIndex']);
+Route::post('/user-login', [UserController::class, 'userPostLogin']);
+Route::get('/logout', [UserController::class, 'logout']);
+//Route::get('user-login', 'UserController@userLoginIndex');
+//Route::post('login', 'UserController@userPostLogin');
+//Route::get('logout', 'UserController@logout');
