@@ -84,6 +84,9 @@ class LessonController extends Controller
         $data = Lesson::where('id', $id) -> first();    
         return view('lesson.lesson_content',[ 
             'content' => $data -> content,
+            'page_links' => [
+                (object)['label' => 'Vissza', 'link' => '/admin/lesson'] ,
+            ] ,
         ]);
     }
 
