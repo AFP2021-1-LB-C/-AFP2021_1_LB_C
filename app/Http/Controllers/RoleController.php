@@ -38,7 +38,7 @@ class RoleController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/role');
     }
 
     public function create_form()
@@ -106,7 +106,7 @@ class RoleController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/role');
     }
 
     /**

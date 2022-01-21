@@ -55,7 +55,7 @@ class CourseController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/course');
     }
 
     public function create_form()
@@ -122,7 +122,7 @@ class CourseController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->to('/');
+        return redirect()->to('/admin/course');
     }
 
     /**
