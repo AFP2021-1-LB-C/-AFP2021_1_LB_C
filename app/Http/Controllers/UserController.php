@@ -46,9 +46,47 @@ class UserController extends Controller
     {
         $roles = Role::get();
 
+        $data = User::with(['role'])
+        ->select('users.*')
+        ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+        ->get();
+
         return view('user.registration', [
             'roles' => $roles,
+
+            'items' => $data ,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Regisztráció' ,
+            
         ]);
+    }
+
+    public function profile($id)
+    {
+        $roles = Role::get();
+
+        $data = User::where('id', $id) -> first();
+
+        //dd($data);
+        if ($data != null)
+        {
+         return view('user.profile', [
+             'id' => $data -> id,
+             'roles' => $roles,
+             'role_id' => $data -> role_id,
+             'items' => $data ,
+             'page_title' => 'Felhasználók' ,
+             'page_subtitle' => 'Profil' ,
+            
+            ]);
+        }
+        else
+        {
+            return view('user.profile', ['id' => 0,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Profil' ,
+        ]);
+        }
     }
 
     // -------------------- [ User login view ] -----------------------

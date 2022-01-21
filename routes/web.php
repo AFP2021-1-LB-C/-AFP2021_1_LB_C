@@ -65,6 +65,7 @@ Route::post('/admin/user/create', [UserController::class, 'create']);
 Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/admin/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/admin/user', [UserController::class, 'index']);
+Route::get('/user/profile/{id}', [UserController::class, 'profile']);
 
 //Registration
 Route::get('/registration', [UserController::class, 'r_index']);
