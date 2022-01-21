@@ -31,7 +31,7 @@ class QuizController extends Controller
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
-                (object)['label' => 'Kvíz típusok listája', 'link' => '/admin/quiz-type'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => '/admin/quiz-type'] ,
             ] ,
         ]);
     }

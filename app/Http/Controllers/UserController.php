@@ -78,7 +78,9 @@ class UserController extends Controller
              'items' => $data ,
              'page_title' => 'Felhasználók' ,
              'page_subtitle' => 'Profil' ,
-            
+             'page_links' => [
+                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+            ] ,
             ]);
         }
         else
@@ -86,6 +88,9 @@ class UserController extends Controller
             return view('user.profile', ['id' => 0,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Profil' ,
+            'page_links' => [
+                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+            ] ,
         ]);
         }
     }

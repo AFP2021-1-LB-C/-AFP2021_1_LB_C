@@ -23,9 +23,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/admin/user">Felhasználók</a>
         </li>
+        </ul>
+      <ul class="navbar-nav justify-content-end">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">Profil</a>
+          <ul class="dropdown-menu" style="right:0;" aria-labelledby="dropdown01">
             <li><a class="dropdown-item" href="#">Aloldal1</a></li>
             <li><a class="dropdown-item" href="#">Aloldal2</a></li>
             <li><a class="dropdown-item" href="#">Aloldal3</a></li>
