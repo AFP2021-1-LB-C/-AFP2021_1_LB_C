@@ -32,7 +32,7 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
-            'isAdmin' => true,
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
@@ -40,23 +40,6 @@ class UserController extends Controller
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
                 (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
             ] ,
-        ]);
-    }
-
-    public function user()
-    {
-        $data = User::with(['role'])
-        ->select('users.*')
-        ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
-        ->get();
-
-        //dd($data);
-        
-        return view('user.user_list',[
-            'isAdmin' => false,
-            'items' => $data ,
-            'page_title' => 'Felhasználók' ,
-            'page_subtitle' => 'Lista' ,
         ]);
     }
 

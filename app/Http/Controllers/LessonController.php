@@ -21,28 +21,13 @@ class LessonController extends Controller
 
         
         return view('lesson.lesson_list',[
-            'isAdmin' => true,
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Tananyagok' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
             ] ,
-        ]);
-    }
-
-    public function lesson()
-    {
-        $data = Lesson::with(['course'])
-        ->select('lessons.*')
-        ->get();
-
-        
-        return view('lesson.lesson_list',[
-            'isAdmin' => false,
-            'items' => $data ,
-            'page_title' => 'Tananyagok' ,
-            'page_subtitle' => 'Lista' ,
         ]);
     }
 

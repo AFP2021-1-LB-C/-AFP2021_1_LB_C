@@ -21,7 +21,7 @@
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
     <td>
-    @if ($isAdmin)
+    @if ($isAdmin == 1)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
     </td>

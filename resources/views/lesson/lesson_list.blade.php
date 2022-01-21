@@ -20,7 +20,7 @@
     <td>{{substr($item -> content, 0, 50)."..."}}</td>
     <td>{{$item -> course -> name}}</td>
     
-    @if($isAdmin)
+    @if($isAdmin == 1)
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
  
     <td><a href="/admin/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>

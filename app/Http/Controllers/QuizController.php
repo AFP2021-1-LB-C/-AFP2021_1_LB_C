@@ -25,7 +25,7 @@ class QuizController extends Controller
         //dd($data);
         
         return view('quiz.quiz_list',[
-            'isAdmin' => true,
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
@@ -33,24 +33,6 @@ class QuizController extends Controller
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
                 (object)['label' => 'Kvíz típusok listája', 'link' => '/admin/quiz-type'] ,
             ] ,
-        ]);
-    }
-
-    public function quiz()
-    {
-        $data = Quizze::with(['course', 'type'])
-        ->select('quizzes.*')
-        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
-        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
-        ->get();
-
-        //dd($data);
-        
-        return view('quiz.quiz_list',[
-            'isAdmin' => false,
-            'items' => $data ,
-            'page_title' => 'Feladatok' ,
-            'page_subtitle' => 'Lista' ,
         ]);
     }
 

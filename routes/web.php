@@ -82,8 +82,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 //Route::get('logout', 'UserController@logout');
 
 //Bárki számára elérhető oldalak
-Route::get('/user', [UserController::class, 'user']);
-Route::get('/quiz', [QuizController::class, 'quiz']);
-Route::get('/course', [CourseController::class, 'course']);
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/quiz', [QuizController::class, 'index']);
+Route::get('/course', [CourseController::class, 'index']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
-Route::get('/lesson', [LessonController::class, 'lesson']);
+Route::get('/lesson', [LessonController::class, 'index']);
