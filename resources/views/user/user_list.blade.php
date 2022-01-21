@@ -16,9 +16,9 @@
     <th>Életkor</th>
     <th>Szerepkör</th>
     <th>Felhasználónév</th>
-    <th>Email</th>
+    <th>E-mail</th>
     <th>Regisztrálva</th>
-    <th>Utolsó Bejelentkezés</th>
+    <th>Utolsó bejelentkezés</th>
     <th>Műveletek</th>
   </tr>
 </thead>
