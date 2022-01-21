@@ -6,7 +6,7 @@
     <th>Azonosító</th>
     <th>Kezdő dátum</th>
     <th>Befejező dátum</th>
-    <th>Kvíz típus neve</th>
+    <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
     <th>Műveletek</th>
 

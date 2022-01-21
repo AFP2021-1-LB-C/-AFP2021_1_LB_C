@@ -8,7 +8,7 @@
             <form method="post" action=" {{ url('user-store') }} ">
                 <div class="card shadow mb-4">
                     <div class="car-header bg-success pt-2">
-                        <div class="card-title font-weight-bold text-white text-center"> Felhasználó Létrehozása </div>
+                        <div class="card-title font-weight-bold text-white text-center"> Felhasználó létrehozása </div>
                     </div>
 
                     <div class="card-body">
