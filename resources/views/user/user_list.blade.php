@@ -2,20 +2,14 @@
 
 @include('layout.header')
 
+<table class="table">
+<thead class="table-secondary">
 @if (!User::exists())
-  <table>
-<thead>
-  <thead>
     <tr>
       <th>Még nincs felhasználó regisztrálva!</th>
     </tr>
-  </thead>
-  </thead>
-<tbody>
+    <tbody>
 @else
-
-<table>
-<thead>
   <tr>
     <th>Azonosító</th>
     <th>Név</th>
@@ -23,10 +17,9 @@
     <th>Szerepkör</th>
     <th>Felhasználónév</th>
     <th>Email</th>
-    
     <th>Regisztrálva</th>
     <th>Utolsó Bejelentkezés</th>
-
+    <th>Műveletek</th>
   </tr>
 </thead>
 <tbody>
@@ -43,7 +36,8 @@
     
     <td>{{$item -> registration_date}}</td>
     <td>{{$item -> last_login_date}}</td>
-    <td><a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td><a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
+    <a href="/user/profile/{{$item -> id}}">Profil</a></td>
   </tr>  
   @endforeach
 
