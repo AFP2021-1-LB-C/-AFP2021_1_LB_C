@@ -36,8 +36,12 @@
     
     <td>{{$item -> registration_date}}</td>
     <td>{{$item -> last_login_date}}</td>
-    <td><a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
-    <a href="/user/profile/{{$item -> id}}">Profil</a></td>
+    <td>
+    @if ($isAdmin)
+    <a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
+    @endif
+    <a href="/user/profile/{{$item -> id}}">Profil</a>
+    </td>
   </tr>  
   @endforeach
 

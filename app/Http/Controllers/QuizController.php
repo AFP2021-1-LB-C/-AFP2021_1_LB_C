@@ -25,12 +25,31 @@ class QuizController extends Controller
         //dd($data);
         
         return view('quiz.quiz_list',[
+            'isAdmin' => true,
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
             ] ,
+        ]);
+    }
+
+    public function quiz()
+    {
+        $data = Quizze::with(['course', 'type'])
+        ->select('quizzes.*')
+        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
+        ->get();
+
+        //dd($data);
+        
+        return view('quiz.quiz_list',[
+            'isAdmin' => false,
+            'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 

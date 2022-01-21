@@ -15,7 +15,9 @@
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
+    @if($isAdmin)
     <td><a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a></td>
+    @endif
   </tr>  
   @endforeach
 

@@ -20,7 +20,9 @@
     <td>{{$item -> submitted_at	}}</td>
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
+    @if ($isAdmin)
     <td><a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a></td>
+    @endif
   </tr>  
   @endforeach
 

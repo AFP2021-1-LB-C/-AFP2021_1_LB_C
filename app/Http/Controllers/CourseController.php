@@ -17,12 +17,25 @@ class CourseController extends Controller
         $data = Course::all();
         
         return view('course.course_list',[
+            'isAdmin' => true,
             'items' => $data ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'] ,
             ] ,
+        ]);
+    }
+
+    public function course()
+    {
+        $data = Course::all();
+        
+        return view('course.course_list',[
+            'isAdmin' => false,
+            'items' => $data ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Lista' ,
         ]);
     }
 

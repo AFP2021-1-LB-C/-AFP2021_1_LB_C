@@ -32,6 +32,7 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
+            'isAdmin' => true,
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
@@ -41,6 +42,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function user()
+    {
+        $data = User::with(['role'])
+        ->select('users.*')
+        ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+        ->get();
+
+        //dd($data);
+        
+        return view('user.user_list',[
+            'isAdmin' => false,
+            'items' => $data ,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
+    }
 
     public function r_index()
     {
