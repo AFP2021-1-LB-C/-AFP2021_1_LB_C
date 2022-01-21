@@ -19,6 +19,7 @@
     <td>{{$item -> topic}}</td>
     <td>{{substr($item -> content, 0, 50)."..."}}</td>
     <td>{{$item -> course -> name}}</td>
+    
     @if($isAdmin)
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
  
@@ -28,6 +29,7 @@
  
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @endif
+
   </tr>  
   @endforeach
 
