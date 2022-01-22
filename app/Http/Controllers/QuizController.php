@@ -138,7 +138,7 @@ class QuizController extends Controller
             'course_id' => $request->course_id,
         ]);
 
-        return redirect()->to('/admin/quiz');
+        return redirect()->to('/quiz');
     }
 
     /**

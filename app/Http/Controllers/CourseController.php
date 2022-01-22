@@ -109,7 +109,7 @@ class CourseController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->to('/admin/course');
+        return redirect()->to('/course');
     }
 
     /**

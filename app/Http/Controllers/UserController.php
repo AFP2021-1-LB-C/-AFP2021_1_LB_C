@@ -89,7 +89,7 @@ class UserController extends Controller
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Profil' ,
             'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+                (object)['label' => 'Vissza', 'link' => '/user'] ,
             ] ,
         ]);
         }
@@ -300,7 +300,7 @@ class UserController extends Controller
             //'roles' => $roles
         ]);
 
-        return redirect()->to('/admin/user');
+        return redirect()->to('/user');
     }
 
     /**
