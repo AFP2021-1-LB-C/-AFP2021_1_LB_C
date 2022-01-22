@@ -80,10 +80,3 @@ Route::get('/logout', [UserController::class, 'logout']);
 //Route::get('user-login', 'UserController@userLoginIndex');
 //Route::post('login', 'UserController@userPostLogin');
 //Route::get('logout', 'UserController@logout');
-
-//Bárki számára elérhető oldalak
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/quiz', [QuizController::class, 'index']);
-Route::get('/course', [CourseController::class, 'index']);
-Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
-Route::get('/lesson', [LessonController::class, 'index']);
