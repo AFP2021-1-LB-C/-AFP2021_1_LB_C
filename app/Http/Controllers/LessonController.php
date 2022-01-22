@@ -48,7 +48,7 @@ class LessonController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/lesson');
+        return redirect()->to('/lesson');
     }
 
     public function create_form()
@@ -85,7 +85,7 @@ class LessonController extends Controller
         return view('lesson.lesson_content',[ 
             'content' => $data -> content,
             'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/admin/lesson'] ,
+                (object)['label' => 'Vissza', 'link' => '/lesson'] ,
             ] ,
         ]);
     }
@@ -129,7 +129,7 @@ class LessonController extends Controller
             'course_id' => $request->course_id,
         ]);
 
-        return redirect()->to('/admin/lesson');
+        return redirect()->to('/lesson');
     }
 
     /**

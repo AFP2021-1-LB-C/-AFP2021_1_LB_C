@@ -12,16 +12,16 @@
           <a class="nav-link active" aria-current="page" href="#">Kezdőlap</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/course">Kurzusok</a>
+          <a class="nav-link" href="/course">Kurzusok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/lesson">Tananyagok</a>
+          <a class="nav-link" href="/lesson">Tananyagok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/quiz">Feladatok</a>
+          <a class="nav-link" href="/quiz">Feladatok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/user">Felhasználók</a>
+          <a class="nav-link" href="/user">Felhasználók</a>
         </li>
         </ul>
       <ul class="navbar-nav justify-content-end">

@@ -24,47 +24,47 @@ Route::get('/', function () {
 });
 
 // Quiz-Type
-Route::get('/admin/quiz-type/create', [QuizTypeController::class, 'create_form']);
+Route::get('/quiz-type/create', [QuizTypeController::class, 'create_form']);
 Route::post('/admin/quiz-type/create', [QuizTypeController::class, 'create']);
 Route::get('/admin/quiz-type/edit/{id}', [QuizTypeController::class, 'edit']);
-Route::post('/admin/quiz-type/edit/{id}', [QuizTypeController::class, 'update']);
-Route::get('/admin/quiz-type', [QuizTypeController::class, 'index']);
+Route::post('/quiz-type/edit/{id}', [QuizTypeController::class, 'update']);
+Route::get('/quiz-type', [QuizTypeController::class, 'index']);
 
 // Quiz
-Route::get('/admin/quiz/create', [QuizController::class, 'create_form']);
+Route::get('/quiz/create', [QuizController::class, 'create_form']);
 Route::post('/admin/quiz/create', [QuizController::class, 'create']);
 Route::get('/admin/quiz/edit/{id}', [QuizController::class, 'edit']);
-Route::post('/admin/quiz/edit/{id}', [QuizController::class, 'update']);
-Route::get('/admin/quiz', [QuizController::class, 'index']);
+Route::post('/quiz/edit/{id}', [QuizController::class, 'update']);
+Route::get('/quiz', [QuizController::class, 'index']);
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
-Route::post('/admin/course/edit/{id}', [CourseController::class, 'update']);
-Route::get('/admin/course/create', [CourseController::class, 'create_form']);
+Route::post('/course/edit/{id}', [CourseController::class, 'update']);
+Route::get('/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
-Route::get('/admin/course', [CourseController::class, 'index']);
+Route::get('/course', [CourseController::class, 'index']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
-Route::post('/admin/lesson/edit/{id}', [LessonController::class, 'update']);
-Route::get('/admin/lesson/create', [LessonController::class, 'create_form']);
+Route::post('/lesson/edit/{id}', [LessonController::class, 'update']);
+Route::get('/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
-Route::get('/admin/lesson/content/{id}', [LessonController::class, 'show']);
-Route::get('/admin/lesson', [LessonController::class, 'index']);
+Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
+Route::get('/lesson', [LessonController::class, 'index']);
 
 //Role
-Route::get('/admin/role/create', [RoleController::class, 'create_form']);
+Route::get('/role/create', [RoleController::class, 'create_form']);
 Route::post('/admin/role/create', [RoleController::class, 'create']);
 Route::get('/admin/role/edit/{id}', [RoleController::class, 'edit']);
-Route::post('/admin/role/edit/{id}', [RoleController::class, 'update']);
-Route::get('/admin/role', [RoleController::class, 'index']);
+Route::post('/role/edit/{id}', [RoleController::class, 'update']);
+Route::get('/role', [RoleController::class, 'index']);
 
 //User
-Route::get('/admin/user/create', [UserController::class, 'create_form']);
+Route::get('/user/create', [UserController::class, 'create_form']);
 Route::post('/admin/user/create', [UserController::class, 'create']);
 Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
-Route::post('/admin/user/edit/{id}', [UserController::class, 'update']);
-Route::get('/admin/user', [UserController::class, 'index']);
+Route::post('/user/edit/{id}', [UserController::class, 'update']);
+Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/profile/{id}', [UserController::class, 'profile']);
 
 //Registration
