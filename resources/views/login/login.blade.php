@@ -5,7 +5,7 @@
             <form method="post" action="{{ url('/user-login') }}">
                     <div class="card shadow">
                         <div class="car-header bg-success pt-2">
-                            <div class="card-title font-weight-bold text-white text-center"> User Login </div>
+                            <div class="card-title font-weight-bold text-white text-center"> Bejelentkezés </div>
                         </div>
 
                         <div class="card-body">
@@ -26,15 +26,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password"> Password </label>
+                                <label for="password"> Jelszó </label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="{{ old('password') }}"/>
                                 {!! $errors->first('password', '<small class="text-danger">:message</small>') !!}
                             </div>
                         </div>
 
                         <div class="card-footer d-inline-block">
-                            <button type="submit" class="btn btn-success"> Login </button>
-                            <p class="float-right mt-2"> Don't have an account?  <a href="{{ url('user-registration')}}" class="text-success"> Register </a> </p>
+                            <button type="submit" class="btn btn-success"> Bejelentkezés </button>
+                            <p class="float-right mt-2"> Még nincs fiókod?  <a href="{{ url('user-registration')}}" class="text-success"> Regisztráció </a> </p>
                         </div>
                         @csrf
                     </div>
