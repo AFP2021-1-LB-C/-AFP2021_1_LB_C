@@ -42,7 +42,7 @@ class CourseController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/course');
+        return redirect()->to('/course');
     }
 
     public function create_form()

@@ -37,7 +37,7 @@ class UserController extends Controller
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
-                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
+                (object)['label' => 'Szerepkörök lista', 'link' => '/role'] ,
             ] ,
         ]);
     }
@@ -79,7 +79,7 @@ class UserController extends Controller
              'page_title' => 'Felhasználók' ,
              'page_subtitle' => 'Profil' ,
              'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+                (object)['label' => 'Vissza', 'link' => '/user'] ,
             ] ,
             ]);
         }
@@ -156,7 +156,7 @@ class UserController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/user');
+        return redirect()->to('/user');
     }
 
     public function create_form()

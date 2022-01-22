@@ -30,7 +30,7 @@ class QuizController extends Controller
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
-                (object)['label' => 'Feladat típusok listája', 'link' => '/admin/quiz-type'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => '/quiz-type'] ,
             ] ,
         ]);
     }
@@ -53,7 +53,7 @@ class QuizController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/quiz');
+        return redirect()->to('/quiz');
     }
 
     public function create_form()
