@@ -22,7 +22,7 @@
     
     @if($isAdmin)
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
-    <td><a href="/admin/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
+    <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @else
     <td><a></a></td>
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
