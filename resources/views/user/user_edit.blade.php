@@ -1,8 +1,9 @@
 @include('layout.header')
-
+@inject('logged', 'App\Http\Controllers\Controller')
 {{-- Módosítás --}}
 <form action="/admin/user/edit/{{ $id }}" method="post">
     @csrf
+@if ($id == $logged->auth('id') || 1 == $logged->auth('role_id'))
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Név</label>
         <div class="col-sm-10">
@@ -67,5 +68,7 @@
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
 </form>
-
+@else
+<label>Nincs jogod szerkeszteni ezt a felhasználót!</label>
+@endif
 @include('layout.footer')

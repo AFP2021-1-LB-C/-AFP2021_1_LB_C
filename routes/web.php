@@ -80,3 +80,6 @@ Route::get('/logout', [UserController::class, 'logout']);
 //Route::get('user-login', 'UserController@userLoginIndex');
 //Route::post('login', 'UserController@userPostLogin');
 //Route::get('logout', 'UserController@logout');
+
+//Adataim megváltoztatása menüpont:
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
