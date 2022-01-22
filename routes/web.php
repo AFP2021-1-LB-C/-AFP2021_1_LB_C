@@ -83,3 +83,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 //Adataim megváltoztatása menüpont:
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+
+// Homepage
+Route::get('/', function() {
+    return view('home.homepage');
+});

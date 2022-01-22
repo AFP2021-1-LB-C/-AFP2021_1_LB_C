@@ -115,7 +115,7 @@ class UserController extends Controller
 
         if (Auth::attempt($userCredentials)) 
         {
-            return redirect()->intended('admin/lesson');
+            return redirect()->intended('/');
         }
 
         else 
