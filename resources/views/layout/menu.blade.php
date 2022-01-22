@@ -26,11 +26,17 @@
         </ul>
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">Profil</a>
+        @inject('logged', 'App\Http\Controllers\Controller')
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">{{$logged->auth('name') == null ? "Profil":$logged->auth('name');}}</a>
           <ul class="dropdown-menu" style="right:0;" aria-labelledby="dropdown01">
-            <li><a class="dropdown-item" href="#">Aloldal1</a></li>
-            <li><a class="dropdown-item" href="#">Aloldal2</a></li>
-            <li><a class="dropdown-item" href="#">Aloldal3</a></li>
+          @if ($logged->auth('name') == null)
+            <li><a class="dropdown-item" href="/login">Bejelentkezés</a></li>
+            <li><a class="dropdown-item" href="/registration">Regisztráció</a></li>
+          @else
+            <li><a class="dropdown-item" href="/user/profile/{{$logged->auth('id');}}">Adataim</a></li>
+            <li><a class="dropdown-item" href="/user/edit/{{$logged->auth('id');}}">Adataim megváltoztatása</a></li>
+            <li><a class="dropdown-item" href="/logout">Kijelentkezés</a></li>
+          @endif
           </ul>
         </li>
       </ul>

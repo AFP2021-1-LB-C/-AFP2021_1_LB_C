@@ -81,6 +81,9 @@ Route::get('/logout', [UserController::class, 'logout']);
 //Route::post('login', 'UserController@userPostLogin');
 //Route::get('logout', 'UserController@logout');
 
+//Adataim megváltoztatása menüpont:
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+
 // Homepage
 Route::get('/', function() {
     return view('home.homepage');
