@@ -37,7 +37,7 @@
     <td>{{$item -> registration_date}}</td>
     <td>{{$item -> last_login_date}}</td>
     <td>
-    @if ($isAdmin == 1)
+    @if ($isAdmin)
     <a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
     <a href="/user/profile/{{$item -> id}}">Profil</a>
