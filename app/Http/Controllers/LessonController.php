@@ -84,6 +84,9 @@ class LessonController extends Controller
     {
         $data = Lesson::where('id', $id) -> first();    
         return view('lesson.lesson_content',[ 
+            'topic' => $data -> topic,
+            'page_title' => 'Tananyag',
+            'page_subtitle' => 'Tartalom',
             'content' => $data -> content,
             'page_links' => [
                 (object)['label' => 'Vissza', 'link' => '/lesson'] ,
