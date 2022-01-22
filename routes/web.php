@@ -80,3 +80,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 //Route::get('user-login', 'UserController@userLoginIndex');
 //Route::post('login', 'UserController@userPostLogin');
 //Route::get('logout', 'UserController@logout');
+
+// Homepage
+Route::get('/', function() {
+    return view('home.homepage');
+});
