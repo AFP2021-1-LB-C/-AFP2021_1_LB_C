@@ -32,6 +32,7 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
@@ -41,7 +42,6 @@ class UserController extends Controller
             ] ,
         ]);
     }
-
 
     public function r_index()
     {

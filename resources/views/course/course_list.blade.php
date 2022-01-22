@@ -15,7 +15,11 @@
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
-    <td><a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td>
+    @if($isAdmin)
+    <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
+    @endif
+    </td>
   </tr>  
   @endforeach
 

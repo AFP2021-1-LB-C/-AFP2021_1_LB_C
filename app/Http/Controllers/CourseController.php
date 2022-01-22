@@ -17,6 +17,7 @@ class CourseController extends Controller
         $data = Course::all();
         
         return view('course.course_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,

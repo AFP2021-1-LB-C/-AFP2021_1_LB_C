@@ -25,6 +25,7 @@ class QuizController extends Controller
         //dd($data);
         
         return view('quiz.quiz_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
