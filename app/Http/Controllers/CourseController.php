@@ -16,14 +16,22 @@ class CourseController extends Controller
     {
         $data = Course::all();
         
+        $page_links = [];
+
+        if ($this->auth('role_id') == 1){
+            $page_links = array_merge($page_links, [
+              (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         return view('course.course_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
     }
 
@@ -35,6 +43,10 @@ class CourseController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $new = Course::create([
             'name' => $request->name,
@@ -48,6 +60,10 @@ class CourseController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
             return view('course.course_create', [
                 'page_title' => 'Kurzusok' ,
                 'page_subtitle' => 'Létrehozás' ,
@@ -84,6 +100,10 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = Course::where('id', $id) -> first();
         
         return view('course.course_edit',[
@@ -104,6 +124,9 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
         
         $new = Course::where('id', $id) -> update([
             'name' => $request->name,

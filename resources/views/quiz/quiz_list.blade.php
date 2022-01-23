@@ -8,7 +8,11 @@
     <th>Befejező dátum</th>
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
+    @if($isAdmin)
     <th>Műveletek</th>
+    @else
+    <th></th>
+    @endif
 
   </tr>
 </thead>
@@ -21,7 +25,7 @@
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
     <td>
-    @if ($isAdmin)
+    @if($isAdmin)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
     </td>
