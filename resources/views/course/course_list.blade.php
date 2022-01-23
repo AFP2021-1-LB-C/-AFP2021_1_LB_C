@@ -31,7 +31,7 @@
           @endif
     @endforeach
    @if($subbed)
-    <a href="/lesson/{{$item -> id}}">Megtekintés</a>
+    <a href="/course/{{$item -> id}}">Megtekintés</a>
     @elseif ($logged->auth('id') != null)
     <a href="/course/subscribe/{{$item -> id}}">Feliratkozás</a>
     @endif

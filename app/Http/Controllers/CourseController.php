@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Courses_user;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class CourseController extends Controller
 {
@@ -30,6 +31,37 @@ class CourseController extends Controller
             ] ,
         ]);
     }
+
+    public function lesson($id = null){
+        $course_name = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('name');
+
+    if ($id == null){
+        $data = Lesson::with(['course'])
+        ->select('lessons.*')
+        ->get();
+    }else{
+        $data = Lesson::where('course_id', $id)
+        ->select('lessons.*')
+        ->get();    
+    }
+    
+    $exists = Course::where('id', $id)
+    -> first();
+
+    return view('course.lesson_list',[
+        'isAdmin' => ($this->auth('role_id') === 1),
+        'course_name' => $course_name,
+        'exists' => $exists,
+        'items' => $data ,
+        'page_title' => 'Tananyagok' ,
+        'page_subtitle' => 'Lista' ,
+        'page_links' => [
+            (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
+        ] ,
+    ]);
+}
 
     public function subscribe($id)
     {

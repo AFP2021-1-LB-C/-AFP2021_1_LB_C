@@ -43,6 +43,7 @@ Route::post('/course/edit/{id}', [CourseController::class, 'update']);
 Route::get('/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course/{id}', [CourseController::class, 'lesson']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
@@ -51,7 +52,6 @@ Route::get('/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/lesson', [LessonController::class, 'index']);
-Route::get('/lesson/{id}', [LessonController::class, 'index']);
 
 //Role
 Route::get('/role/create', [RoleController::class, 'create_form']);
