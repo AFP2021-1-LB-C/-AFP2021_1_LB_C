@@ -8,7 +8,6 @@
     <th>Vizsga dátum</th>
     <th>Vizsga azonosító</th>
     <th>Műveletek</th>
-    <th>Vizsga</th>
 
   </tr>
 </thead>
