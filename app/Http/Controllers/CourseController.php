@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Courses_user;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CourseController extends Controller
 {
@@ -15,16 +17,44 @@ class CourseController extends Controller
     public function index()
     {
         $data = Course::all();
+        $subscriptions = Courses_user::all();
         
         return view('course.course_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
+            'subs' => $subscriptions ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'] ,
             ] ,
         ]);
+    }
+
+    public function subscribe($id)
+    {
+        $date = Carbon::now();
+        $userid = ($this->auth('id'));
+
+        $new = Courses_user::create([
+            'course_id' => $id,
+            'user_id' => $userid,
+            'date' => $date,
+            'status' => true,
+        ]);
+                
+        $new->save();
+
+        return redirect()->to('/course');
+    }
+
+    public function unsubscribe($id)
+    {
+        $userid = ($this->auth('id'));
+
+        Courses_user::where('id', $id)->delete();
+                
+        return redirect()->to('/course');
     }
 
     /**

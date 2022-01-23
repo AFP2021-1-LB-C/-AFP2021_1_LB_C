@@ -13,12 +13,17 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-        $data = Lesson::with(['course'])
-        ->select('lessons.*')
-        ->get();
-
+        if ($id == null){
+            $data = Lesson::with(['course'])
+            ->select('lessons.*')
+            ->get();
+        }else{
+            $data = Lesson::where('course_id', $id)
+            ->select('lessons.*')
+            ->get();    
+        }
         
         return view('lesson.lesson_list',[
             'isAdmin' => ($this->auth('role_id') === 1),

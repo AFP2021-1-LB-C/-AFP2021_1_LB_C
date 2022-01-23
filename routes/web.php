@@ -51,6 +51,7 @@ Route::get('/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/lesson', [LessonController::class, 'index']);
+Route::get('/lesson/{id}', [LessonController::class, 'index']);
 
 //Role
 Route::get('/role/create', [RoleController::class, 'create_form']);
@@ -88,3 +89,7 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::get('/', function() {
     return view('home.homepage');
 });
+
+// Subscribe/Unsubscribe
+Route::get('/course/subscribe/{id}', [CourseController::class, 'subscribe']);
+Route::get('/course/unsubscribe/{id}', [CourseController::class, 'unsubscribe']);
