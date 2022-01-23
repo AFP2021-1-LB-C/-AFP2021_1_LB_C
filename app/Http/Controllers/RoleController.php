@@ -19,7 +19,7 @@ class RoleController extends Controller
         if ($this->auth('role_id') !== 1) {
             return redirect()->to('/');
         }
-        elseif($this->auth('role_id') == 1) {
+        else{
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/role/create'],
             ]);

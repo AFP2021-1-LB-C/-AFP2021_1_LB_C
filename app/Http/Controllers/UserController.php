@@ -24,6 +24,19 @@ class UserController extends Controller
 
     public function index()
     {
+        $page_links = [];
+
+        $page_links = [];
+
+        if ($this->auth('role_id') == 1){
+            $page_links = array_merge($page_links, [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
+                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         $data = User::with(['role'])
         ->select('users.*')
         ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
@@ -36,10 +49,7 @@ class UserController extends Controller
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
-                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
     }
 
@@ -64,6 +74,10 @@ class UserController extends Controller
 
     public function profile($id)
     {
+        if ($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         $roles = Role::get();
 
         $data = User::where('id', $id) -> first();
@@ -142,6 +156,9 @@ class UserController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $new = User::create([
             'name' => $request->name,
@@ -161,6 +178,10 @@ class UserController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $roles = Role::get();
         
         return view('user.user_create',[
@@ -173,7 +194,8 @@ class UserController extends Controller
         //return view('user.roles_create');
     }
 
-    public function userPostRegistration(Request $request) {
+    public function userPostRegistration(Request $request) 
+    {
 
         //jelenlegi dátum
         $date = Carbon::now();
@@ -256,6 +278,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = User::where('id', $id) -> first();
 
         $roles = Role::get();
@@ -285,6 +311,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+        
         $roles = Role::get();
 
         $new = User::where('id', $id) -> update([
