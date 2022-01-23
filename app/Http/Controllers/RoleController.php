@@ -35,13 +35,21 @@ class RoleController extends Controller
     {
         //dd($request->request);  // dump and die
 
+        $request->validate([
+            'name'          =>      'required',
+        ]);
+
         $new = Role::create([
             'name' => $request->name,            
         ]);
-                
+
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/admin/role');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -102,12 +110,19 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->validate([
+            'name'          =>      'required',
+        ]);
+
         $new = Role::where('id', $id) -> update([
             'name' => $request->name,
         ]);
 
+        if (!is_null($new)) {
         return redirect()->to('/admin/role');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**

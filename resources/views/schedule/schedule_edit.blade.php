@@ -9,6 +9,7 @@
         <div class="col-sm-10">
         <input type="datetime-local" name="date" class="form-control" placeholder="Vizsga dátum">
         </div>
+        {!! $errors->first('date', '<small class="text-danger">A vizsga dátum :message</small>') !!}
         </div>
 
 
