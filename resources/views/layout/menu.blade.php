@@ -11,6 +11,8 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Kezdőlap</a>
         </li>
+        @inject('perm', 'App\Http\Controllers\Controller')
+        @if ($perm->auth('role_id') != null)
         <li class="nav-item">
           <a class="nav-link" href="/course">Kurzusok</a>
         </li>
@@ -23,6 +25,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/user">Felhasználók</a>
         </li>
+        @endif
         </ul>
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item dropdown">

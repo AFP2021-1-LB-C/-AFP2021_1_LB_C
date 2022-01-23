@@ -19,15 +19,22 @@ class LessonController extends Controller
         ->select('lessons.*')
         ->get();
 
-        
+        $page_links = [];
+
+        if ($this->auth('role_id') == 1){
+            $page_links = array_merge($page_links, [
+              (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'],
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         return view('lesson.lesson_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Tananyagok' ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
     }
 
@@ -39,6 +46,9 @@ class LessonController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $new = Lesson::create([
             
@@ -54,6 +64,10 @@ class LessonController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $courses = Course::get();
             
         return view('lesson.lesson_create',[ 
@@ -82,6 +96,11 @@ class LessonController extends Controller
      */
     public function show($id)
     {
+
+        if ($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         $data = Lesson::where('id', $id) -> first();    
         return view('lesson.lesson_content',[ 
             'topic' => $data -> topic,
@@ -102,6 +121,10 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = Lesson::where('id', $id) -> first();
         $courses = Course::get();
 
@@ -126,6 +149,9 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
         $new = Lesson::where('id', $id) -> update([
             
             'topic' => $request->topic,
