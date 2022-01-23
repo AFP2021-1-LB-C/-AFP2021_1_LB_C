@@ -38,7 +38,7 @@ class UserController extends Controller
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
-                (object)['label' => 'Szerepkörök lista', 'link' => '/role'] ,
+                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
             ] ,
         ]);
     }
