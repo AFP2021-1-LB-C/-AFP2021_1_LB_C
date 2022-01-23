@@ -33,13 +33,13 @@ class CourseController extends Controller
 
     public function subscribe($id)
     {
-        $date = Carbon::now();
+        $date_of_application = Carbon::now();
         $userid = ($this->auth('id'));
 
         $new = Courses_user::create([
             'course_id' => $id,
             'user_id' => $userid,
-            'date' => $date,
+            'date_of_application' => $date_of_application,
             'status' => true,
         ]);
                 
