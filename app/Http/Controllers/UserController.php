@@ -32,16 +32,16 @@ class UserController extends Controller
         //dd($data);
         
         return view('user.user_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
-                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
+                (object)['label' => 'Szerepkörök lista', 'link' => '/role'] ,
             ] ,
         ]);
     }
-
 
     public function r_index()
     {
@@ -79,7 +79,7 @@ class UserController extends Controller
              'page_title' => 'Felhasználók' ,
              'page_subtitle' => 'Profil' ,
              'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+                (object)['label' => 'Vissza', 'link' => '/user'] ,
             ] ,
             ]);
         }
@@ -89,7 +89,7 @@ class UserController extends Controller
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Profil' ,
             'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/admin/user'] ,
+                (object)['label' => 'Vissza', 'link' => '/user'] ,
             ] ,
         ]);
         }
@@ -115,7 +115,7 @@ class UserController extends Controller
 
         if (Auth::attempt($userCredentials)) 
         {
-            return redirect()->intended('admin/lesson');
+            return redirect()->intended('/');
         }
 
         else 
@@ -156,7 +156,7 @@ class UserController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/user');
+        return redirect()->to('/user');
     }
 
     public function create_form()
@@ -300,7 +300,7 @@ class UserController extends Controller
             //'roles' => $roles
         ]);
 
-        return redirect()->to('/admin/user');
+        return redirect()->to('/user');
     }
 
     /**

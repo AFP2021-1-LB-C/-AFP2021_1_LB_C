@@ -25,12 +25,13 @@ class QuizController extends Controller
         //dd($data);
         
         return view('quiz.quiz_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
-                (object)['label' => 'Feladat típusok listája', 'link' => '/admin/quiz-type'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => '/quiz-type'] ,
             ] ,
         ]);
     }
@@ -53,7 +54,7 @@ class QuizController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/quiz');
+        return redirect()->to('/quiz');
     }
 
     public function create_form()
@@ -138,7 +139,7 @@ class QuizController extends Controller
             'course_id' => $request->course_id,
         ]);
 
-        return redirect()->to('/admin/quiz');
+        return redirect()->to('/quiz');
     }
 
     /**

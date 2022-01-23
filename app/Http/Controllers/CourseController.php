@@ -17,6 +17,7 @@ class CourseController extends Controller
         $data = Course::all();
         
         return view('course.course_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Lista' ,
@@ -42,7 +43,7 @@ class CourseController extends Controller
                 
         $new->save();
 
-        return redirect()->to('/admin/course');
+        return redirect()->to('/course');
     }
 
     public function create_form()
@@ -109,7 +110,7 @@ class CourseController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->to('/admin/course');
+        return redirect()->to('/course');
     }
 
     /**
