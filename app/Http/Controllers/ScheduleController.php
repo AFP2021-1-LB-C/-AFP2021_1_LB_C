@@ -118,26 +118,6 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   /* public function edit($id)
-    {
-        $schedule = Schedule::get();
-        $courses = Course::get();
-         
-        $types = [
-            (object)['id' => 1, 'name' => 'írásbeli'],
-            (object)['id' => 2, 'name' => 'szóbeli'],
-            (object)['id' => 3, 'name' => 'gyakorlati'],
-          ];
-
-        return view('schedule.schedule_edit',[
-            
-            'courses' => $courses,
-            'contents' => $types ,
-            'schedules' => $schedule,
-            'page_title' => 'Vizsga' ,
-            'page_subtitle' => 'Szerkesztés' ,
-        ]);
-    } */
 
     public function edit($id)
     {
