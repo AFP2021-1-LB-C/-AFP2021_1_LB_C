@@ -1,7 +1,7 @@
 @include('layout.header')
 @inject('logged', 'App\Http\Controllers\Controller')
 {{-- Módosítás --}}
-<form action="/admin/user/edit/{{ $id }}" method="post">
+<form action="/user/edit/{{ $id }}" method="post">
     @csrf
 @if ($id == $logged->auth('id') || 1 == $logged->auth('role_id'))
     <div class="row mb-3">
@@ -18,6 +18,7 @@
         </div>
     </div>
 
+@if (1 == $logged->auth('role_id'))
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Szerepkör</label>
         <div class="col-sm-10">
@@ -28,7 +29,7 @@
             </select>
         </div>
     </div>
-
+@endif
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Felhasználónév</label>
         <div class="col-sm-10">
@@ -46,7 +47,7 @@
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Jelszó</label>
         <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" placeholder="Jelszó" value="{{ $password }}">
+            <input type="password" name="password" class="form-control" placeholder="Jelszó" value="">
         </div>
     </div>
 
