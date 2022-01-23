@@ -41,7 +41,7 @@ class QuizTypeController extends Controller
                 
         $new->save();
 
-        return redirect()->to('admin/quiz-type');
+        return redirect()->to('/admin/quiz-type');
     }
 
     public function create_form()
@@ -107,7 +107,7 @@ class QuizTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->to('admin/quiz-type');
+        return redirect()->to('/admin/quiz-type');
     }
 
     /**
