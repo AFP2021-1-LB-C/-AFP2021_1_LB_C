@@ -45,16 +45,24 @@ class QuizController extends Controller
     {
         //dd($request->request);  // dump and die
 
+        $request->validate([
+            'started_at'          =>      'required',
+            'submitted_at'        =>      'required',
+        ]);
+
         $new = Quizze::create([
             'started_at' => $request->started_at,
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
         ]);
-                
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/quiz');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -132,14 +140,23 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'started_at'          =>      'required',
+            'submitted_at'        =>      'required',
+        ]);
+
         $new = Quizze::where('id', $id) -> update([
             'started_at' => $request->started_at,
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
         ]);
-
+        if (!is_null($new)) {
         return redirect()->to('/quiz');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**

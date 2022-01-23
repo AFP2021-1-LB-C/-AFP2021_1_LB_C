@@ -6,15 +6,17 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Kezdő dátum</label>
         <div class="col-sm-10">
-        <input type="datetime-local" name="started_at" class="form-control" placeholder="Kezdő dátum">
+        <input type="datetime-local" name="started_at" class="form-control" placeholder="Kezdő dátum" value="{{ old('started_at') }}">
         </div>
+        {!! $errors->first('started_at', '<small class="text-danger">A kezdő dátum :message</small>') !!}
         </div>
 
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Befejező dátum</label>
         <div class="col-sm-10">
-        <input type="datetime-local" name="submitted_at" class="form-control" placeholder="Befejező dátum">
+        <input type="datetime-local" name="submitted_at" class="form-control" placeholder="Befejező dátum" value="{{ old('submitted_at') }}"">
         </div>
+        {!! $errors->first('submitted_at', '<small class="text-danger">A befejező dátum :message</small>') !!}
         </div>
 
         <div class="row mb-3">

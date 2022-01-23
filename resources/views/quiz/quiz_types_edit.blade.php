@@ -8,6 +8,7 @@
             <div class="col-sm-10">
                 <input type="text" name="name" class="form-control" placeholder="Megnevezés" value="{{$name}}">
             </div>
+            {!! $errors->first('name', '<small class="text-danger">A megnevezés :message</small>') !!}
         </div>
 
         <div class="col-auto">
