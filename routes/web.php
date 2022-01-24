@@ -92,7 +92,9 @@ Route::get('/admin/schedule', [ScheduleController::class, 'index']);
 
 // Homepage
 Route::get('/', function() {
-    return view('home.homepage');
+    return view('home.homepage',[
+        'page_title' => 'Kezdőlap',
+    ]);
 });
 
 // Subscribe/Unsubscribe
