@@ -62,16 +62,24 @@ class ScheduleController extends Controller
             return redirect()->to('/');
         }
 
+        $request->validate([
+            'date'          =>      'required',
+        ]);
+
         $new = Schedule::create([
             
             'course_id' => $request->course_id,
             'date' => $request->date,
             'type' => $request->type,
         ]);
-                
+        
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/admin/schedule');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -172,14 +180,21 @@ class ScheduleController extends Controller
             return redirect()->to('/');
         }
 
+        $request->validate([
+            'date'          =>      'required',
+        ]);
+
         $new = Schedule::where('id', $id) -> update([
             
             'course_id' => $request->course_id,
             'date' => $request->date,
             'type' => $request->type,
         ]);
-
+        if (!is_null($new)) {
         return redirect()->to('/admin/schedule');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**

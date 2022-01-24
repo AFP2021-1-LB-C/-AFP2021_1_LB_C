@@ -50,16 +50,25 @@ class LessonController extends Controller
             return redirect()->to('/');
         }
 
+        $request->validate([
+            'topic'     =>      'required',
+            'content'   =>      'required',
+        ]);
+
         $new = Lesson::create([
             
             'topic' => $request->topic,
             'content' => $request->content,
             'course_id' => $request->course_id,
         ]);
-                
+        
+        if (!is_null($new)) {
         $new->save();
 
         return redirect()->to('/lesson');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -149,17 +158,28 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if ($this->auth('role_id') !== 1) {
             return redirect()->to('/');
         }
+
+        $request->validate([
+            'topic'     =>      'required',
+            'content'   =>      'required',
+        ]);
+
         $new = Lesson::where('id', $id) -> update([
             
             'topic' => $request->topic,
             'content' => $request->content,
             'course_id' => $request->course_id,
         ]);
-
+        
+        if (!is_null($new)) {
         return redirect()->to('/lesson');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**

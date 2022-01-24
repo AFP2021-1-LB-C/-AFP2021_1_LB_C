@@ -8,8 +8,9 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Vizsga dátum</label>
         <div class="col-sm-10">
-        <input type="datetime-local" name="date" class="form-control" placeholder="Vizsga dátum">
+        <input type="datetime-local" name="date" class="form-control" placeholder="Vizsga dátum" value="{{ old('date') }}">
         </div>
+        {!! $errors->first('date', '<small class="text-danger">A vizsga dátum :message</small>') !!}
         </div>
 
         <div class="row mb-3">

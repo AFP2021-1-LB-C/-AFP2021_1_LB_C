@@ -160,6 +160,16 @@ class UserController extends Controller
             return redirect()->to('/');
         }
 
+        $request->validate([
+            'name'          =>      'required',
+            'age'   =>      'required',
+			'username'   =>      'required',
+			'email'   =>      'required',
+			'password'   =>      'required',
+			'registration_date'   =>      'required',
+			'last_login_date'   =>      'required'			
+        ]);
+
         $new = User::create([
             'name' => $request->name,
             'age' => $request->age,
@@ -170,10 +180,15 @@ class UserController extends Controller
             'registration_date' => $request->registration_date,
             'last_login_date' => $request->last_login_date,
         ]);
-                
+
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/user');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
+
     }
 
     public function create_form()
@@ -314,23 +329,61 @@ class UserController extends Controller
         if ($this->auth('role_id') !== 1) {
             return redirect()->to('/');
         }
+
+        $request->validate([
+            'name'          =>      'required',
+            'age'   =>      'required',
+			'username'   =>      'required',
+			'email'   =>      'required',
+			'password'   =>      'required',
+			'registration_date'   =>      'required',
+			'last_login_date'   =>      'required'			
+        ]);
         
         $roles = Role::get();
 
-        $new = User::where('id', $id) -> update([
-            'name' => $request-> name,
-            'age' => $request -> age,
-            'role_id' => $request -> role_id,
-            'username' => $request -> username,
-            'email' => $request -> email,
-            'password' => $request -> password,
-            'registration_date' => $request -> registration_date,
-            'last_login_date' => $request -> last_login_date,
-            
-            //'roles' => $roles
-        ]);
+        if ($this->auth('role_id') === 1)
+        {
+            $rolereq = $request -> role_id;
+        }
+        else
+        {
+            $rolereq = User::where('id', $id)
+            ->select('users.role_id')
+            ->value('role_id');          
+        }
 
-        return redirect()->to('/user');
+        if ($_POST['password'] != null && strlen($_POST['password']) >= 6)
+        {
+            $passreq = Hash::make($request->password);
+        }
+        else
+        {
+            $passreq = User::where('id', $id)
+            ->select('users.password')
+            ->value('password');             
+        }
+
+            $new = User::where('id', $id) -> update([
+                'name' => $request-> name,
+                'age' => $request -> age,
+                'role_id' => $rolereq,
+                'username' => $request -> username,
+                'email' => $request -> email,
+                'password' => $passreq,
+                'registration_date' => $request -> registration_date,
+                'last_login_date' => $request -> last_login_date,
+                
+                //'roles' => $roles
+            ]);
+        
+
+        if (!is_null($new)) {
+        return redirect()->to('/user/profile/'.$id);
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
+
     }
 
     /**
