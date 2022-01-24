@@ -39,6 +39,7 @@ Route::post('/admin/quiz/edit/{id}', [QuizController::class, 'update']);
 Route::get('/quiz', [QuizController::class, 'index']);
 
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
+Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
