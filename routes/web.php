@@ -38,6 +38,8 @@ Route::get('/admin/quiz/edit/{id}', [QuizController::class, 'edit']);
 Route::post('/admin/quiz/edit/{id}', [QuizController::class, 'update']);
 Route::get('/quiz', [QuizController::class, 'index']);
 
+Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
+
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
 Route::post('/admin/course/edit/{id}', [CourseController::class, 'update']);

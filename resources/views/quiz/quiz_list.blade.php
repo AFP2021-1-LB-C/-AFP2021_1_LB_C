@@ -28,6 +28,7 @@
     @if($isAdmin)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
+    <a href="/quiz/completion/{{$item -> id}}">Kitöltés</a>
     </td>
   </tr>  
   @endforeach

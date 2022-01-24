@@ -6,6 +6,8 @@ use App\Models\Course;
 use App\Models\Quizze;
 use App\Models\QuizType;
 use Illuminate\Http\Request;
+use App\Models\Quiz_question;
+use Carbon\Carbon;
 
 class QuizController extends Controller
 {
@@ -42,6 +44,28 @@ class QuizController extends Controller
             'page_links' => $page_links,
         ]);
     }
+
+    public function completion($id){
+        $quiz = Quizze::where('id', $id)
+        -> update(['started_at' => Carbon::now()]);
+        
+
+        $data = Quiz_question::where('quiz_id', $id)
+        -> select('quiz_questions.*')
+        -> get();
+
+        //dd($data);
+
+        return view('quiz.quiz_completion',[
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'user' => ($this->auth('id')),
+            'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
+            -> value('started_at'),
+            'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
+    }   
 
     /**
      * Show the form for creating a new resource.
