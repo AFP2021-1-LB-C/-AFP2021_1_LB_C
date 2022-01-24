@@ -64,7 +64,7 @@ Route::get('/admin/role', [RoleController::class, 'index']);
 //User
 Route::get('/admin/user/create', [UserController::class, 'create_form']);
 Route::post('/admin/user/create', [UserController::class, 'create']);
-Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/profile/{id}', [UserController::class, 'profile']);
