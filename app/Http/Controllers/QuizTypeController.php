@@ -35,13 +35,21 @@ class QuizTypeController extends Controller
     {
         //dd($request->request);  // dump and die
 
+        $request->validate([
+            'name'          =>      'required',
+        ]);
+
         $new = QuizType::create([
             'name' => $request->name,
         ]);
-                
+
+        if (!is_null($new)) {          
         $new->save();
 
-        return redirect()->to('/quiz-type');
+        return redirect()->to('/admin/quiz-type');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -102,12 +110,18 @@ class QuizTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'          =>      'required',
+        ]);
         
         $new = QuizType::where('id', $id) -> update([
             'name' => $request->name,
         ]);
-
-        return redirect()->to('/quiz-type');
+        if (!is_null($new)) {
+        return redirect()->to('/admin/quiz-type');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**

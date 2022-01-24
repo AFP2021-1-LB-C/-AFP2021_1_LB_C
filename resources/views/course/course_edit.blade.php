@@ -8,6 +8,7 @@
         <div class="col-sm-10">
         <input type="text" name="name" class="form-control" placeholder="Megnevezés" value="{{$name}}">
         </div>
+        {!! $errors->first('name', '<small class="text-danger">A megnevezés :message</small>') !!}
         </div>
 
         <div class="row mb-3">
@@ -15,6 +16,7 @@
         <div class="col-sm-10">
         <textarea name="description" class="form-control" placeholder="Leírás">{{$description}}</textarea>
         </div>
+        {!! $errors->first('description', '<small class="text-danger">A leírás :message</small>') !!}
         </div>
 
         <div class="col-auto">

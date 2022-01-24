@@ -38,7 +38,7 @@ class UserController extends Controller
             'page_subtitle' => 'Lista' ,
             'page_links' => [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
-                (object)['label' => 'Szerepkörök lista', 'link' => '/role'] ,
+                (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
             ] ,
         ]);
     }
@@ -143,6 +143,16 @@ class UserController extends Controller
     {
         //dd($request->request);  // dump and die
 
+        $request->validate([
+            'name'          =>      'required',
+            'age'   =>      'required',
+			'username'   =>      'required',
+			'email'   =>      'required',
+			'password'   =>      'required',
+			'registration_date'   =>      'required',
+			'last_login_date'   =>      'required'			
+        ]);
+
         $new = User::create([
             'name' => $request->name,
             'age' => $request->age,
@@ -153,10 +163,15 @@ class UserController extends Controller
             'registration_date' => $request->registration_date,
             'last_login_date' => $request->last_login_date,
         ]);
-                
+
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/user');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
+
     }
 
     public function create_form()
@@ -285,6 +300,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'          =>      'required',
+            'age'   =>      'required',
+			'username'   =>      'required',
+			'email'   =>      'required',
+			'password'   =>      'required',
+			'registration_date'   =>      'required',
+			'last_login_date'   =>      'required'			
+        ]);
+        
         $roles = Role::get();
 
         if ($this->auth('role_id') === 1)
@@ -322,9 +347,13 @@ class UserController extends Controller
                 //'roles' => $roles
             ]);
         
-       
 
+        if (!is_null($new)) {
         return redirect()->to('/user/profile/'.$id);
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
+
     }
 
     /**

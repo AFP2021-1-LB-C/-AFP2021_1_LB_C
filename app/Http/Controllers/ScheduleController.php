@@ -50,16 +50,24 @@ class ScheduleController extends Controller
     {
         //dd($request->request);  // dump and die
 
+        $request->validate([
+            'date'          =>      'required',
+        ]);
+
         $new = Schedule::create([
             
             'course_id' => $request->course_id,
             'date' => $request->date,
             'type' => $request->type,
         ]);
-                
+        
+        if (!is_null($new)) {        
         $new->save();
 
         return redirect()->to('/admin/schedule');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     public function create_form()
@@ -118,26 +126,6 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   /* public function edit($id)
-    {
-        $schedule = Schedule::get();
-        $courses = Course::get();
-         
-        $types = [
-            (object)['id' => 1, 'name' => 'írásbeli'],
-            (object)['id' => 2, 'name' => 'szóbeli'],
-            (object)['id' => 3, 'name' => 'gyakorlati'],
-          ];
-
-        return view('schedule.schedule_edit',[
-            
-            'courses' => $courses,
-            'contents' => $types ,
-            'schedules' => $schedule,
-            'page_title' => 'Vizsga' ,
-            'page_subtitle' => 'Szerkesztés' ,
-        ]);
-    } */
 
     public function edit($id)
     {
@@ -168,14 +156,22 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'date'          =>      'required',
+        ]);
+
         $new = Schedule::where('id', $id) -> update([
             
             'course_id' => $request->course_id,
             'date' => $request->date,
             'type' => $request->type,
         ]);
-
+        if (!is_null($new)) {
         return redirect()->to('/admin/schedule');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
     }
 
     /**
