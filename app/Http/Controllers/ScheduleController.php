@@ -16,6 +16,17 @@ class ScheduleController extends Controller
      */
     public function index()
     {
+        $page_links = [];
+
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+        else{
+            $page_links = array_merge($page_links, [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/schedule/create'] ,
+            ]);
+        }
+
         $data = Schedule::with(['course'])
         ->select('schedules.*')
         ->get();
@@ -33,9 +44,7 @@ class ScheduleController extends Controller
             'page_title' => 'Vizsga' ,
             'courses' => $courses ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/schedule/create'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
 
         
@@ -49,6 +58,9 @@ class ScheduleController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $request->validate([
             'date'          =>      'required',
@@ -72,6 +84,10 @@ class ScheduleController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $schedule = Schedule::get();
         $courses = Course::get();
          
@@ -129,6 +145,10 @@ class ScheduleController extends Controller
 
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = Schedule::where('id', $id) -> first();
         $courses = Course::get();
          
@@ -156,6 +176,9 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $request->validate([
             'date'          =>      'required',

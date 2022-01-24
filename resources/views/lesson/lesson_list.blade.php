@@ -7,7 +7,9 @@
     <th>Tananyag megnevezése</th>
     <th>Tananyag</th>
     <th>Kurzus neve</th>
+    @if($isAdmin)
     <th>Műveletek</th>
+    @endif
     <th>Tananyag</th>
 
   </tr>
@@ -24,7 +26,6 @@
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @else
-    <td><a></a></td>
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @endif
   </tr>  

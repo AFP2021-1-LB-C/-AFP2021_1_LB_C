@@ -6,7 +6,11 @@
     <th>Azonosító</th>
     <th>Kurzus neve</th>
     <th>Kurzus leírása</th>
+    @if($isAdmin)
     <th>Műveletek</th>
+    @else
+    <th></th>
+    @endif
   </tr>
 </thead>
 <tbody>

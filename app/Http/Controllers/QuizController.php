@@ -22,17 +22,24 @@ class QuizController extends Controller
         ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
         ->get();
 
-        //dd($data);
+        $page_links = [];
         
+        if ($this->auth('role_id') == 1){
+            $page_links = array_merge($page_links, [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
+            ] ,
+            );
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         return view('quiz.quiz_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
-                (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
     }
 
@@ -44,6 +51,9 @@ class QuizController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $request->validate([
             'started_at'          =>      'required',
@@ -67,6 +77,10 @@ class QuizController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $types = QuizType::get();
         $courses = Course::get();
 
@@ -111,6 +125,10 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = Quizze::where('id', $id) -> first();
 
         $types = QuizType::get();
@@ -140,6 +158,9 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $request->validate([
             'started_at'          =>      'required',

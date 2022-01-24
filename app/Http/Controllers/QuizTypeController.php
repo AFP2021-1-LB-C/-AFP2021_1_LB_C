@@ -16,13 +16,22 @@ class QuizTypeController extends Controller
     {
         $data = QuizType::all();
         
+        $page_links = [];
+
+        if ($this->auth('role_id') == 1){
+            $page_links = array_merge($page_links, [
+              (object)['label' => 'Létrehozás', 'link' => '/admin/quiz-type/create'],
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
         return view('quiz.quiz_types_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'items' => $data ,
             'page_title' => 'Feladat típusok' ,
             'page_subtitle' => 'Lista' ,
-            'page_links' => [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz-type/create'] ,
-            ] ,
+            'page_links' => $page_links,
         ]);
     }
 
@@ -34,6 +43,10 @@ class QuizTypeController extends Controller
     public function create(Request $request)
     {
         //dd($request->request);  // dump and die
+
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
 
         $request->validate([
             'name'          =>      'required',
@@ -54,6 +67,10 @@ class QuizTypeController extends Controller
 
     public function create_form()
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
             return view('quiz.quiz_types_create',[
                 'page_title' => 'Feladat típusok' ,
                 'page_subtitle' => 'Létrehozás' ,
@@ -90,6 +107,10 @@ class QuizTypeController extends Controller
      */
     public function edit($id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $data = QuizType::where('id', $id) -> first();
         
         return view('quiz.quiz_types_edit',[
@@ -110,10 +131,14 @@ class QuizTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($this->auth('role_id') !== 1) {
+            return redirect()->to('/');
+        }
+
         $request->validate([
             'name'          =>      'required',
         ]);
-        
+
         $new = QuizType::where('id', $id) -> update([
             'name' => $request->name,
         ]);

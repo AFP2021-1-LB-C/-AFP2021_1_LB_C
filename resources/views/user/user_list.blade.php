@@ -37,10 +37,10 @@
     <td>{{$item -> registration_date}}</td>
     <td>{{$item -> last_login_date}}</td>
     <td>
-    @if ($isAdmin)
+    @if($isAdmin)
     <a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
-    <a href="/user/profile/{{$item -> id}}">Profil</a>
+    <a href="/user/profile/{{$item -> id}}">Profil megtekintése</a>
     </td>
   </tr>  
   @endforeach
