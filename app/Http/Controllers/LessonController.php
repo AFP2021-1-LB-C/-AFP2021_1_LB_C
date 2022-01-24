@@ -15,10 +15,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $data = Lesson::with(['course'])
-        ->select('lessons.*')
-        ->get();
-
+            $data = Lesson::with(['course'])
+            ->select('lessons.*')
+            ->get();
         
         return view('lesson.lesson_list',[
             'isAdmin' => ($this->auth('role_id') === 1),

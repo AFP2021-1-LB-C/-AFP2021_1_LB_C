@@ -44,6 +44,7 @@ Route::post('/admin/course/edit/{id}', [CourseController::class, 'update']);
 Route::get('/admin/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course/{id}', [CourseController::class, 'lesson']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
@@ -93,3 +94,7 @@ Route::get('/admin/schedule', [ScheduleController::class, 'index']);
 Route::get('/', function() {
     return view('home.homepage');
 });
+
+// Subscribe/Unsubscribe
+Route::get('/course/subscribe/{id}', [CourseController::class, 'subscribe']);
+Route::get('/course/unsubscribe/{id}', [CourseController::class, 'unsubscribe']);
