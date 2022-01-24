@@ -18,13 +18,12 @@ class ScheduleController extends Controller
     {
         $page_links = [];
 
-        if ($this->auth('role_id') !== 1) {
-            return redirect()->to('/');
-        }
-        else{
+        if ($this->auth('role_id') == 1){
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/schedule/create'] ,
             ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
         }
 
         $data = Schedule::with(['course'])
@@ -39,6 +38,7 @@ class ScheduleController extends Controller
           ];
         
         return view('schedule.schedule_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
             'contents' => $types ,
             'schedules' => $data ,
             'page_title' => 'Vizsga' ,

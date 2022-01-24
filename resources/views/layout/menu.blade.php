@@ -23,6 +23,9 @@
           <a class="nav-link" href="/quiz">Feladatok</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/schedule">Vizsga időpontok</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/user">Felhasználók</a>
         </li>
         @endif
