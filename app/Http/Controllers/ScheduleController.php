@@ -156,12 +156,15 @@ class ScheduleController extends Controller
             (object)['id' => 1, 'name' => 'írásbeli'],
             (object)['id' => 2, 'name' => 'szóbeli'],
             (object)['id' => 3, 'name' => 'gyakorlati'],
-          ];
+        ];
 
         return view('schedule.schedule_edit',[
             'id' => $data -> id,
+            'date' => str_replace(' ', 'T', $data->date),
+            'course_id' => $data -> course_id,
             'courses' => $courses,
-            'contents' => $types ,
+            'types_id' => $data -> type,
+            'contents' => $types,
             'page_title' => 'Vizsga' ,
             'page_subtitle' => 'Szerkesztés' ,
         ]);
