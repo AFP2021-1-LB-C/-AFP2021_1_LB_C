@@ -65,6 +65,7 @@ Route::get('/admin/role', [RoleController::class, 'index']);
 Route::get('/admin/user/create', [UserController::class, 'create_form']);
 Route::post('/admin/user/create', [UserController::class, 'create']);
 Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/profile/{id}', [UserController::class, 'profile']);
@@ -79,9 +80,6 @@ Route::post('/user-store', [UserController::class, 'userPostRegistration']);
 Route::get('/login', [UserController::class, 'userLoginIndex']);
 Route::post('/user-login', [UserController::class, 'userPostLogin']);
 Route::get('/logout', [UserController::class, 'logout']);
-//Route::get('user-login', 'UserController@userLoginIndex');
-//Route::post('login', 'UserController@userPostLogin');
-//Route::get('logout', 'UserController@logout');
 
 //Schedule
 Route::get('/admin/schedule/create', [ScheduleController::class, 'create_form']);

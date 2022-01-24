@@ -293,7 +293,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('id') !== (int)$id) {
             return redirect()->to('/');
         }
 
@@ -326,7 +326,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('id') !== (int)$id) {
             return redirect()->to('/');
         }
 
@@ -335,7 +335,7 @@ class UserController extends Controller
             'age'   =>      'required',
 			'username'   =>      'required',
 			'email'   =>      'required',
-			'password'   =>      'required',
+			'password'   =>      '',
 			'registration_date'   =>      'required',
 			'last_login_date'   =>      'required'			
         ]);
