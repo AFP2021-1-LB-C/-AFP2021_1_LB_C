@@ -64,6 +64,7 @@ Route::get('/admin/role', [RoleController::class, 'index']);
 //User
 Route::get('/admin/user/create', [UserController::class, 'create_form']);
 Route::post('/admin/user/create', [UserController::class, 'create']);
+Route::get('/admin/user/edit/{id}', [UserController::class, 'edit']);
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'index']);
@@ -79,16 +80,13 @@ Route::post('/user-store', [UserController::class, 'userPostRegistration']);
 Route::get('/login', [UserController::class, 'userLoginIndex']);
 Route::post('/user-login', [UserController::class, 'userPostLogin']);
 Route::get('/logout', [UserController::class, 'logout']);
-//Route::get('user-login', 'UserController@userLoginIndex');
-//Route::post('login', 'UserController@userPostLogin');
-//Route::get('logout', 'UserController@logout');
 
 //Schedule
 Route::get('/admin/schedule/create', [ScheduleController::class, 'create_form']);
 Route::post('/admin/schedule/create', [ScheduleController::class, 'create']);
 Route::get('/admin/schedule/edit/{id}', [ScheduleController::class, 'edit']);
 Route::post('/admin/schedule/edit/{id}', [ScheduleController::class, 'update']);
-Route::get('/admin/schedule', [ScheduleController::class, 'index']);
+Route::get('/schedule', [ScheduleController::class, 'index']);
 
 // Homepage
 Route::get('/', function() {
