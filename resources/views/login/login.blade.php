@@ -34,7 +34,7 @@
 
                         <div class="card-footer d-inline-block">
                             <button type="submit" class="btn btn-success"> Bejelentkezés </button>
-                            <p class="float-right mt-2"> Még nincs fiókod?  <a href="{{ url('user-registration')}}" class="text-success"> Regisztráció </a> </p>
+                            <p class="float-right mt-2"> Még nincs fiókod?  <a href="{{ url('registration')}}" class="text-success"> Regisztráció </a> </p>
                         </div>
                         @csrf
                     </div>
