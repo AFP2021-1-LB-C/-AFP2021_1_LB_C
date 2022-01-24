@@ -61,10 +61,10 @@ $correct_answer_count = 0;
 <?php
 $percent = $correct_answer_count/($question_count/100);
 switch ($percent){
-  case $percent > 40 : $grade = 2;break;
-  case $percent > 55 : $grade = 3;break;
-  case $percent > 70 : $grade = 4;break;
   case $percent > 85 : $grade = 5;break;
+  case $percent > 70 : $grade = 4;break;
+  case $percent > 55 : $grade = 3;break;
+  case $percent > 40 : $grade = 2;break;
   default : $grade = 1;break;
 }
  ?>
