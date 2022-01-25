@@ -40,9 +40,41 @@
          </select>
         </div>
         </div>
+
+        @for ($i = 0; $i < 10; $i++ )  
+            <div class="form-group">
+                <label for="question[{{$i}}]"  class="col-sm-2 col-form-label">Kérdés</label>
+                <input name="question_id[{{$i}}]" value="{{$questions[$i]->id}}" type="hidden">
+                <input type="text" name="question[{{$i}}]" value="{{$questions[$i] -> question}}" class="form-control">
+                <label for="answer" class="col-sm-2 col-form-label">Valaszok</label>
+                <div class="form-check">
+                    <input type="radio" name="correct_answer[{{$i}}]" value="1" {{ ($questions[$i]->correct_answer==1)? "checked" : "" }} class="form-check-input">
+                    <input type="text" name="answer_1[{{$i}}]" value="{{$questions[$i] -> answer_1}}" class="form-control">
+                    <label for="answer_1[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="correct_answer[{{$i}}]" value="2" {{ ($questions[$i]->correct_answer==2)? "checked" : "" }} class="form-check-input">
+                    <input type="text" name="answer_2[{{$i}}]" value="{{$questions[$i] -> answer_2}}" class="form-control">
+                    <label for="answer_2[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="correct_answer[{{$i}}]" value="3" {{ ($questions[$i]->correct_answer==3)? "checked" : "" }} class="form-check-input">
+                    <input type="text" name="answer_3[{{$i}}]" value="{{$questions[$i] -> answer_3}}" class="form-control">
+                    <label for="answer_3[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="correct_answer[{{$i}}]" value="4" {{ ($questions[$i]->correct_answer==4)? "checked" : "" }} class="form-check-input">
+                    <input type="text" name="answer_4[{{$i}}]" value="{{$questions[$i] -> answer_4}}" class="form-control">
+                    <label for="answer_4[{{$i}}]" class="form-check-label"></label>
+                </div>
+                
+            </div>
+        @endfor
+
          <div class="col-auto">
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
+
     </form>
 
 @include('layout.footer')
