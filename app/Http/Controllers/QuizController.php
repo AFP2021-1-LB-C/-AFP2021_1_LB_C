@@ -54,8 +54,6 @@ class QuizController extends Controller
         -> select('quiz_questions.*')
         -> get();
 
-        //dd($data);
-
         return view('quiz.quiz_completion',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'user' => ($this->auth('id')),
@@ -74,7 +72,7 @@ class QuizController extends Controller
      */
     public function create(Request $request)
     {
-        //dd($request->request);  // dump and die
+
         if ($this->auth('role_id') !== 1) {
             return redirect()->to('/');
         }
@@ -82,6 +80,12 @@ class QuizController extends Controller
         $request->validate([
             'started_at'          =>      'required',
             'submitted_at'        =>      'required',
+            'question'            =>      'required|array',
+            'answer_1'            =>      'required|array',
+            'answer_2'            =>      'required|array',
+            'answer_3'            =>      'required|array',
+            'answer_4'            =>      'required|array',
+            'correct_answer'      =>      'required|array',
         ]);
 
         $new = Quizze::create([
@@ -91,9 +95,23 @@ class QuizController extends Controller
             'course_id' => $request->course_id,
         ]);
         if (!is_null($new)) {        
-        $new->save();
+            $new->save();
 
-        return redirect()->to('/quiz');
+            $quiz_id = $new -> id;
+
+            for($i = 1; $i<11;$i++){
+                $new = Quiz_question::create([
+                    'question' => $request->question[$i],
+                    'answer_1' => $request->answer_1[$i],
+                    'answer_2' => $request->answer_2[$i],
+                    'answer_3' => $request->answer_3[$i],
+                    'answer_4' => $request->answer_4[$i],
+                    'correct_answer' => $request->correct_answer[$i],
+                    'quiz_id' => $quiz_id,
+                ]);
+            }
+
+            return redirect()->to('/quiz');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }
@@ -158,8 +176,9 @@ class QuizController extends Controller
         $types = QuizType::get();
 
         $courses = Course::get();
-        
-        
+
+        $questions = Quiz_question::get();
+
         return view('quiz.quiz_edit',[
             'id' => $data -> id,
             'started_at' => $data -> started_at,
@@ -168,6 +187,7 @@ class QuizController extends Controller
             'course_id' => $data -> course_id,
             'types' => $types,
             'courses' => $courses,
+            'questions' => $questions,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Szerkesztés' ,
         ]);
@@ -186,9 +206,16 @@ class QuizController extends Controller
             return redirect()->to('/');
         }
 
+
         $request->validate([
             'started_at'          =>      'required',
             'submitted_at'        =>      'required',
+            'question'            =>      'required|array',
+            'answer_1'            =>      'required|array',
+            'answer_2'            =>      'required|array',
+            'answer_3'            =>      'required|array',
+            'answer_4'            =>      'required|array',
+            'correct_answer'      =>      'required|array',
         ]);
 
         $new = Quizze::where('id', $id) -> update([
@@ -197,6 +224,21 @@ class QuizController extends Controller
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
         ]);
+
+        for($i = 0; $i<10;$i++){
+            $new_question = Quiz_question::where('id', $request->question_id[$i]) -> update([
+                'question' => $request->question[$i],
+                'answer_1' => $request->answer_1[$i],
+                'answer_2' => $request->answer_2[$i],
+                'answer_3' => $request->answer_3[$i],
+                'answer_4' => $request->answer_4[$i],
+                'correct_answer' => $request->correct_answer[$i],
+            ]);
+            if (is_null($new_question)) {
+                return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+            }
+        }
+
         if (!is_null($new)) {
         return redirect()->to('/quiz');
         } else {
