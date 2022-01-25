@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Quizze;
 use App\Models\QuizType;
+use App\Models\Quiz_result;
 use Illuminate\Http\Request;
+use App\Models\Quiz_question;
+use ErrorException;
+use Exception;
 
 class QuizController extends Controller
 {
@@ -42,6 +47,74 @@ class QuizController extends Controller
             'page_links' => $page_links,
         ]);
     }
+
+    public function completion($id){
+        $quiz = Quizze::where('id', $id)
+        -> update(['started_at' => Carbon::now()]);
+        
+
+        $data = Quiz_question::where('quiz_id', $id)
+        -> select('quiz_questions.*')
+        -> get();
+
+        //dd($data);
+
+        return view('quiz.quiz_completion',[
+            'id' => $id,
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'user' => ($this->auth('id')),
+            'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
+            -> value('started_at'),
+            'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
+    }   
+
+    public function save_answers($id){
+
+        $data = array();
+
+        $quiz = Quizze::where('id', $id)
+        -> update(['submitted_at' => Carbon::now()]);
+
+        $questions = Quiz_question::where('quiz_id', $id)
+        -> select('quiz_questions.*')
+        -> get();
+
+        foreach ($questions as $question) {
+            Quiz_result::where('quiz_question_id', $question -> id)
+            ->delete();
+         
+            //üresen hagyott válaszok esetén catch fut le
+            try{$answer = $_POST[$question -> id];}
+            catch (ErrorException $e){$answer = 0;}
+
+        $new = Quiz_result::create([
+            'quiz_id' => $id,
+            'quiz_question_id' => $question -> id,
+            'answer' => $answer,
+            'user_id' => $this->auth('id'),
+        ]);
+        
+        $data = Quiz_result::where('quiz_id', $id) 
+        -> select('quiz_results.*')
+        -> get();
+    }
+    
+    return view('quiz.quiz_answers',[
+        'quiz_id' => $id,
+        'isAdmin' => ($this->auth('role_id') === 1),
+        'user_id' => ($this->auth('id')),
+        'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
+        -> value('started_at'),
+        'submitted_at' => Quizze::where('id', $id) -> select('quizzes.*')
+        -> value('submitted_at'),
+        'items' => $data ,
+        'page_title' => 'Válaszok' ,
+        'page_subtitle' => 'Lista' ,
+    ]);
+    } 
 
     /**
      * Show the form for creating a new resource.

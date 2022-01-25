@@ -1,4 +1,6 @@
+<?php use App\Models\Grade; ?>
 @include('layout.header')
+@inject('logged', 'App\Http\Controllers\Controller')
 
 <table class="table">
   <thead class="table-secondary">
@@ -11,14 +13,25 @@
     @if($isAdmin)
     <th>Műveletek</th>
     @else
-    <th></th>
+    <th>Kitöltés</th>
     @endif
+    <th>Jegyek</th>
 
   </tr>
 </thead>
 <tbody>
   @foreach ($items as $item)
-  <tr>
+@if ((Grade::where('quiz_id', ($item -> id))
+    ->where('user_id', $logged->auth('id'))
+    ->value('grade')) == null)
+<tr>
+@elseif((Grade::where('quiz_id', ($item -> id))
+    ->where('user_id', $logged->auth('id'))
+    ->value('grade')) != 1)
+  <tr style='background-color:#cbf6cd'>  
+@else
+  <tr style='background-color:#f4b9b8'>
+@endif
     <td>{{$item -> id}}</td>
     <td>{{$item -> started_at}}</td>
     <td>{{$item -> submitted_at	}}</td>
@@ -27,6 +40,20 @@
     <td>
     @if($isAdmin)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
+    @endif
+    <?php
+
+    ?>
+    @if ((Grade::where('quiz_id', ($item -> id))
+    ->where('user_id', $logged->auth('id'))
+    ->value('grade')) != null)
+    <label>kitöltve</label>
+    <td>{{Grade::where('quiz_id', ($item -> id))
+    ->where('user_id', $logged->auth('id'))
+    ->value('grade');}}</td>
+    @else
+    <a href="/quiz/completion/{{$item -> id}}">Kitöltés</a>
+    <td>-</td>
     @endif
     </td>
   </tr>  
