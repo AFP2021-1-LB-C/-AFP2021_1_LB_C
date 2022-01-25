@@ -23,7 +23,8 @@ $correct_answer_count = 0;
   
   <tr>
   
-  <?php $question = Quiz_question::where('id', $item -> quiz_question_id) -> first();?>
+  <?php $question = Quiz_question::where('id', $item -> quiz_question_id) 
+  -> first();?>
   <?php 
   switch ($item -> answer){
   case 1: $chosen = $question -> answer_1;break;
@@ -67,6 +68,9 @@ switch ($percent){
   case $percent > 40 : $grade = 2;break;
   default : $grade = 1;break;
 }
+if ($percent < 40){
+  $grade = 1;
+  }
  ?>
 <h2>Százalék: {{round($percent)}}%</h2>
 <h2>Érdemjegy: {{$grade}}</h2>

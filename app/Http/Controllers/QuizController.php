@@ -91,13 +91,13 @@ class QuizController extends Controller
             catch (ErrorException $e){$answer = 0;}
 
         $new = Quiz_result::create([
+            'quiz_id' => $id,
             'quiz_question_id' => $question -> id,
             'answer' => $answer,
             'user_id' => $this->auth('id'),
         ]);
         
-        $data = Quiz_result::where('quiz_question_id', $question ->id)
-        -> first()
+        $data = Quiz_result::where('quiz_id', $id) 
         -> select('quiz_results.*')
         -> get();
     }
