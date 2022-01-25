@@ -90,31 +90,53 @@ class QuizController extends Controller
             try{$answer = $_POST[$question -> id];}
             catch (ErrorException $e){$answer = 0;}
 
-        $new = Quiz_result::create([
-            'quiz_id' => $id,
-            'quiz_question_id' => $question -> id,
-            'answer' => $answer,
-            'user_id' => $this->auth('id'),
-        ]);
-        
-        $data = Quiz_result::where('quiz_id', $id) 
-        -> select('quiz_results.*')
-        -> get();
-    }
+            $new = Quiz_result::create([
+                'quiz_question_id' => $question -> id,
+                'answer' => $answer,
+                'user_id' => $this->auth('id'),
+            ]);
+            
+            $data = Quiz_result::where('id', $id) 
+            -> select('quiz_results.*')
+            -> get();
+        }   
     
-    return view('quiz.quiz_answers',[
-        'quiz_id' => $id,
-        'isAdmin' => ($this->auth('role_id') === 1),
-        'user_id' => ($this->auth('id')),
-        'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
-        -> value('started_at'),
-        'submitted_at' => Quizze::where('id', $id) -> select('quizzes.*')
-        -> value('submitted_at'),
-        'items' => $data ,
-        'page_title' => 'Válaszok' ,
-        'page_subtitle' => 'Lista' ,
-    ]);
+        return view('quiz.quiz_answers',[
+            'quiz_id' => $id,
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'user_id' => ($this->auth('id')),
+            'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
+            -> value('started_at'),
+            'submitted_at' => Quizze::where('id', $id) -> select('quizzes.*')
+            -> value('submitted_at'),
+            'items' => $data ,
+            'page_title' => 'Válaszok' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
     } 
+
+    public function show_result($id){
+
+        $quiz_results = null;
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $quiz_results = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                                    -> get();
+        } else if($this->auth('role_id') === 3){
+            $quiz_results = Quiz_result::where('user_id', $this->auth('id'))
+            -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+            -> get();
+        }
+
+        return view('quiz.quiz_result',[
+            'id' => $id,
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isStudent' => ($this->auth('role_id') === 2),
+            'user_id' => ($this->auth('id')),
+            'items' => $quiz_results ,
+            'page_title' => 'Eredmeny' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
+    }   
 
     /**
      * Show the form for creating a new resource.

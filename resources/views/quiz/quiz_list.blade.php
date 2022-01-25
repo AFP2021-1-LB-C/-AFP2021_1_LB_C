@@ -10,11 +10,7 @@
     <th>Befejező dátum</th>
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
-    @if($isAdmin)
     <th>Műveletek</th>
-    @else
-    <th>Kitöltés</th>
-    @endif
     <th>Jegyek</th>
 
   </tr>
@@ -41,13 +37,13 @@
     @if($isAdmin)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
-    <?php
-
-    ?>
-    @if ((Grade::where('quiz_id', ($item -> id))
+   
+    @if($isAdmin)
+    <a href="/quiz/result/{{$item -> id}}">Eredmények</a>
+    @elseif ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) != null)
-    <label>kitöltve</label>
+    <label><a href="/quiz/result/{{$item -> id}}">Eredmény</a></label>
     <td>{{Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade');}}</td>
