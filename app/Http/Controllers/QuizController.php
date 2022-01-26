@@ -145,7 +145,8 @@ class QuizController extends Controller
         return view('quiz.quiz_result',[
             'id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
-            'isStudent' => ($this->auth('role_id') === 2),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'user_id' => ($this->auth('id')),
             'items' => $quiz_results ,
             'grades' => $data,

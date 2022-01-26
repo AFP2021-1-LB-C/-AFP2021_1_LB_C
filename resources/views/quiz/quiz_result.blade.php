@@ -6,7 +6,7 @@
 <label for="inputEmail3" class="col-sm-2 col-form-label"><b>Kérdések, válaszok:</b></label>
 
 <table class="table" style="width:100%" >
-    @if (1 != $logged->auth('role_id') && 2 != $logged->auth('role_id'))
+    @if ($isStudent)
     @foreach ($items as $item)
 
     @if (($item -> quiz_question -> quiz_id) == $id)
