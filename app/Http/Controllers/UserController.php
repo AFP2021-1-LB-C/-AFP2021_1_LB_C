@@ -228,10 +228,16 @@ class UserController extends Controller
 
         $input          =           $request->all();
 
-        $role = 1;
-        if (User::exists()){
-            $role = 2;
-         }
+        $role = 3; // tanuló
+
+        // ha első felhasználó, akkor admin
+        if (User::count() == 0) {
+            Role::create([ 'name' => 'admin' ])->save();
+            Role::create([ 'name' => 'tanár' ])->save();
+            Role::create([ 'name' => 'diák' ])->save();
+            $role = 1;
+        }
+
         
 // if validation success then create an input array
 
