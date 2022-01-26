@@ -94,11 +94,17 @@ class QuizController extends Controller
                 'user_id' => $this->auth('id'),
             ]);
             
-            $data = Quiz_result::where('id', $id) 
-            -> select('quiz_results.*')
+        $data = null;
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $data = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                                    -> get();
+        } else if($this->auth('role_id') === 3){
+            $data = Quiz_result::where('user_id', $this->auth('id'))
+            -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
             -> get();
+        }
         }   
-    
+
         return view('quiz.quiz_answers',[
             'quiz_id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
@@ -171,6 +177,14 @@ class QuizController extends Controller
             $quiz_id = $new -> id;
 
             for($i = 1; $i<11;$i++){
+                if (
+                    trim($request->question[$i]) != '' &&
+                    trim($request->answer_1[$i]) != '' &&
+                    trim($request->answer_2[$i]) != '' &&
+                    trim($request->answer_3[$i]) != '' &&
+                    trim($request->answer_4[$i]) != '' &&
+                    isset($request->correct_answer[$i]) != ''
+                ) {
                 $new = Quiz_question::create([
                     'question' => $request->question[$i],
                     'answer_1' => $request->answer_1[$i],
@@ -180,6 +194,7 @@ class QuizController extends Controller
                     'correct_answer' => $request->correct_answer[$i],
                     'quiz_id' => $quiz_id,
                 ]);
+                }
             }
 
             return redirect()->to('/quiz');
@@ -297,16 +312,46 @@ class QuizController extends Controller
         ]);
 
         for($i = 0; $i<10;$i++){
-            $new_question = Quiz_question::where('id', $request->question_id[$i]) -> update([
-                'question' => $request->question[$i],
-                'answer_1' => $request->answer_1[$i],
-                'answer_2' => $request->answer_2[$i],
-                'answer_3' => $request->answer_3[$i],
-                'answer_4' => $request->answer_4[$i],
-                'correct_answer' => $request->correct_answer[$i],
+            if (
+                isset($request->question[$i]) && trim($request->question[$i]) != '' &&
+                isset($request->answer_1[$i]) && trim($request->answer_1[$i]) != '' &&
+                isset($request->answer_2[$i]) && trim($request->answer_2[$i]) != '' &&
+                isset($request->answer_3[$i]) && trim($request->answer_3[$i]) != '' &&
+                isset($request->answer_4[$i]) && trim($request->answer_4[$i]) != '' &&
+                isset($request->correct_answer[$i]) != ''
+            ) {
+                $new_question = Quiz_question::where('id', $request->question_id[$i]) -> update([
+                    'question' => $request->question[$i],
+                    'answer_1' => $request->answer_1[$i],
+                    'answer_2' => $request->answer_2[$i],
+                    'answer_3' => $request->answer_3[$i],
+                    'answer_4' => $request->answer_4[$i],
+                    'correct_answer' => $request->correct_answer[$i],
+                ]);
+                if (is_null($new_question)) {
+                    return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+                }
+            }
+        }
+
+        for($i = 0; $i<10;$i++){
+            if (
+                isset($request->new_question[$i]) && trim($request->new_question[$i]) != '' &&
+                isset($request->new_answer_1[$i]) && trim($request->new_answer_1[$i]) != '' &&
+                isset($request->new_answer_2[$i]) && trim($request->new_answer_2[$i]) != '' &&
+                isset($request->new_answer_3[$i]) && trim($request->new_answer_3[$i]) != '' &&
+                isset($request->new_answer_4[$i]) && trim($request->new_answer_4[$i]) != '' &&
+                isset($request->new_correct_answer[$i]) != ''
+            ) {
+            $new = Quiz_question::create([
+                'question' => $request->new_question[$i],
+                'answer_1' => $request->new_answer_1[$i],
+                'answer_2' => $request->new_answer_2[$i],
+                'answer_3' => $request->new_answer_3[$i],
+                'answer_4' => $request->new_answer_4[$i],
+                'correct_answer' => $request->new_correct_answer[$i],
+                'quiz_id' => $id,
             ]);
-            if (is_null($new_question)) {
-                return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
             }
         }
 
