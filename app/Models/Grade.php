@@ -14,4 +14,9 @@ class Grade extends Model
 
     // Időbélyeg használata (updated_at és created_at mezők a táblában)
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
