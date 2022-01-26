@@ -3,7 +3,7 @@
 @inject('logged', 'App\Http\Controllers\Controller')
 <form action="/quiz/result/{{$id}}" method="get">
     @csrf
-<label for="inputEmail3" class="col-sm-2 col-form-label"><b>Kérdések, válaszok:</b></label>
+<label for="inputEmail3" class="col-sm-2 col-form-label"><b></b></label>
 
 <table class="table" style="width:100%" >
     @if ($isStudent)
