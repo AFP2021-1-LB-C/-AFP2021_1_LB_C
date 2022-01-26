@@ -8,6 +8,8 @@
 <table class="table" style="width:100%" >
     @if (1 != $logged->auth('role_id') && 2 != $logged->auth('role_id'))
     @foreach ($items as $item)
+
+    @if (($item -> quiz_question -> quiz_id) == $id)
 <thead> 
     <tr>
     <th colspan="2" style="background-color: #8dd6de; text-align:left">{{$item -> question}}</th>
@@ -33,7 +35,9 @@
                         text-align:center"><b> 4) </b>{{$item -> answer_4}}</td>
     </tr>
 
-</tbody>       
+</tbody>   
+
+@endif
     @endforeach
     @else
     <tr>
@@ -42,10 +46,10 @@
     </tr>
     <h2>A teszt azonosítója: {{Grade::where('quiz_id', $id) -> value('quiz_id')}}</h2>
     @foreach ($grades as $grade)
+    
 <thead> 
     <tr>
-    
-    
+
     </tr>
 </thead>
 <tbody>

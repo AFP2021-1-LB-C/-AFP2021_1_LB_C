@@ -96,14 +96,16 @@ class QuizController extends Controller
             ]);
             
             $data = null;
-        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
-            $data = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
-                                    -> get();
-        } else if($this->auth('role_id') === 3){
-            $data = Quiz_result::where('user_id', $this->auth('id'))
-            -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
-            -> get();
-        }
+            if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+                $data = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                -> get();
+            } else if($this->auth('role_id') === 3){
+                $data = Quiz_result::with(['quiz_question'])
+                -> where('user_id', $this->auth('id'))
+                -> leftJoin('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                
+                -> get();
+            }
         }   
     
         return view('quiz.quiz_answers',[
@@ -127,8 +129,10 @@ class QuizController extends Controller
             $quiz_results = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
             -> get();
         } else if($this->auth('role_id') === 3){
-            $quiz_results = Quiz_result::where('user_id', $this->auth('id'))
-            -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+            $quiz_results = Quiz_result::with(['quiz_question'])
+            -> where('user_id', $this->auth('id'))
+            -> leftJoin('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+            
             -> get();
         }
 
