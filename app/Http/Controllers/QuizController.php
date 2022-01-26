@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Course;
+use App\Models\Grade;
 use App\Models\Quizze;
 use App\Models\QuizType;
 use App\Models\Quiz_result;
@@ -124,12 +125,18 @@ class QuizController extends Controller
         $quiz_results = null;
         if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $quiz_results = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
-                                    -> get();
+            -> get();
         } else if($this->auth('role_id') === 3){
             $quiz_results = Quiz_result::where('user_id', $this->auth('id'))
             -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
             -> get();
         }
+
+        $data = Grade::with(['user'])
+        ->where('quiz_id', $id) 
+        //->select('grades.*')
+        ->leftJoin('users', 'users.id', '=', 'grades.user_id')
+        -> get();
 
         return view('quiz.quiz_result',[
             'id' => $id,
@@ -137,6 +144,7 @@ class QuizController extends Controller
             'isStudent' => ($this->auth('role_id') === 2),
             'user_id' => ($this->auth('id')),
             'items' => $quiz_results ,
+            'grades' => $data,
             'page_title' => 'Eredmeny' ,
             'page_subtitle' => 'Lista' ,
         ]);

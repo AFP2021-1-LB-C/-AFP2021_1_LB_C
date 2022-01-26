@@ -51,7 +51,7 @@
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Jelszó</label>
         <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" placeholder="Jelszó" value="">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Jelszó" value="">
         {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
         </div>
         
