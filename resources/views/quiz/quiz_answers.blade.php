@@ -20,7 +20,9 @@ $question_count = 0;
 $correct_answer_count = 0;
 ?>
   @foreach ($items as $item)
-  
+ 
+@if (($item -> quiz_question -> quiz_id) == $quiz_id)
+ 
   <tr>
   
   <?php $question = Quiz_question::where('id', $item -> quiz_question_id) 
@@ -54,6 +56,8 @@ $correct_answer_count = 0;
   @endif
   </tr> 
   <?php $question_count++; ?> 
+@endif
+
   @endforeach
 
 </tbody>

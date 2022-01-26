@@ -14,4 +14,9 @@ class Quiz_question extends Model
 
     // Időbélyeg használata (updated_at és created_at mezők a táblában)
     public $timestamps = false;
+
+    public function quiz_question()
+    {
+        return $this->belongsTo('App\Models\Quiz_question');
+    }
 }
