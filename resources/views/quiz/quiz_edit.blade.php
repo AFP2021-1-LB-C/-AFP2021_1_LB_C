@@ -71,6 +71,36 @@
             </div>
         @endfor
 
+        @for ($i = count($questions); $i < 10; $i++ )  
+            <div class="form-group">
+                <label for="question[{{$i}}]"  class="col-sm-2 col-form-label">Kérdés</label>
+                <input name="new_question_id[{{$i}}]" value="" type="hidden">
+                <input type="text" name="new_question[{{$i}}]" value="" class="form-control">
+                <label for="answer" class="col-sm-2 col-form-label">Valaszok</label>
+                <div class="form-check">
+                    <input type="radio" name="new_correct_answer[{{$i}}]" value="1" class="form-check-input">
+                    <input type="text" name="new_answer_1[{{$i}}]" value="" class="form-control">
+                    <label for="answer_1[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="new_correct_answer[{{$i}}]" value="2" class="form-check-input">
+                    <input type="text" name="new_answer_2[{{$i}}]" value="" class="form-control">
+                    <label for="answer_2[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="new_correct_answer[{{$i}}]" value="3" class="form-check-input">
+                    <input type="text" name="new_answer_3[{{$i}}]" value="" class="form-control">
+                    <label for="answer_3[{{$i}}]" class="form-check-label"></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="new_correct_answer[{{$i}}]" value="4" class="form-check-input">
+                    <input type="text" name="new_answer_4[{{$i}}]" value="" class="form-control">
+                    <label for="answer_4[{{$i}}]" class="form-check-label"></label>
+                </div>
+                
+            </div>
+        @endfor
+
          <div class="col-auto">
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
