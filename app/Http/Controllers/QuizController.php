@@ -248,13 +248,13 @@ class QuizController extends Controller
             return redirect()->to('/');
         }
 
-        $data = Quizze::where('id', $id) -> first();
+        $data = Quizze::where('id', $id)->first();
 
         $types = QuizType::get();
 
         $courses = Course::get();
 
-        $questions = Quiz_question::get();
+        $questions = Quiz_question::where('quiz_id', $id)->get();
 
         return view('quiz.quiz_edit',[
             'id' => $data -> id,

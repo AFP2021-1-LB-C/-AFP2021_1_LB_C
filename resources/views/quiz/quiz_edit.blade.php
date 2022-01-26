@@ -41,7 +41,7 @@
         </div>
         </div>
 
-        @for ($i = 0; $i < 10; $i++ )  
+        @for ($i = 0; $i < count($questions); $i++ )  
             <div class="form-group">
                 <label for="question[{{$i}}]"  class="col-sm-2 col-form-label">Kérdés</label>
                 <input name="question_id[{{$i}}]" value="{{$questions[$i]->id}}" type="hidden">
