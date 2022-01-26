@@ -94,9 +94,15 @@ class QuizController extends Controller
                 'user_id' => $this->auth('id'),
             ]);
             
-            $data = Quiz_result::where('id', $id) 
-            -> select('quiz_results.*')
+            $data = null;
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $data = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                                    -> get();
+        } else if($this->auth('role_id') === 3){
+            $data = Quiz_result::where('user_id', $this->auth('id'))
+            -> join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
             -> get();
+        }
         }   
     
         return view('quiz.quiz_answers',[
