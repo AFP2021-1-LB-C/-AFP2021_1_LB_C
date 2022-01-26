@@ -41,6 +41,7 @@
         </div>
         </div>
 
+        <div>
         @for ($i = 0; $i < 10; $i++ )  
             <div class="form-group">
                 <label for="question[{{$i}}]"  class="col-sm-2 col-form-label">Kérdés</label>
@@ -70,6 +71,7 @@
                 
             </div>
         @endfor
+        </div>
 
          <div class="col-auto">
             <button type="submit" class="btn btn-primary">Módosítás</button>
