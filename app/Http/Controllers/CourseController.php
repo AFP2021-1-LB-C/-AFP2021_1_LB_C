@@ -22,7 +22,7 @@ class CourseController extends Controller
         
         $page_links = [];
 
-        if ($this->auth('role_id') == 1){
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
               (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
             ]);
@@ -32,6 +32,7 @@ class CourseController extends Controller
 
         return view('course.course_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
             'items' => $data ,
             'subs' => $subscriptions ,
             'page_title' => 'Kurzusok' ,
@@ -113,7 +114,7 @@ class CourseController extends Controller
     {
         //dd($request->request);  // dump and die
 
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -138,7 +139,7 @@ class CourseController extends Controller
 
     public function create_form()
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -178,7 +179,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -203,7 +204,7 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
 
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
