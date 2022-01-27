@@ -54,25 +54,9 @@
         {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
     </div>
 
-    <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Regisztrálás dátuma</label>
-        <div class="col-sm-10">
-            <input type="datetime-local" name="registration_date" class="form-control" placeholder="Regisztrálás dátuma" value="{{ old('registration_date') }}">
-        </div>
-        {!! $errors->first('registration_date', '<small class="text-danger">A regisztrálás dátuma :message</small>') !!}
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Létrehozás</button>
     </div>
-
-    <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Utolsó bejelentkezés dátuma</label>
-        <div class="col-sm-10">
-            <input type="datetime-local" name="last_login_date" class="form-control" placeholder="Utolsó bejelentkezés dátuma" value="{{ old('last_login_date') }}">
-        </div>
-        {!! $errors->first('last_login_date', '<small class="text-danger">A utolsó bejelentkezés dátuma :message</small>') !!}
-    </div>
-
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Létrehozás</button>
-        </div>
 </form>
 
 @include('layout.footer')
