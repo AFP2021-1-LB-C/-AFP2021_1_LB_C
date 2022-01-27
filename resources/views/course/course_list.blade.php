@@ -22,6 +22,7 @@
     <td>
     @if($isAdmin||$isTeacher)
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
+    <a href="/admin/course/delete/{{$item -> id}}">Törlés</a>
     @endif
     @inject('logged', 'App\Http\Controllers\Controller')
    <?php $subbed = false ?>

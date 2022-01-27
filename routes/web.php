@@ -49,6 +49,7 @@ Route::get('/admin/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'lesson']);
+Route::get('/admin/course/delete/{id}', [CourseController::class, 'destroy']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
