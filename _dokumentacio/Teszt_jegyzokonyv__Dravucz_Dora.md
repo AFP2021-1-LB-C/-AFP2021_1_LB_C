@@ -2,7 +2,7 @@
 
 | Projekt név | Készítette               | Dokumentáció célja       | Dátum       | Talált hibák |
 | :---------- | :----------------------- | :----------------------- | ----------: | -----------: |
-| E-learning  | Dravucz Dora (U9E5CU)    | Tesztelés dokumentálása  | 2022.01.27. |            0 |
+| E-learning  | Dravucz Dora (U9E5CU)    | Tesztelés dokumentálása  | 2022.01.27. |            1 |
 
 | #   | Tesztlépés                                | Siker / Hibaüzenet                                                  | Megfelelően működött? |
 | :-- | :---------------------------------------- | :------------------------------------------------------------------ | :-------------------: |
