@@ -40,6 +40,7 @@ Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/quiz/result/{id}', [QuizController::class, 'show_result']);
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
 Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
+Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
@@ -48,6 +49,7 @@ Route::get('/admin/course/create', [CourseController::class, 'create_form']);
 Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'lesson']);
+Route::get('/admin/course/delete/{id}', [CourseController::class, 'destroy']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
@@ -56,6 +58,7 @@ Route::get('/admin/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/lesson', [LessonController::class, 'index']);
+Route::get('/admin/lesson/delete/{id}', [LessonController::class, 'destroy']);
 
 //Role
 Route::get('/admin/role/create', [RoleController::class, 'create_form']);

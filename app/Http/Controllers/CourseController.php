@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Quizze;
+use App\Models\Schedule;
+use App\Models\Quiz_result;
 use App\Models\Courses_user;
 use Illuminate\Http\Request;
+use App\Models\Quiz_question;
 
 class CourseController extends Controller
 {
@@ -236,6 +240,34 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+
+            // Vizsgaidőpontok törlése
+            Schedule::where('course_id', $id)->delete();
+
+            // Feliratkozás törlése
+            Courses_user::where('course_id', $id)->delete();
+
+            // Feladathoz tartozó kérdések törlése
+            $quizzes = Quizze::where('course_id', $id)->get();
+            foreach ($quizzes as $quizze) {
+                $quiz_questions = Quiz_question::where('quiz_id', $quizze->id)->get();
+                foreach ($quiz_questions as $quiz_question) {
+                    Quiz_result::where('quiz_question_id', $quiz_question->id)->delete();
+                }
+                Quiz_question::where('quiz_id', $quizze->id)->delete();
+            }
+
+            // Feladatok törlése
+            Quizze::where('course_id', $id)->delete();
+
+            // Tananyagok törlése
+            Lesson::where('course_id', $id)->delete();
+
+            // Kurzus törlése
+            Course::where('id', $id)->delete();
+        }
+        return redirect()->to('/course');
     }
 }
+

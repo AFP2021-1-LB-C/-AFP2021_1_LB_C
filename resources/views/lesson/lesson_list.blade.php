@@ -23,7 +23,10 @@
     <td>{{$item -> course -> name}}</td>
     
     @if($isAdmin || $isTeacher)
-    <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
+    <td>
+    <a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a>
+    <a href="/admin/lesson/delete/{{$item -> id}}">Törlés</a>
+    </td>
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @else
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>

@@ -18,17 +18,25 @@
                                     </div>
                                 @endif
 
+                                @if(Session::has('error'))
+                                            <div class="alert alert-danger">
+                                                {{ Session::get('error') }}
+                                                @php
+                                                    Session::forget('error');
+                                                @endphp
+                                            </div>
+                                        @endif
 
                             <div class="form-group">
                                 <label for="email"> E-mail </label>
                                 <input type="text" name="email" id="email" class="form-control" placeholder="Enter E-mail" value="{{ old('email') }}"/>
-                                {!! $errors->first('email', '<small class="text-danger">:message</small>') !!}
+                                    {!! $errors->first('email', '<small class="text-danger">A e-mail :message</small>') !!}
                             </div>
 
                             <div class="form-group">
                                 <label for="password"> Jelszó </label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="{{ old('password') }}"/>
-                                {!! $errors->first('password', '<small class="text-danger">:message</small>') !!}
+                                    {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
                             </div>
                         </div>
 

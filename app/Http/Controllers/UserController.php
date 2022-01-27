@@ -138,7 +138,7 @@ class UserController extends Controller
         }
         else 
         {
-            return back()->with('error', 'Hoppá! Nem megfelelő felhasználónév vagy jelszó.');
+            return back()->with('error', 'Hoppá! Nem megfelelő e-mail vagy jelszó.');
         }
     }
 
