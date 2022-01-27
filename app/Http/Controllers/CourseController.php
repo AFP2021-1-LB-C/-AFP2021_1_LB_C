@@ -33,6 +33,7 @@ class CourseController extends Controller
         return view('course.course_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'items' => $data ,
             'subs' => $subscriptions ,
             'page_title' => 'Kurzusok' ,
@@ -71,6 +72,8 @@ class CourseController extends Controller
 
     return view('course.lesson_list',[
         'isAdmin' => ($this->auth('role_id') === 1),
+        'isTeacher' => ($this->auth('role_id') === 2),
+        'isStudent' => ($this->auth('role_id') === 3),
         'course_name' => $course_name,
         'exists' => $exists,
         'items' => $data ,

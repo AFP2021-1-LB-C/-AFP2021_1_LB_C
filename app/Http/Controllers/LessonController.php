@@ -32,6 +32,7 @@ class LessonController extends Controller
         return view('lesson.lesson_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
             'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'items' => $data ,
             'page_title' => 'Tananyagok' ,
             'page_subtitle' => 'Lista' ,

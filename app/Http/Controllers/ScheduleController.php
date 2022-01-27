@@ -39,6 +39,8 @@ class ScheduleController extends Controller
         
         return view('schedule.schedule_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'contents' => $types ,
             'schedules' => $data ,
             'page_title' => 'Vizsga' ,

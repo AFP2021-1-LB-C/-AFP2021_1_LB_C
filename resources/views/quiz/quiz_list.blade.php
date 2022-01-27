@@ -11,7 +11,9 @@
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
     <th>Műveletek</th>
+    @if ($isStudent)
     <th>Jegyek</th>
+    @endif
 
   </tr>
 </thead>
