@@ -395,6 +395,10 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            Quiz_question::where('quiz_id', $id)->delete();
+            Quizze::where('id', $id)->delete();
+        }
+        return redirect()->to('/quiz');
     }
 }

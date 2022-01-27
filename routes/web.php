@@ -40,6 +40,7 @@ Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/quiz/result/{id}', [QuizController::class, 'show_result']);
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
 Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
+Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
