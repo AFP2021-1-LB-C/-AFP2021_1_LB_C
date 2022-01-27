@@ -178,7 +178,7 @@ class UserController extends Controller
             'role_id' => $request->role_id,
             'username' => $request->username,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'registration_date' => $request->registration_date,
             'last_login_date' => $request->last_login_date,
         ]);
@@ -316,7 +316,7 @@ class UserController extends Controller
             'role_id' => $data -> role_id,
             'username' => $data -> username,
             'email' => $data -> email,
-            'password' => $data -> password,
+            'password' => '',
             'registration_date' => str_replace(' ', 'T', $data->registration_date),
             'last_login_date' => str_replace(' ', 'T', $data->last_login_date),
             'roles' => $roles,
