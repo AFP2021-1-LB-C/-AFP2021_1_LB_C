@@ -27,8 +27,14 @@ class ScheduleController extends Controller
         }
 
         $data = Schedule::with(['course'])
-        ->select('schedules.*')
-        ->get();
+        ->select('schedules.*');
+        if ($this->auth('role_id') == 3) {
+            $data = $data
+            ->leftJoin('courses_users', 'courses_users.course_id', '=', 'schedules.course_id')
+            ->where('courses_users.user_id', $this->auth('id'));
+        }
+        $data = $data->get();
+
         $courses = Course::get();
 
         $types = [
