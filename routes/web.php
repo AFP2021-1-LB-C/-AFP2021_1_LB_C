@@ -56,6 +56,7 @@ Route::get('/admin/lesson/create', [LessonController::class, 'create_form']);
 Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/lesson', [LessonController::class, 'index']);
+Route::get('/admin/lesson/delete/{id}', [LessonController::class, 'destroy']);
 
 //Role
 Route::get('/admin/role/create', [RoleController::class, 'create_form']);
