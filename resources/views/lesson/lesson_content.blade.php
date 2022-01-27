@@ -1,7 +1,7 @@
 @include('layout.header')
 <h2>{{$topic}}</h2>
 <div>
-{{ $content }}
+{!! $content !!}
 </div>
 
 @include('layout.footer')

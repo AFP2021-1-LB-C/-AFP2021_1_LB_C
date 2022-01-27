@@ -117,7 +117,7 @@ class LessonController extends Controller
             'topic' => $data -> topic,
             'page_title' => 'Tananyag',
             'page_subtitle' => 'Tartalom',
-            'content' => $data -> content,
+            'content' => preg_replace('/[\r\n]+/msi', '<br>', $data -> content),
             'page_links' => [
                 (object)['label' => 'Vissza', 'link' => '/lesson'] ,
             ] ,
