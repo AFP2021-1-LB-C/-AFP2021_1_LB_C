@@ -38,6 +38,7 @@
     <td>
     @if($isAdmin || $isTeacher)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
+    <a href="/admin/quiz/delete/{{$item -> id}}">Törlés</a>
     @endif
    
     @if($isAdmin || $isTeacher)
