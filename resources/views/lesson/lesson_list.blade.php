@@ -7,7 +7,7 @@
     <th>Tananyag megnevezése</th>
     <th>Tananyag</th>
     <th>Kurzus neve</th>
-    @if($isAdmin)
+    @if($isAdmin || $isTeacher)
     <th>Műveletek</th>
     @endif
     <th>Tananyag</th>
@@ -22,7 +22,7 @@
     <td>{{substr($item -> content, 0, 50)."..."}}</td>
     <td>{{$item -> course -> name}}</td>
     
-    @if($isAdmin)
+    @if($isAdmin || $isTeacher)
     <td><a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a></td>
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @else

@@ -30,7 +30,7 @@ class QuizController extends Controller
 
         $page_links = [];
         
-        if ($this->auth('role_id') == 1){
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
                 (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
@@ -168,7 +168,7 @@ class QuizController extends Controller
     public function create(Request $request)
     {
 
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -223,7 +223,7 @@ class QuizController extends Controller
 
     public function create_form()
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -271,7 +271,7 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -306,7 +306,7 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 

@@ -6,7 +6,7 @@
     <th>Azonosító</th>
     <th>Kurzus neve</th>
     <th>Kurzus leírása</th>
-    @if($isAdmin)
+    @if($isAdmin||$isTeacher)
     <th>Műveletek</th>
     @else
     <th></th>
@@ -20,7 +20,7 @@
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
     <td>
-    @if($isAdmin)
+    @if($isAdmin||$isTeacher)
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
     @inject('logged', 'App\Http\Controllers\Controller')

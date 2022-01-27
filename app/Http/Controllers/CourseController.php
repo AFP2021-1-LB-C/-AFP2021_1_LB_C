@@ -22,7 +22,7 @@ class CourseController extends Controller
         
         $page_links = [];
 
-        if ($this->auth('role_id') == 1){
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
               (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
             ]);
@@ -43,9 +43,19 @@ class CourseController extends Controller
     }
 
     public function lesson($id = null){
-        $course_name = Course::where('id', $id)
-        ->select('courses.*')
-        ->value('name');
+
+    $page_links = [];
+    if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+        $page_links = array_merge($page_links, [
+        (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'],
+    ]);
+    }elseif($this->auth('role_id') == null) {
+        return redirect()->to('/');
+    }    
+
+    $course_name = Course::where('id', $id)
+    ->select('courses.*')
+    ->value('name');
 
     if ($id == null){
         $data = Lesson::with(['course'])
@@ -69,9 +79,6 @@ class CourseController extends Controller
         'items' => $data ,
         'page_title' => 'Tananyagok' ,
         'page_subtitle' => 'Lista' ,
-        'page_links' => [
-            (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'] ,
-        ] ,
     ]);
 }
 
@@ -110,7 +117,7 @@ class CourseController extends Controller
     {
         //dd($request->request);  // dump and die
 
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -135,7 +142,7 @@ class CourseController extends Controller
 
     public function create_form()
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -175,7 +182,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 
@@ -200,7 +207,7 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
 
-        if ($this->auth('role_id') !== 1) {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
         }
 

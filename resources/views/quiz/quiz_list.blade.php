@@ -36,11 +36,11 @@
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
     <td>
-    @if($isAdmin)
+    @if($isAdmin || $isTeacher)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
    
-    @if(!$isStudent)
+    @if($isAdmin || $isTeacher)
     <a href="/quiz/result/{{$item -> id}}">Eredmények</a>
     @elseif ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
