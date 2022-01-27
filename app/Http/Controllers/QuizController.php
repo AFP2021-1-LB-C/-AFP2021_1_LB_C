@@ -25,8 +25,15 @@ class QuizController extends Controller
         $data = Quizze::with(['course', 'type'])
         ->select('quizzes.*')
         ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
-        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
-        ->get();
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id');
+
+        if ($this->auth('role_id') == 3) {
+            $data = $data
+            ->leftJoin('courses_users', 'courses_users.course_id', '=', 'courses.id')
+            ->where('courses_users.user_id', $this->auth('id'));
+        }
+
+        $data = $data->get();
 
         $page_links = [];
         
