@@ -11,7 +11,9 @@
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
     <th>Műveletek</th>
+    @if ($isStudent)
     <th>Jegyek</th>
+    @endif
 
   </tr>
 </thead>
@@ -38,7 +40,7 @@
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
     @endif
    
-    @if($isAdmin)
+    @if(!$isStudent)
     <a href="/quiz/result/{{$item -> id}}">Eredmények</a>
     @elseif ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))

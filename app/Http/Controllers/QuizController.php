@@ -42,6 +42,8 @@ class QuizController extends Controller
 
         return view('quiz.quiz_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
@@ -61,6 +63,8 @@ class QuizController extends Controller
         return view('quiz.quiz_completion',[
             'id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'user' => ($this->auth('id')),
             'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
             -> value('started_at'),
@@ -110,6 +114,8 @@ class QuizController extends Controller
         return view('quiz.quiz_answers',[
             'quiz_id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'user_id' => ($this->auth('id')),
             'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
             -> value('started_at'),

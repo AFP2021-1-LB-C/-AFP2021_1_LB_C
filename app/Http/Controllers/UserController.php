@@ -46,6 +46,8 @@ class UserController extends Controller
         
         return view('user.user_list',[
             'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'items' => $data ,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Lista' ,
