@@ -221,7 +221,7 @@ class UserController extends Controller
                 'first_name'        =>      'required',
                 'last_name'         =>      'required',
                 'username'          =>      'required',
-                'email'             =>      'required|email',
+                'email' => 'required|email|unique:users',
                 'password'          =>      'required|min:6',
                 'confirm_password'  =>      'required|same:password',
                 'age'               =>      'required',
