@@ -131,9 +131,11 @@ class UserController extends Controller
 
         if (Auth::attempt($userCredentials)) 
         {
+            User::where('email', $request->email) -> update([
+                'last_login_date' => date('Y-m-d H:i:s'),
+            ]);
             return redirect()->intended('/');
         }
-
         else 
         {
             return back()->with('error', 'Hoppá! Nem megfelelő felhasználónév vagy jelszó.');
@@ -168,8 +170,6 @@ class UserController extends Controller
 			'username'   =>      'required',
 			'email'   =>      'required',
 			'password'   =>      'required',
-			'registration_date'   =>      'required',
-			'last_login_date'   =>      'required'			
         ]);
 
         $new = User::create([
@@ -179,8 +179,9 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'registration_date' => $request->registration_date,
-            'last_login_date' => $request->last_login_date,
+            'registration_date' => date('Y-m-d H:i:s'),
+            'last_login_date' => date('Y-m-d H:i:s'),
+
         ]);
 
         if (!is_null($new)) {        
@@ -317,8 +318,6 @@ class UserController extends Controller
             'username' => $data -> username,
             'email' => $data -> email,
             'password' => '',
-            'registration_date' => str_replace(' ', 'T', $data->registration_date),
-            'last_login_date' => str_replace(' ', 'T', $data->last_login_date),
             'roles' => $roles,
             'page_title' => 'Felhasználók' ,
             'page_subtitle' => 'Szerkesztés' ,
@@ -343,9 +342,7 @@ class UserController extends Controller
             'age'   =>      'required',
 			'username'   =>      'required',
 			'email'   =>      'required',
-			'password'   =>      '',
-			'registration_date'   =>      'required',
-			'last_login_date'   =>      'required'			
+			'password'   =>      '',		
         ]);
         
         $roles = Role::get();
@@ -379,10 +376,6 @@ class UserController extends Controller
                 'username' => $request -> username,
                 'email' => $request -> email,
                 'password' => $passreq,
-                'registration_date' => $request -> registration_date,
-                'last_login_date' => $request -> last_login_date,
-                
-                //'roles' => $roles
             ]);
         
 
