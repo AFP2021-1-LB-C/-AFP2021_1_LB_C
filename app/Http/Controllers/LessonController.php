@@ -87,14 +87,6 @@ class LessonController extends Controller
             'page_subtitle' => 'Létrehozás' ,
         ]);
     }
-    
-    public function destroy($id)
-    {
-        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
-            $delete = Lesson::where('id', $id)->delete();
-        }
-        return redirect()->to('/lesson');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -200,6 +192,9 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = Lesson::where('id', $id)->delete();
+        }
+        return redirect()->to('/lesson');
     }
 }
