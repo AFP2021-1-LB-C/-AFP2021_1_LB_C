@@ -76,7 +76,7 @@ class ScheduleController extends Controller
         if (!is_null($new)) {        
         $new->save();
 
-        return redirect()->to('/admin/schedule');
+        return redirect()->to('/schedule');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }
@@ -194,7 +194,7 @@ class ScheduleController extends Controller
             'type' => $request->type,
         ]);
         if (!is_null($new)) {
-        return redirect()->to('/admin/schedule');
+        return redirect()->to('/schedule');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }
