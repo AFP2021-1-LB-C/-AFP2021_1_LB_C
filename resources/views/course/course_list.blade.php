@@ -33,6 +33,7 @@
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
     <a href="/admin/course/delete/{{$item -> id}}">Törlés</a>
     @endif
+    @if (!$isAdmin && !$isTeacher)
     @inject('logged', 'App\Http\Controllers\Controller')
    <?php $subbed = false ?>
     @foreach ($subs as $sub)
@@ -48,6 +49,7 @@
     <a href="/course/{{$item -> id}}">Megtekintés</a>
     @elseif ($logged->auth('id') != null)
     <a href="/course/subscribe/{{$item -> id}}">Feliratkozás</a>
+    @endif
     @endif
     </td>
   </tr>  
