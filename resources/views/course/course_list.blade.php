@@ -23,9 +23,9 @@
     <td>{{$item -> description}}</td>
     @if($isAdmin||$isTeacher)
       @if(($item -> status) == 0)
-        <td>Nem közzétett</td>
+        <td><img class="me-3" src="/images/locked_icon.png" alt="" width="20" height="20"> Nem közzétett</td>
       @else
-        <td>Közzétéve</td>
+        <td><img class="me-3" src="/images/published_icon.png" alt="" width="20" height="20"> Közzétéve</td>
       @endif
     @endif
     <td>
