@@ -195,6 +195,7 @@ class CourseController extends Controller
         return view('course.course_edit',[
             'name' => $data -> name,
             'description' => $data -> description,
+            'status' => $data -> status,
             'id' => $data -> id,
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Szerkesztés' ,
@@ -218,11 +219,13 @@ class CourseController extends Controller
         $request->validate([
             'name'          =>      'required',
             'description'   =>      'required',
+            'status'        =>      'required',
         ]);
         
         $new = Course::where('id', $id) -> update([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
         ]);
 
         if (!is_null($new)) {

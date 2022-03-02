@@ -19,6 +19,16 @@
         {!! $errors->first('description', '<small class="text-danger">A leírás :message</small>') !!}
         </div>
 
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Láthatóság</label>
+        <div class="col-sm-10">
+        <select name="status" class="form-select">                   
+            <option value=0>nem közzétett</option>       
+            <option value=1>közzétéve</option>
+         </select>
+        </div>
+        </div>
+
         <div class="col-auto">
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
