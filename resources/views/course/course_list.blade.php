@@ -7,6 +7,7 @@
     <th>Kurzus neve</th>
     <th>Kurzus leírása</th>
     @if($isAdmin||$isTeacher)
+    <th>Láthatóság</th>
     <th>Műveletek</th>
     @else
     <th></th>
@@ -15,10 +16,18 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @if (($item -> status) == 1 || $isAdmin || $isTeacher)
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
+    @if($isAdmin||$isTeacher)
+      @if(($item -> status) == 0)
+        <td>Nem közzétett</td>
+      @else
+        <td>Közzétéve</td>
+      @endif
+    @endif
     <td>
     @if($isAdmin||$isTeacher)
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
@@ -42,6 +51,7 @@
     @endif
     </td>
   </tr>  
+  @endif
   @endforeach
 
 </tbody>
