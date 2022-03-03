@@ -23,8 +23,8 @@
         <label for="inputEmail3" class="col-sm-2 col-form-label">Láthatóság</label>
         <div class="col-sm-10">
         <select name="status" class="form-select">                   
-            <option value="0">nem közzétett</option>       
-            <option value="1">közzétéve</option>
+            <option value="0" <?php if($status == 0){echo("selected");}?>>nem közzétett</option>       
+            <option value="1" <?php if($status == 1){echo("selected");}?>>közzétéve</option>
          </select>
         </div>
         </div>
