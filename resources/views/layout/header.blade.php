@@ -36,7 +36,7 @@
 
   <!-- Oldal címe -->
   <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-    <img class="me-3" src="/images/logo001.png" alt="" width="47" height="46">
+    <img class="me-3" src="/images/logo.png" alt="" width="60" height="59">
     <div class="lh-1">
       <h1 class="h6 mb-0 text-white lh-1">{{$page_title ?? ''}}</h1>
       <small>{{$page_subtitle ?? ''}}</small>
