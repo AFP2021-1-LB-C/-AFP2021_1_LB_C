@@ -70,7 +70,6 @@
                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Jelszó Újra" value="{{ old('confirm_password') }}">
                             {!! $errors->first('confirm_password', '<small class="text-danger">A jelszó újra :message</small>') !!}
                         </div>
-                        </div>
 
                         <div class="form-group">
                             <label for="age"> Kor </label>
