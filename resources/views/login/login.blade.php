@@ -38,7 +38,7 @@
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="{{ old('password') }}"/>
                                     {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
                                     <!-- jelszó mutatása a bejelentkezés oldalon -->
-                                    <input type="checkbox" onclick="myFunction()">Jelszó mutatása>
+                                    <input type="checkbox" onclick="myFunction()">Jelszó mutatása
                                     <script>
                                     function myFunction() {
                                     var x = document.getElementById("password");
