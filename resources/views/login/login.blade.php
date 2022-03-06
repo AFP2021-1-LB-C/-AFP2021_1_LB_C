@@ -37,6 +37,18 @@
                                 <label for="password"> Jelszó </label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="{{ old('password') }}"/>
                                     {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
+                                    <!-- jelszó mutatása a bejelentkezés oldalon -->
+                                    <input type="checkbox" onclick="showPassword()">Jelszó mutatása
+                                    <script>
+                                    function showPassword() {
+                                    var x = document.getElementById("password");
+                                    if (x.type === "password") {
+                                        x.type = "text";
+                                    } else {
+                                        x.type = "password";
+                                    }
+                                    }
+                                    </script>
                             </div>
                         </div>
 
