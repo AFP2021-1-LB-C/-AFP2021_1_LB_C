@@ -51,12 +51,25 @@
                             <label for="password"> Jelszó </label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Jelszó" value="{{ old('password') }}"/>
                             {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
+
+                            <input type="checkbox" onclick="myFunction()">Jelszó mutatása
+                            <script>
+                                    function myFunction() {
+                                    var x = document.getElementById("password");
+                                    if (x.type === "password") {
+                                        x.type = "text";
+                                    } else {
+                                        x.type = "password";
+                                    }
+                                    }
+                            </script>
                         </div>
 
                         <div class="form-group">
                             <label for="confirm_password"> Jelszó újra </label>
                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Jelszó Újra" value="{{ old('confirm_password') }}">
                             {!! $errors->first('confirm_password', '<small class="text-danger">A jelszó újra :message</small>') !!}
+                        </div>
                         </div>
 
                         <div class="form-group">
