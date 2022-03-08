@@ -65,6 +65,10 @@ class CourseController extends Controller
     ->select('courses.*')
     ->value('name');
 
+    $status = Course::where('id', $id)
+    ->select('courses.*')
+    ->value('status');
+
     if ($id == null){
         $data = Lesson::with(['course'])
         ->select('lessons.*')
@@ -78,7 +82,15 @@ class CourseController extends Controller
     $exists = Course::where('id', $id)
     -> first();
 
+    $subscribed = 
+    Courses_user::where('user_id', ($this->auth('id')))
+    ->get()
+    ->where('course_id', $id)
+    ->count() > 0;
+
     return view('course.lesson_list',[
+        'subscribed' => $subscribed,
+        'public' => $status,
         'isAdmin' => ($this->auth('role_id') === 1),
         'isTeacher' => ($this->auth('role_id') === 2),
         'isStudent' => ($this->auth('role_id') === 3),
