@@ -14,4 +14,9 @@ class Course extends Model
 
     // Időbélyeg használata (updated_at és created_at mezők a táblában)
     public $timestamps = false;
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

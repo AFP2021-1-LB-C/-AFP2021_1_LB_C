@@ -6,6 +6,7 @@
     <th>Azonosító</th>
     <th>Kurzus neve</th>
     <th>Kurzus leírása</th>
+    <th>Oktató</th>
     @if($isAdmin||$isTeacher)
     <th>Láthatóság</th>
     <th>Műveletek</th>
@@ -23,6 +24,11 @@
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
+<?php try { ?>
+    <td>{{$item -> teacher -> name}}</td>
+<?php } catch (Exception $ex) { ?>
+    -
+<?php } ?>
     @if($isAdmin||$isTeacher)
       @if(($item -> status) == 0)
         <td><img class="me-3" src="/images/locked_icon.png" alt="" width="20" height="20"> Nem közzétett</td>

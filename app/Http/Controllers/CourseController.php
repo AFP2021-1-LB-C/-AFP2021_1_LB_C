@@ -21,7 +21,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::all();
+        //$data = Course::all();
+        $data = Course::with(['teacher'])
+        ->select('courses.*')
+        ->leftJoin('users', 'users.id', '=', 'courses.teacher_id')
+        ->get();
         $subscriptions = Courses_user::all();
         
         $page_links = [];
