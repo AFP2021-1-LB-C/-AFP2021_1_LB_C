@@ -34,7 +34,7 @@ class CourseController extends Controller
             return redirect()->to('/');
         }
 
-        return view('course.course_list',[
+        return view('course.course_list',[            
             'isAdmin' => ($this->auth('role_id') === 1),
             'isTeacher' => ($this->auth('role_id') === 2),
             'isStudent' => ($this->auth('role_id') === 3),
@@ -133,6 +133,7 @@ class CourseController extends Controller
         $new = Course::create([
             'name' => $request->name,
             'description' => $request->description,
+            'teacher_id' => $this->auth('id')
         ]);
         
         if (!is_null($new)) {
@@ -191,15 +192,30 @@ class CourseController extends Controller
         }
 
         $data = Course::where('id', $id) -> first();
-        
-        return view('course.course_edit',[
-            'name' => $data -> name,
-            'description' => $data -> description,
-            'status' => $data -> status,
-            'id' => $data -> id,
-            'page_title' => 'Kurzusok' ,
-            'page_subtitle' => 'Szerkesztés' ,
-        ]);
+        $teacher_id = 0;
+        $isExists = (Course::where('id', $id) -> first()) != NULL;
+        if ($isExists)
+        {
+            return view('course.course_edit',[
+                'isExists' => true,
+                'isAdmin' => ($this->auth('role_id') === 1),
+                'isTeacher' => ($this->auth('role_id') === 2),
+                'isStudent' => ($this->auth('role_id') === 3),
+                'teacher_id' => $data -> teacher_id,
+                'name' => $data -> name,
+                'description' => $data -> description,
+                'status' => $data -> status,
+                'id' => $data -> id,
+                'page_title' => 'Kurzusok' ,
+                'page_subtitle' => 'Szerkesztés' ,
+            ]);    
+        }
+        else
+        {
+            return view('course.course_edit',[
+                'isExists' => false,
+            ]);
+        }
     }
 
     /**

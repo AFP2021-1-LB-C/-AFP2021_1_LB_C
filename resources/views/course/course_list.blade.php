@@ -16,7 +16,9 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
-  @if (($item -> status) == 1 || $isAdmin || $isTeacher)
+  @inject('logged', 'App\Http\Controllers\Controller')
+  @if (($item -> status) == 1 || $isAdmin 
+  || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
@@ -52,7 +54,7 @@
     @endif
     @endif
     </td>
-  </tr>  
+  </tr>
   @endif
   @endforeach
 

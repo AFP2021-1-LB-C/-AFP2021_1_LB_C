@@ -1,5 +1,16 @@
 @include('layout.header')
 
+@inject('logged', 'App\Http\Controllers\Controller')
+<?php if (!$isExists) : ?>
+    <div class="row mb-3">
+    <label>A kurzus nem található!</label>
+    </div>
+<?php else : ?>
+<?php if ($isTeacher && ($teacher_id != $logged->auth('id'))) : ?>
+    <div class="row mb-3">
+    <label>Ezt a kurzust nem te hoztad létre, ezért nem szerkesztheted!</label>
+    </div>
+<?php else : ?>
     {{-- Módosítás --}}
     <form action="/admin/course/edit/{{$id}}" method="post">
         @csrf
@@ -33,5 +44,6 @@
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
     </form>
-
+<?php endif; ?>
+<?php endif; ?>
 @include('layout.footer')
