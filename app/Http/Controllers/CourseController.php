@@ -128,6 +128,37 @@ class CourseController extends Controller
         return redirect()->to('/course');
     }
 
+    public function accept($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $new = Courses_user::where('id', $id)->update([
+            'status' => 1,
+        ]);
+
+        return redirect()->to('/admin/course/students/'.$course_id);
+    }
+
+    public function reject($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $new = Courses_user::where('id', $id)->update([
+            'status' => -1,
+        ]);
+
+        return redirect()->to('/admin/course/students/'.$course_id);
+    }
+
+    public function remove($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $new = Courses_user::where('id', $id)->delete();
+
+        return redirect()->to('/admin/course/students/'.$course_id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -303,6 +334,34 @@ class CourseController extends Controller
             Course::where('id', $id)->delete();
         }
         return redirect()->to('/course');
+    }
+
+    public function students($id)
+    {
+        $data = Courses_user::with(['course', 'user'])
+        ->select('courses_users.*')
+        ->leftJoin('courses', 'courses.id', '=', 'courses_users.course_id')
+        ->leftJoin('users', 'users.id', '=', 'courses_users.user_id')
+        ->get();
+
+        $course_name = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('name');
+
+        $exists = Course::where('id', $id)
+        -> first();
+
+        return view('course.student_list',[
+            'exists' => $exists,
+            'course_name' => $course_name,
+            'id' => $id,            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Jelentkezett Hallgatók' ,
+        ]);
     }
 }
 

@@ -50,6 +50,7 @@ Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'lesson']);
 Route::get('/admin/course/delete/{id}', [CourseController::class, 'destroy']);
+Route::get('/admin/course/students/{id}', [CourseController::class, 'students']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
@@ -104,3 +105,8 @@ Route::get('/', function() {
 // Subscribe/Unsubscribe
 Route::get('/course/subscribe/{id}', [CourseController::class, 'subscribe']);
 Route::get('/course/unsubscribe/{id}', [CourseController::class, 'unsubscribe']);
+
+Route::get('/course/students/accept/{id}', [CourseController::class, 'accept']);
+Route::get('/course/students/reject/{id}', [CourseController::class, 'reject']);
+Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
+
