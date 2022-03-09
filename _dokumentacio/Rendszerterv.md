@@ -181,7 +181,9 @@ Az adatbázis adattáblái:
 | id          	| int     	| azonosító, elsődleges kulcs       	|
 | name        	| varchar 	| kurzus neve                          	|
 | description 	| text    	| kurzus leírása                        |
-    
+| status        | boolean 	| kurzus láthatósága                    |
+| teacher_id   	| int     	| kurzust létrehozó tanár azonosítója   |
+
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
 | Mező              	| Típus  	|        Leírás                	        |

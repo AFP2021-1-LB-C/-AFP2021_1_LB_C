@@ -6,7 +6,9 @@
     <th>Azonosító</th>
     <th>Kurzus neve</th>
     <th>Kurzus leírása</th>
+    <th>Oktató</th>
     @if($isAdmin||$isTeacher)
+    <th>Láthatóság</th>
     <th>Műveletek</th>
     @else
     <th></th>
@@ -15,15 +17,31 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @inject('logged', 'App\Http\Controllers\Controller')
+  @if (!$isTeacher && ($item -> status) == 1 || $isAdmin 
+  || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
+<?php try { ?>
+    <td>{{$item -> teacher -> name}}</td>
+<?php } catch (Exception $ex) { ?>
+    -
+<?php } ?>
+    @if($isAdmin||$isTeacher)
+      @if(($item -> status) == 0)
+        <td><img class="me-3" src="/images/locked_icon.png" alt="" width="20" height="20"> Nem közzétett</td>
+      @else
+        <td><img class="me-3" src="/images/published_icon.png" alt="" width="20" height="20"> Közzétéve</td>
+      @endif
+    @endif
     <td>
     @if($isAdmin||$isTeacher)
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
     <a href="/admin/course/delete/{{$item -> id}}">Törlés</a>
     @endif
+    @if (!$isAdmin && !$isTeacher)
     @inject('logged', 'App\Http\Controllers\Controller')
    <?php $subbed = false ?>
     @foreach ($subs as $sub)
@@ -40,8 +58,10 @@
     @elseif ($logged->auth('id') != null)
     <a href="/course/subscribe/{{$item -> id}}">Feliratkozás</a>
     @endif
+    @endif
     </td>
-  </tr>  
+  </tr>
+  @endif
   @endforeach
 
 </tbody>
