@@ -36,12 +36,8 @@
   <main class="container">
 
   <!-- Oldal címe -->
-<<<<<<< Updated upstream
-  <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-    <img class="me-3" src="/images/logo001.png" alt="" width="47" height="46">
-=======
+
   <div class="d-flex align-items-center p-3 my-3 text-white bg-turquoise rounded shadow-sm">
->>>>>>> Stashed changes
     <div class="lh-1">
       <h1 class="h5 mb-0 text-white lh-1">{{$page_title ?? ''}}</h1>
       <small>{{$page_subtitle ?? ''}}</small>
