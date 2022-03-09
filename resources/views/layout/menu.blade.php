@@ -1,7 +1,8 @@
 <!-- Menü -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">E-LEARNING</a>
+    <img class="me-3" src="/images/logo1.png" alt="" width="60" height="59" style="margin-bottom:-15px;">
+    <a class="navbar-brand studysloth" href="/">StudySloth</a>
     <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
             <form method="post" action="{{ url('/user-login') }}">
-                    <div class="card shadow">
-                        <div class="car-header bg-success pt-2">
+                    <div class="card shadow mb-4">
+                        <div class="car-header bg-turquoise pt-2">
                             <div class="card-title font-weight-bold text-white text-center"> Bejelentkezés </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="card-footer d-inline-block">
-                            <button type="submit" class="btn btn-success"> Bejelentkezés </button>
+                            <button type="submit" class="btn btn-success bg-turquoise"> Bejelentkezés </button>
                             <p class="float-right mt-2"> Még nincs fiókod?  <a href="{{ url('registration')}}" class="text-success"> Regisztráció </a> </p>
                         </div>
                         @csrf
