@@ -53,14 +53,14 @@
          ($item -> id) == ($sub -> course_id))
           <?php $subbed = true; ?>
           @if($subbed)
-    <a href="/course/unsubscribe/{{$sub -> id}}">Leiratkozás</a>
+    <a href="/course/unsubscribe/{{$sub -> id}}">Leadás</a>
           @endif
           @endif
     @endforeach
    @if($subbed)
     <a href="/course/{{$item -> id}}">Megtekintés</a>
     @elseif ($logged->auth('id') != null)
-    <a href="/course/subscribe/{{$item -> id}}">Feliratkozás</a>
+    <a href="/course/subscribe/{{$item -> id}}">Jelentkezés</a>
     @endif
     @endif
     </td>
