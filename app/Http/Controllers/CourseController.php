@@ -88,7 +88,14 @@ class CourseController extends Controller
     ->where('course_id', $id)
     ->count() > 0;
 
+    $accepted = 
+    Courses_user::where('user_id', ($this->auth('id')))
+    ->where('course_id', $id)
+    ->select('courses_users.*')
+    ->value('status');
+
     return view('course.lesson_list',[
+        'accepted' => $accepted,
         'subscribed' => $subscribed,
         'public' => $status,
         'isAdmin' => ($this->auth('role_id') === 1),
@@ -111,7 +118,7 @@ class CourseController extends Controller
             'course_id' => $id,
             'user_id' => $userid,
             'date_of_application' => $date_of_application,
-            'status' => true,
+            'status' => 0,
         ]);
                 
         $new->save();
@@ -338,6 +345,8 @@ class CourseController extends Controller
 
     public function students($id)
     {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) 
+        {
         $data = Courses_user::with(['course', 'user'])
         ->select('courses_users.*')
         ->leftJoin('courses', 'courses.id', '=', 'courses_users.course_id')
@@ -362,6 +371,12 @@ class CourseController extends Controller
             'page_title' => 'Kurzusok' ,
             'page_subtitle' => 'Jelentkezett Hallgatók' ,
         ]);
+        }
+        else
+        {
+            return redirect()->to('/course');
+        }
     }
+
 }
 
