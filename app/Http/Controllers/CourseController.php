@@ -360,7 +360,12 @@ class CourseController extends Controller
         $exists = Course::where('id', $id)
         -> first();
 
+        $teacher_id = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('teacher_id');
+
         return view('course.student_list',[
+            'teacher_id' => $teacher_id,
             'exists' => $exists,
             'course_name' => $course_name,
             'id' => $id,            

@@ -2,9 +2,12 @@
 @if ($exists == null)
 <label>Nincs ilyen kurzus!</label>
 @else
-<h2>{{$course_name}}
-
-  </h2>
+<h2>{{$course_name}}</h2>
+@inject('logged', 'App\Http\Controllers\Controller')
+@if ($isTeacher && ($teacher_id != $logged->auth('id')))
+<label>Ezt a kurzust nem te hoztad létre, ezért nem módosíthatod a jelentkezések állapotát!</label>
+@else
+  
 <table class="table">
   <thead class="table-secondary">
   <tr>
@@ -41,6 +44,7 @@
 </table>
 @if ($count == 0)
 <td>Erre a kurzusra még egy hallgató sem jelentkezett!</td>
+@endif
 @endif
 @endif
 @include('layout.footer')
