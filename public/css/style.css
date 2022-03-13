@@ -54,7 +54,7 @@ body {
 }
 
 .nav-underline .nav-link:hover {
-  color: #007bff;
+  color: #9a9a9a;
 }
 
 .nav-underline .active {
@@ -64,4 +64,15 @@ body {
 
 .bg-purple {
   background-color: #6f42c1;
+}
+
+.sidebar {
+  width: 8.5rem;
+  position: fixed;
+  float: left;
+  display: block;
+}
+
+.adj-pagecontent{
+  margin-right: -135;
 }

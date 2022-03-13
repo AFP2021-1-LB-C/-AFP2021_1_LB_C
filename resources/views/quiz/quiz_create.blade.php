@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 @include('layout.header')
 
     {{-- LÉTREHOZÁS --}}
@@ -74,5 +76,5 @@
             <button type="submit" class="btn btn-primary">Létrehozás</button>
         </div>
     </form>
-
+</div>
 @include('layout.footer')

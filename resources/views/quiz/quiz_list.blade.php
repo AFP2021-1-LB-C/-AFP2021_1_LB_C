@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 <?php use App\Models\Grade; ?>
 @include('layout.header')
 @inject('logged', 'App\Http\Controllers\Controller')
@@ -60,5 +62,5 @@
 
 </tbody>
 </table>
-
+</div>
 @include('layout.footer')

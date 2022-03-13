@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 @include('layout.header')
 
 <table class="table">
@@ -27,5 +29,5 @@
 
 </tbody>
 </table>
-
+</div>
 @include('layout.footer')

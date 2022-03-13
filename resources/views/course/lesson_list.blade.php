@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 @include('layout.header')
 <h2>{{$course_name}}</h2>
 @if ($exists == null)
@@ -30,4 +32,5 @@
 </tbody>
 </table>
 @endif
+</div>
 @include('layout.footer')
