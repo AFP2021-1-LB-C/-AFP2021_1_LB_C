@@ -29,6 +29,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/user">Felhasználók</a>
         </li>
+
+         <li class="nav-item ml-md-auto"><a href="javascript:;" id="switchtheme" class="btn btn-primary switch">Halvány/Sötét</a></li>
+
+
         @endif
         </ul>
       <ul class="navbar-nav justify-content-end">
@@ -53,4 +57,22 @@
       </form>-->
     </div>
   </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.cookie.indexOf("theme=dark") > -1) {
+
+            $("body").toggleClass("bg-dark bg-light")
+        }
+        $("#switchtheme").click(function () {
+            $("body").toggleClass("bg-dark bg-light");
+            if ($("body").hasClass("bg-dark")) {
+                document.cookie = "theme=dark";
+            } else {
+                document.cookie = "theme=light";
+            }
+        })
+    });
+</script>
 </nav>
