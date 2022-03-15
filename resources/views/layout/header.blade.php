@@ -45,4 +45,3 @@
 
   <!-- Oldal tartalma -->
   <div class="my-3 p-3 bg-body rounded shadow-sm">
-</body>
