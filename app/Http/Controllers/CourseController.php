@@ -130,7 +130,14 @@ class CourseController extends Controller
     {
         $userid = ($this->auth('id'));
 
+        $rejected = Courses_user::where('id', $id)
+        ->where('user_id', $this->auth('id'))
+        ->select('courses_users.*')
+        ->value('status') == -1;
+
+        if (!$rejected){
         Courses_user::where('id', $id)->delete();
+        }
                 
         return redirect()->to('/course');
     }

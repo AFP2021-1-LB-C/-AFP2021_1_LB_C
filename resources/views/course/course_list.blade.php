@@ -1,3 +1,4 @@
+<?php use App\Models\Courses_user;?>
 @include('layout.header')
 <?php $subbed = false; ?>
 <table class="table">
@@ -9,10 +10,13 @@
     <th>Oktató</th>
     @if($isAdmin||$isTeacher)
     <th>Láthatóság</th>
+    @endif
     <th>Műveletek</th>
+    @if($isAdmin||$isTeacher)
     <th>Hallgatók</th>
-    @else
-    <th></th>
+    @endif
+    @if($isStudent)
+    <th>Jelentkezés</th>
     @endif
   </tr>
 </thead>
@@ -47,12 +51,18 @@
     @endif
     @if (!$isAdmin && !$isTeacher)
     @inject('logged', 'App\Http\Controllers\Controller')
+    <?php
+    $status = Courses_user::where('course_id',($item -> id))
+    ->where('user_id',($logged->auth('id')))
+    ->select('courses_users.*')
+    ->value('status');
+    ?>
    <?php $subbed = false ?>
     @foreach ($subs as $sub)
         @if (($sub -> user_id) == ($logged->auth('id')) &&
          ($item -> id) == ($sub -> course_id))
           <?php $subbed = true; ?>
-          @if($subbed)
+          @if($subbed && $status != -1)
     <a href="/course/unsubscribe/{{$sub -> id}}">Leadás</a>
           @endif
           @endif
@@ -64,6 +74,16 @@
     @endif
     @endif
     </td>
+    
+    @if(!$subbed)
+    <td>-</td>
+    @elseif($status == -1)
+    <td>Elutasítva</td>
+    @elseif($status == 1)
+    <td>Elfogadva</td>
+    @elseif($status == 0)
+    <td>Várakozás</td>
+    @endif
   </tr>
   @endif
   @endforeach
