@@ -74,7 +74,7 @@
     @endif
     @endif
     </td>
-    
+  @if($isStudent)
     @if(!$subbed)
     <td>-</td>
     @elseif($status == -1)
@@ -84,6 +84,7 @@
     @elseif($status == 0)
     <td>Várakozás</td>
     @endif
+  @endif
   </tr>
   @endif
   @endforeach
