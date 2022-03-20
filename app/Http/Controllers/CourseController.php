@@ -139,9 +139,15 @@ class CourseController extends Controller
     {
         $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
 
+        $teacher_id = Course::where('id', $course_id)->select('courses.*')->value('teacher_id');
+
+        if (($this->auth('role_id') === 1) 
+        || ($teacher_id == $this->auth('id')))
+        {
         $new = Courses_user::where('id', $id)->update([
             'status' => 1,
         ]);
+        }
 
         return redirect()->to('/admin/course/students/'.$course_id);
     }
