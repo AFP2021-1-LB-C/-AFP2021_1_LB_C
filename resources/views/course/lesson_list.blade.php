@@ -13,6 +13,10 @@
 <td></td>
 @elseif ($subscribed == false && $isStudent)
 <label>Nem vagy feliratkozva erre a kurzusra!</label>
+@elseif ($accepted == 0 && $isStudent)
+<label>A kurzust vezető tanár még nem fogadta el a jelentkezésed!</label>
+@elseif ($accepted == -1 && $isStudent)
+<label>A kurzust vezető tanár elutasította a jelentkezésed!</label>
 @elseif ($items -> first() == null)
 <label>Még nem található lecke ehhez a kurzushoz!</label>
 @else
