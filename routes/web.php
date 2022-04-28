@@ -38,6 +38,7 @@ Route::get('/admin/quiz/edit/{id}', [QuizController::class, 'edit']);
 Route::post('/admin/quiz/edit/{id}', [QuizController::class, 'update']);
 Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/quiz/result/{id}', [QuizController::class, 'show_result']);
+Route::get('/quiz/result/{quiz_id}/{user_id}', [QuizController::class, 'show_quiz_result']);
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
 Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
 Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);

@@ -154,6 +154,19 @@ class QuizController extends Controller
         ->leftJoin('users', 'users.id', '=', 'grades.user_id')
         -> get();
 
+        foreach ($data as &$grade) {
+            $detailedQuizResult = Quiz_Result::with(['quiz_question'])
+            ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
+            ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
+            ->where('quiz_results.user_id','=',$grade->user_id)
+            ->where('quizzes.id','=',$id)
+            -> get();
+            $grade->{"quiz_result"} =  $detailedQuizResult;
+        
+        }
+
+
+
         return view('quiz.quiz_result',[
             'id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
@@ -162,10 +175,43 @@ class QuizController extends Controller
             'user_id' => ($this->auth('id')),
             'items' => $quiz_results ,
             'grades' => $data,
+            'quiz' => $detailedQuizResult,
             'page_title' => 'Eredmeny' ,
             'page_subtitle' => 'Lista' ,
         ]);
     }   
+/*
+    public function show_quiz_result($quiz_id , $user_id){
+        
+        
+        function consoleLog($msg) {
+                echo '<script type=text/javascript>' .
+                'console.log(' . $msg . ');</script>';
+            }
+
+        $quiz_results = null;
+        // AUTH
+        echo "teszt";
+        consoleLog('Hello, console!');
+
+
+
+        $data = Quiz_Result::table('quiz_results')
+        ->select('quiz_questions.question', 'quiz_questions.answer_1', 'quiz_questions.answer_2', 'quiz_questions.answer_3', 'quiz_questions.answer_4', 'quiz_questions.correct_answer', 'quiz_results.answer')
+        ->join('quiz_questions','quiz_results.quiz_question_id','=','quiz_questions.id')
+        ->join('quizzes','quizzes.id','=','quiz_questions.quiz_id')
+        ->where('quiz_results.user_id','=', $user_id) // user_id
+        ->where('quizzes.id','=',$quiz_id)//quiz_id
+        ->get();
+
+        return view('quiz.quiz__detailed_result',[
+            'quiz_id' => $quiz_id,
+            'user_id' => $user_id,
+            'items' => $data ,
+            'page_title' => 'Eredmeny todo' ,
+            'page_subtitle' => 'Lista' ,
+        ]);
+    }   */
 
     /**
      * Show the form for creating a new resource.
