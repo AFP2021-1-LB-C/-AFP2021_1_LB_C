@@ -19,4 +19,9 @@ class Quiz_question extends Model
     {
         return $this->belongsTo('App\Models\Quiz_question');
     }
+
+    public function quiz()
+    {
+        return $this->belongsTo('App\Models\Quizze');
+    }
 }
