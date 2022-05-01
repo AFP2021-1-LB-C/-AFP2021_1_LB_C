@@ -19,13 +19,13 @@ use App\Models\Grade;
     @if (($item -> quiz_question -> quiz_id) == $id)
 <thead> 
     <tr>
-    <th colspan="2" style="background-color: #8dd6de; text-align:left">{{$item -> question}} - SUN</th>
+    <th colspan="2" style="background-color: #8dd6de; text-align:left">{{$item -> question}} </th>
     </tr>
 </thead>
 
 
 <tbody>
-<td>{{$item -> user_id}}</td>
+
 
     <tr>
         <td style="width:50%; background-color:{{$item -> correct_answer == 1 ? '#63d256':''}};
@@ -33,9 +33,7 @@ use App\Models\Grade;
                         text-align:center"><b> 1) </b>{{$item -> answer_1}} 
                         
                     
-                        <form action="/quiz/result/{{$id}}/{{$id}}" method="get">
-                            teszt1
-                        </form>
+
                     </td>
         <td style="width:50%; background-color:{{$item -> correct_answer == 2 ? '#63d256':''}};
                         background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 2 ? '#ff3333':''}};
