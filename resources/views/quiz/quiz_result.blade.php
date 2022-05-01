@@ -25,8 +25,7 @@ use App\Models\Grade;
 
 
 <tbody>
-{{-- <td>{{$item -> user_id}}</td> --}}
-<td></td>
+
 
     <tr>
         <td style="width:50%; background-color:{{$item -> correct_answer == 1 ? '#63d256':''}};
@@ -34,8 +33,7 @@ use App\Models\Grade;
                         text-align:center"><b> 1) </b>{{$item -> answer_1}} 
                         
                     
-                        <form action="/quiz/result/{{$id}}/{{$id}}" method="get">
-                        </form>
+
                     </td>
         <td style="width:50%; background-color:{{$item -> correct_answer == 2 ? '#63d256':''}};
                         background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 2 ? '#ff3333':''}};
