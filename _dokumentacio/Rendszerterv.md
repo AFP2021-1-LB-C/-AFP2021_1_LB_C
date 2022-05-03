@@ -183,6 +183,7 @@ Az adatbázis adattáblái:
 | description 	| text    	| kurzus leírása                        |
 | status        | boolean 	| kurzus láthatósága                    |
 | teacher_id   	| int     	| kurzust létrehozó tanár azonosítója   |
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
@@ -197,6 +198,7 @@ Az adatbázis adattáblái:
 | password          	| varchar  	| jelszót tartalmazó mező     	        |
 | registration_date 	| datetime 	| regisztráció dátuma               	|
 | last_login_date 	    | datetime 	| utolsó bejelentkezés dátuma           |
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Lessons Tábla** (Órák adatait leíró tábla)<br>
@@ -206,6 +208,7 @@ Az adatbázis adattáblái:
 | topic        	| varchar 	| kurzus azonosítója                   	|
 | course_id     | int     	| kurzus kód                        	|
 | content   	| text    	| kurzus tananyag                     	|
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Quiz_questions Tábla** (Kérdéseket leíró tábla)<br>
@@ -219,6 +222,7 @@ Az adatbázis adattáblái:
 | answer_4       	| varchar 	| 4. válasz                         	|
 | correct_answer 	| varchar 	| helyes válasz sorszáma 	            |
 | quiz_id       	| int    	| kvíz azonosítója 	                    |
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Quiz_result Tábla** (Az eredményeket tartalmazó tábla)<br>
@@ -228,6 +232,7 @@ Az adatbázis adattáblái:
 | quiz_question_id       | int 	| kvíz kérdés azonosítója                              |
 | answer       	    | tinyint 	| válasz sorszáma  	                    |
 | user_id       	| int 	    | felhasználó azonosító               	|
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Quiz_types Tábla** (Kvízek típusai)<br>
@@ -251,6 +256,7 @@ Az adatbázis adattáblái:
 | type              | int     |  vizsga típus                           |
 | date              | datetime|  vizsga dátuma                          |
 | course_id         | int     |  vizsga azonosítója                     |
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 
 **Courses_users Tábla** (Megadja, hogy a felhasználók mely kurzusokra jelentkeztek)<br>
@@ -270,6 +276,7 @@ Az adatbázis adattáblái:
 | qiuz_id       	| int		| kvíz azonosítója              	        |
 | grade        		| tinyint 	| jegy                                   	|
 | date          	| datetime 	| rögzítés időpontja                       	|
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 **Quizzes Tábla** (Kvízek)<br>
 | Mező          	| Típus     | Leírás                                 	|
@@ -279,6 +286,7 @@ Az adatbázis adattáblái:
 | submitted_at     	| datetime  | befejezés időpontja                       |
 | type_id           | int       | típusa                                    |
 | course_id         | int       | kurzus azonosítója                        |
+| delete_date  	| datetime 	| törlés dátuma                         |
 
 # 10. Implementációs terv
 
