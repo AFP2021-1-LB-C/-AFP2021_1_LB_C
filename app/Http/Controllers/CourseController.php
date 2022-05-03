@@ -341,29 +341,43 @@ class CourseController extends Controller
         if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
 
             // Vizsgaidőpontok törlése
-            Schedule::where('course_id', $id)->delete();
+            Schedule::where('course_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
 
             // Feliratkozás törlése
-            Courses_user::where('course_id', $id)->delete();
+            Courses_user::where('course_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
 
             // Feladathoz tartozó kérdések törlése
             $quizzes = Quizze::where('course_id', $id)->get();
             foreach ($quizzes as $quizze) {
                 $quiz_questions = Quiz_question::where('quiz_id', $quizze->id)->get();
                 foreach ($quiz_questions as $quiz_question) {
-                    Quiz_result::where('quiz_question_id', $quiz_question->id)->delete();
+                    Quiz_result::where('quiz_question_id', $quiz_question->id)->update([
+                        'deleted_at' => Carbon::now()
+                    ]);
                 }
-                Quiz_question::where('quiz_id', $quizze->id)->delete();
+                Quiz_question::where('quiz_id', $quizze->id)->update([
+                    'deleted_at' => Carbon::now()
+                ]);
             }
 
             // Feladatok törlése
-            Quizze::where('course_id', $id)->delete();
+            Quizze::where('course_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
 
             // Tananyagok törlése
-            Lesson::where('course_id', $id)->delete();
+            Lesson::where('course_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
 
             // Kurzus törlése
-            Course::where('id', $id)->delete();
+            Course::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
         }
         return redirect()->to('/course');
     }
