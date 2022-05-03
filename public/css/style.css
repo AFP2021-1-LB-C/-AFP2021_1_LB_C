@@ -1,10 +1,11 @@
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  padding-top: 56px;
+  padding-top: 60px;
 }
 
 @media (max-width: 991.98px) {
@@ -62,8 +63,13 @@ body {
   color: #343a40;
 }
 
-.bg-purple {
-  background-color: #6f42c1;
+.bg-turquoise {
+  background-color: #1FB693;
+}
+
+.studysloth{
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
 }
 
 .sidebar {

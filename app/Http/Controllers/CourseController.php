@@ -21,7 +21,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::all();
+        //$data = Course::all();
+        $data = Course::with(['teacher'])
+        ->select('courses.*')
+        ->leftJoin('users', 'users.id', '=', 'courses.teacher_id')
+        ->get();
         $subscriptions = Courses_user::all();
         
         $page_links = [];
@@ -34,7 +38,7 @@ class CourseController extends Controller
             return redirect()->to('/');
         }
 
-        return view('course.course_list',[
+        return view('course.course_list',[            
             'isAdmin' => ($this->auth('role_id') === 1),
             'isTeacher' => ($this->auth('role_id') === 2),
             'isStudent' => ($this->auth('role_id') === 3),
@@ -61,6 +65,10 @@ class CourseController extends Controller
     ->select('courses.*')
     ->value('name');
 
+    $status = Course::where('id', $id)
+    ->select('courses.*')
+    ->value('status');
+
     if ($id == null){
         $data = Lesson::with(['course'])
         ->select('lessons.*')
@@ -74,7 +82,22 @@ class CourseController extends Controller
     $exists = Course::where('id', $id)
     -> first();
 
+    $subscribed = 
+    Courses_user::where('user_id', ($this->auth('id')))
+    ->get()
+    ->where('course_id', $id)
+    ->count() > 0;
+
+    $accepted = 
+    Courses_user::where('user_id', ($this->auth('id')))
+    ->where('course_id', $id)
+    ->select('courses_users.*')
+    ->value('status');
+
     return view('course.lesson_list',[
+        'accepted' => $accepted,
+        'subscribed' => $subscribed,
+        'public' => $status,
         'isAdmin' => ($this->auth('role_id') === 1),
         'isTeacher' => ($this->auth('role_id') === 2),
         'isStudent' => ($this->auth('role_id') === 3),
@@ -95,7 +118,7 @@ class CourseController extends Controller
             'course_id' => $id,
             'user_id' => $userid,
             'date_of_application' => $date_of_application,
-            'status' => true,
+            'status' => 0,
         ]);
                 
         $new->save();
@@ -107,9 +130,65 @@ class CourseController extends Controller
     {
         $userid = ($this->auth('id'));
 
+        $rejected = Courses_user::where('id', $id)
+        ->where('user_id', $this->auth('id'))
+        ->select('courses_users.*')
+        ->value('status') == -1;
+
+        if (!$rejected){
         Courses_user::where('id', $id)->delete();
+        }
                 
         return redirect()->to('/course');
+    }
+
+    public function accept($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $teacher_id = Course::where('id', $course_id)->select('courses.*')->value('teacher_id');
+
+        if (($this->auth('role_id') === 1) 
+        || ($teacher_id == $this->auth('id')))
+        {
+        $new = Courses_user::where('id', $id)->update([
+            'status' => 1,
+        ]);
+        }
+
+        return redirect()->to('/admin/course/students/'.$course_id);
+    }
+
+    public function reject($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $teacher_id = Course::where('id', $course_id)->select('courses.*')->value('teacher_id');
+
+        if (($this->auth('role_id') === 1) 
+        || ($teacher_id == $this->auth('id')))
+        {
+        $new = Courses_user::where('id', $id)->update([
+            'status' => -1,
+        ]);
+    }
+
+        return redirect()->to('/admin/course/students/'.$course_id);
+    }
+
+    public function remove($id)
+    {
+        $course_id = Courses_user::where('id', $id)->select('courses_users.*')->value('course_id');
+
+        $teacher_id = Course::where('id', $course_id)->select('courses.*')->value('teacher_id');
+
+        if (($this->auth('role_id') === 1) 
+        || ($teacher_id == $this->auth('id')))
+        {
+        $new = Courses_user::where('id', $id)->delete();
+        }
+
+        return redirect()->to('/admin/course/students/'.$course_id);
     }
 
     /**
@@ -133,6 +212,7 @@ class CourseController extends Controller
         $new = Course::create([
             'name' => $request->name,
             'description' => $request->description,
+            'teacher_id' => $this->auth('id')
         ]);
         
         if (!is_null($new)) {
@@ -191,14 +271,30 @@ class CourseController extends Controller
         }
 
         $data = Course::where('id', $id) -> first();
-        
-        return view('course.course_edit',[
-            'name' => $data -> name,
-            'description' => $data -> description,
-            'id' => $data -> id,
-            'page_title' => 'Kurzusok' ,
-            'page_subtitle' => 'Szerkesztés' ,
-        ]);
+        $teacher_id = 0;
+        $isExists = (Course::where('id', $id) -> first()) != NULL;
+        if ($isExists)
+        {
+            return view('course.course_edit',[
+                'isExists' => true,
+                'isAdmin' => ($this->auth('role_id') === 1),
+                'isTeacher' => ($this->auth('role_id') === 2),
+                'isStudent' => ($this->auth('role_id') === 3),
+                'teacher_id' => $data -> teacher_id,
+                'name' => $data -> name,
+                'description' => $data -> description,
+                'status' => $data -> status,
+                'id' => $data -> id,
+                'page_title' => 'Kurzusok' ,
+                'page_subtitle' => 'Szerkesztés' ,
+            ]);    
+        }
+        else
+        {
+            return view('course.course_edit',[
+                'isExists' => false,
+            ]);
+        }
     }
 
     /**
@@ -218,11 +314,13 @@ class CourseController extends Controller
         $request->validate([
             'name'          =>      'required',
             'description'   =>      'required',
+            'status'        =>      'required',
         ]);
         
         $new = Course::where('id', $id) -> update([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
         ]);
 
         if (!is_null($new)) {
@@ -269,5 +367,46 @@ class CourseController extends Controller
         }
         return redirect()->to('/course');
     }
+
+    public function students($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) 
+        {
+        $data = Courses_user::with(['course', 'user'])
+        ->select('courses_users.*')
+        ->leftJoin('courses', 'courses.id', '=', 'courses_users.course_id')
+        ->leftJoin('users', 'users.id', '=', 'courses_users.user_id')
+        ->get();
+
+        $course_name = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('name');
+
+        $exists = Course::where('id', $id)
+        -> first();
+
+        $teacher_id = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('teacher_id');
+
+        return view('course.student_list',[
+            'teacher_id' => $teacher_id,
+            'exists' => $exists,
+            'course_name' => $course_name,
+            'id' => $id,            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Jelentkezett Hallgatók' ,
+        ]);
+        }
+        else
+        {
+            return redirect()->to('/course');
+        }
+    }
+
 }
 

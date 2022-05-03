@@ -38,6 +38,7 @@ Route::get('/admin/quiz/edit/{id}', [QuizController::class, 'edit']);
 Route::post('/admin/quiz/edit/{id}', [QuizController::class, 'update']);
 Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/quiz/result/{id}', [QuizController::class, 'show_result']);
+Route::get('/quiz/result/{quiz_id}/{user_id}', [QuizController::class, 'show_quiz_result']);
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
 Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
 Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);
@@ -50,6 +51,7 @@ Route::post('/admin/course/create', [CourseController::class, 'create']);
 Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'lesson']);
 Route::get('/admin/course/delete/{id}', [CourseController::class, 'destroy']);
+Route::get('/admin/course/students/{id}', [CourseController::class, 'students']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
@@ -104,3 +106,8 @@ Route::get('/', function() {
 // Subscribe/Unsubscribe
 Route::get('/course/subscribe/{id}', [CourseController::class, 'subscribe']);
 Route::get('/course/unsubscribe/{id}', [CourseController::class, 'unsubscribe']);
+
+Route::get('/course/students/accept/{id}', [CourseController::class, 'accept']);
+Route::get('/course/students/reject/{id}', [CourseController::class, 'reject']);
+Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
+

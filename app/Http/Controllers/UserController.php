@@ -114,7 +114,8 @@ class UserController extends Controller
     // -------------------- [ User login view ] -----------------------
     public function userLoginIndex() 
     {
-        return view('login.login');
+        return view('login.login', ['page_title' => 'Felhasználók' ,
+        'page_subtitle' => 'Bejelentkezés']);
     }
 
 

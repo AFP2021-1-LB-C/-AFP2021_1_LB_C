@@ -7,7 +7,7 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
             <form method="post" action=" {{ url('user-store') }} ">
                 <div class="card shadow mb-4">
-                    <div class="car-header bg-success pt-2">
+                    <div class="car-header bg-turquoise pt-2">
                         <div class="card-title font-weight-bold text-white text-center"> Felhasználó létrehozása </div>
                     </div>
 
@@ -51,6 +51,18 @@
                             <label for="password"> Jelszó </label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Jelszó" value="{{ old('password') }}"/>
                             {!! $errors->first('password', '<small class="text-danger">A jelszó :message</small>') !!}
+
+                            <input type="checkbox" onclick="showPassword()">Jelszó mutatása
+                            <script>
+                                    function showPassword() {
+                                    var x = document.getElementById("password");
+                                    if (x.type === "password") {
+                                        x.type = "text";
+                                    } else {
+                                        x.type = "password";
+                                    }
+                                    }
+                            </script>
                         </div>
 
                         <div class="form-group">
@@ -67,7 +79,7 @@
 
                     </div>
                     <div class="card-footer d-inline-block">
-                        <button type="submit" class="btn btn-success"> Regisztráció </button>
+                        <button type="submit" class="btn btn-success bg-turquoise"> Regisztráció </button>
                     <p class="float-right mt-2"> Már van fiókja?  <a href="{{ url('login')}}" class="text-success"> Bejelentkezés </a> </p>
                     </div>
                     @csrf
