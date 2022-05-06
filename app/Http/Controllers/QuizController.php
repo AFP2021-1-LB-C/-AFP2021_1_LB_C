@@ -61,12 +61,23 @@ class QuizController extends Controller
     public function completion($id){
         $quiz = Quizze::where('id', $id)
         -> update(['started_at' => Carbon::now()]);
-        
 
         $data = Quiz_question::where('quiz_id', $id)
         -> select('quiz_questions.*')
         -> get();
 
+
+        
+        $data = $data->map(function($item) {
+            $item->answers = collect([
+               (object)[ 'num' => 1, 'answer' => $item->answer_1 ],
+               (object)[ 'num' => 2, 'answer' => $item->answer_2 ],
+               (object)[ 'num' => 3, 'answer' => $item->answer_3 ],
+               (object)[ 'num' => 4, 'answer' => $item->answer_4 ], 
+            ])->shuffle();
+            return $item;
+        })->shuffle();
+ 
         return view('quiz.quiz_completion',[
             'id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
