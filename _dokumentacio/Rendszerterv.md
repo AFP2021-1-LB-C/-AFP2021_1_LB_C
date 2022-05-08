@@ -267,6 +267,7 @@ Az adatbázis adattáblái:
 | user_id       	| int		| felhasználó azonosítója              	    |
 | date        		| datetime 	| jelentkezés ideje                        	|
 | status        	| boolean 	| elvan-e fogadva                         	|
+| deleted_at  	| datetime 	| törlés dátuma                         |
 
 **Grades** (Jegyeket tartalmazó tábla)<br>
 | Mező          	| Típus   	| Leírás                              		|
