@@ -33,6 +33,7 @@ class CourseController extends Controller
         if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
               (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
+              (object)['label' => 'Törölt kurzusok megtekintése', 'link' => '/admin/course/deleted'],
             ]);
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
