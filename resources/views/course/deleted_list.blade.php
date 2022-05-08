@@ -1,4 +1,4 @@
-<?php use App\Models\Courses_user;use App\Models\Course;?>
+<?php use App\Models\Courses_user;use App\Models\Course;$empty = true;?>
 @include('layout.header')
 <?php $subbed = false; ?>
 <table class="table">
@@ -16,6 +16,7 @@
   @inject('logged', 'App\Http\Controllers\Controller')
   @if (!$isTeacher && ($item -> status) == 1 || $isAdmin 
   || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
+  <?php $empty = false;?>
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td> 
@@ -23,14 +24,17 @@
     <td>
     @if($isAdmin||$isTeacher)
     <a href="/admin/course/undo_delete/{{$item -> id}}">Helyreállítás</a>
-    <a href="/admin/course/delete_forever/{{$item -> id}}">Végleges törlés</a>
+
     </td>
     @endif
     @endif
   @endif
   @endforeach
-
 </tbody>
 </table>
+
+  @if ($empty == true)
+    <label>Még nincs törölt kurzus!</label>
+  @endif
 
 @include('layout.footer')

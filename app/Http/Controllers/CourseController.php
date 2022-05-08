@@ -61,14 +61,6 @@ class CourseController extends Controller
         
         $page_links = [];
 
-        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
-            $page_links = array_merge($page_links, [
-              (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
-            ]);
-        }elseif($this->auth('role_id') == null) {
-            return redirect()->to('/');
-        }
-
         if ($this->auth('role_id') === 3)
         return redirect()->to('/');
 
