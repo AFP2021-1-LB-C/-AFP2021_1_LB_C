@@ -50,6 +50,40 @@ class CourseController extends Controller
         ]);
     }
 
+    public function deleted()
+    {
+        //$data = Course::all();
+        $data = Course::with(['teacher'])
+        ->select('courses.*')
+        ->leftJoin('users', 'users.id', '=', 'courses.teacher_id')
+        ->get();
+        $subscriptions = Courses_user::all();
+        
+        $page_links = [];
+
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $page_links = array_merge($page_links, [
+              (object)['label' => 'Létrehozás', 'link' => '/admin/course/create'],
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('course.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'subs' => $subscriptions ,
+            'page_title' => 'Kurzusok' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
     public function lesson($id = null){
 
     $page_links = [];
@@ -81,6 +115,7 @@ class CourseController extends Controller
     
     $exists = Course::where('id', $id)
     -> first();
+    
 
     $subscribed = 
     Courses_user::where('user_id', ($this->auth('id')))
@@ -377,6 +412,52 @@ class CourseController extends Controller
             // Kurzus törlése
             Course::where('id', $id)->update([
                 'deleted_at' => Carbon::now()
+            ]);
+        }
+        return redirect()->to('/course');
+    }
+
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+
+            // Vizsgaidőpontok helyreállítása
+            Schedule::where('course_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+
+            // Feliratkozás helyreállítása
+            Courses_user::where('course_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+
+            // Feladathoz tartozó kérdések helyreállítása
+            $quizzes = Quizze::where('course_id', $id)->get();
+            foreach ($quizzes as $quizze) {
+                $quiz_questions = Quiz_question::where('quiz_id', $quizze->id)->get();
+                foreach ($quiz_questions as $quiz_question) {
+                    Quiz_result::where('quiz_question_id', $quiz_question->id)->update([
+                        'deleted_at' => NULL
+                    ]);
+                }
+                Quiz_question::where('quiz_id', $quizze->id)->update([
+                    'deleted_at' => NULL
+                ]);
+            }
+
+            // Feladatok helyreállítása
+            Quizze::where('course_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+
+            // Tananyagok helyreállítása
+            Lesson::where('course_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+
+            // Kurzus helyreállítása
+            Course::where('id', $id)->update([
+                'deleted_at' => NULL
             ]);
         }
         return redirect()->to('/course');

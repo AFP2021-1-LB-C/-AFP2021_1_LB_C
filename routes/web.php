@@ -111,3 +111,7 @@ Route::get('/course/students/accept/{id}', [CourseController::class, 'accept']);
 Route::get('/course/students/reject/{id}', [CourseController::class, 'reject']);
 Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
 
+// deleted course list
+
+Route::get('/admin/course/deleted', [CourseController::class, 'deleted']);
+Route::get('/admin/course/undo_delete/{id}', [CourseController::class, 'undo_delete']);
