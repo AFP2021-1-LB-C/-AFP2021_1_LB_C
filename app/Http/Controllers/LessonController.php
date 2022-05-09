@@ -13,10 +13,11 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         $data = Lesson::with(['course'])
         ->select('lessons.*')
+        ->where('course_id', $id)
         ->get();
 
         $page_links = [];

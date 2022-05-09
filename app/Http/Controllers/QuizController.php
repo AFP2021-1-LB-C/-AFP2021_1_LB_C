@@ -20,12 +20,13 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         $data = Quizze::with(['course', 'type'])
         ->select('quizzes.*')
         ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
-        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id');
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
+        ->where('course_id', $id);
 
         if ($this->auth('role_id') == 3) {
             $data = $data

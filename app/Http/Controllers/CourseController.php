@@ -408,5 +408,31 @@ class CourseController extends Controller
         }
     }
 
+    public function homepage($id)
+    {
+        $data = Course::where('id', $id)
+        ->select('courses.*')
+        ->get();
+
+        $course_name = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('name');    
+
+        $homepage = Course::where('id', $id)
+        ->select('courses.*')
+        ->value('homepage');    
+
+        return view('course.course_homepage',[ 
+            'course_name' => $course_name,
+            'page_title' => 'Homepage',
+            'page_subtitle' => 'Homepage',
+            'homepage' =>  $homepage,
+            'items' => $data,
+            'page_links' => [
+                (object)['label' => 'Vissza', 'link' => '/lesson'] ,
+            ] ,
+        ]);
+    }    
+
 }
 

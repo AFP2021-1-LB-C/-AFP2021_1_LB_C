@@ -27,7 +27,7 @@
   || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
   <tr>
     <td>{{$item -> id}}</td>
-    <td>{{$item -> name}}</td> 
+    <td><a href="/course/homepage/{{$item -> id}}">{{$item -> name}}</a></td> 
     <td>{{$item -> description}}</td>
 <?php try { ?>
     <td>{{$item -> teacher -> name}}</td>

@@ -20,23 +20,14 @@
           <a class="nav-link {{ (request()->is('course')) ? 'active' : '' }}" href="/course">Kurzusok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ (request()->is('lesson')) ? 'active' : '' }}" href="/lesson">Tananyagok</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ (request()->is('quiz')) ? 'active' : '' }}" href="/quiz">Feladatok</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link {{ (request()->is('schedule')) ? 'active' : '' }}" href="/schedule">Vizsga időpontok</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="/user">Felhasználók</a>
         </li>
-        
-         <li class="nav-item ml-md-auto"><a href="javascript:;" id="switchtheme" class="btn btn-success switch">Halvány/Sötét</a></li>
-
-
         @endif
         </ul>
+
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item dropdown">
         @inject('logged', 'App\Http\Controllers\Controller')
@@ -50,6 +41,7 @@
             <li><a class="dropdown-item" href="/user/edit/{{$logged->auth('id');}}">Adataim megváltoztatása</a></li>
             <li><a class="dropdown-item" href="/logout">Kijelentkezés</a></li>
           @endif
+            <li class="nav-item ml-md-auto"><a href="javascript:;" id="switchtheme" class="btn btn-success switch">Halvány/Sötét</a></li>
           </ul>
         </li>
       </ul>
