@@ -19,6 +19,7 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @if (($item -> deleted_at) == NULL)
 @if ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) == null)
@@ -56,6 +57,7 @@
     @endif
     </td>
   </tr>  
+  @endif
   @endforeach
 
 </tbody>

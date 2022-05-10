@@ -41,6 +41,7 @@ class QuizController extends Controller
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
                 (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
+                (object)['label' => 'Törölt feladatok listája', 'link' => 'admin/quiz/deleted'] ,
             ] ,
             );
         }elseif($this->auth('role_id') == null) {
@@ -54,6 +55,31 @@ class QuizController extends Controller
             'items' => $data ,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
+    public function deleted()
+    {
+        $data = Quizze::with(['course', 'type'])
+        ->select('quizzes.*')
+        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id');
+        
+        $data = $data->get();
+
+        $page_links = [];
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('quiz.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
             'page_links' => $page_links,
         ]);
     }
@@ -439,11 +465,31 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            Quiz_question::where('quiz_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+            
+            Quizze::where('id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+        }
+        return redirect()->to('/quiz');
+    }
+
     public function destroy($id)
     {
         if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
-            Quiz_question::where('quiz_id', $id)->delete();
-            Quizze::where('id', $id)->delete();
+            Quiz_question::where('quiz_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
+
+            Quizze::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
         }
         return redirect()->to('/quiz');
     }
