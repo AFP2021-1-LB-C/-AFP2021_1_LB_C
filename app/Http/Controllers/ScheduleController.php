@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class ScheduleController extends Controller
         if ($this->auth('role_id') == 1){
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/schedule/create'] ,
+                (object)['label' => 'Törölt időpotok listája', 'link' => '/admin/schedule/deleted'] ,
             ]);
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
@@ -56,6 +58,33 @@ class ScheduleController extends Controller
         ]);
 
         
+    }
+
+    public function deleted()
+    {
+        $data = Schedule::with(['course'])
+        ->select('schedules.*');
+        if ($this->auth('role_id') == 3) {
+            $data = $data
+            ->leftJoin('courses_users', 'courses_users.course_id', '=', 'schedules.course_id')
+            ->where('courses_users.user_id', $this->auth('id'));
+        }
+        $data = $data->get();
+        
+        $page_links = [];
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('schedule.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Időpontok' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
+            'page_links' => $page_links,
+        ]);
     }
 
     /**
@@ -214,8 +243,23 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = Schedule::where('id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+        }
+        return redirect()->to('/schedule');
+    }
+     
     public function destroy($id)
     {
-        //
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = Schedule::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
+        }
+        return redirect()->to('/schedule');
     }
 }
