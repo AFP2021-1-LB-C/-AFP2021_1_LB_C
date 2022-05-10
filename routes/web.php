@@ -115,3 +115,9 @@ Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
 
 Route::get('/admin/course/deleted', [CourseController::class, 'deleted']);
 Route::get('/admin/course/undo_delete/{id}', [CourseController::class, 'undo_delete']);
+
+Route::get('/admin/lesson/deleted', [LessonController::class, 'deleted']);
+Route::get('/admin/lesson/undo_delete/{id}', [LessonController::class, 'undo_delete']);
+
+Route::get('/admin/quiz/deleted', [QuizController::class, 'deleted']);
+Route::get('/admin/quiz/undo_delete/{id}', [QuizController::class, 'undo_delete']);
