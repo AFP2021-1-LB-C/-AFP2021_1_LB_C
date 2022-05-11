@@ -26,6 +26,7 @@
   
 
   @foreach ($items as $item)
+  @if (($item -> deleted_at) == NULL)
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> name}}</td>
@@ -39,10 +40,12 @@
     <td>
     @if($isAdmin)
     <a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
+    <a href="/admin/user/delete/{{$item -> id}}">Törlés</a>
     @endif
     <a href="/user/profile/{{$item -> id}}">Profil megtekintése</a>
     </td>
   </tr>  
+  @endif
   @endforeach
 
 </tbody>

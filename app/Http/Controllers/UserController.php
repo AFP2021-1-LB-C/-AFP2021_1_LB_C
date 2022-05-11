@@ -32,6 +32,7 @@ class UserController extends Controller
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/user/create'] ,
                 (object)['label' => 'Szerepkörök lista', 'link' => '/admin/role'] ,
+                (object)['label' => 'Törölt felhasználók listája', 'link' => '/admin/user/deleted'] ,
             ]);
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
@@ -54,6 +55,30 @@ class UserController extends Controller
             'page_links' => $page_links,
         ]);
     }
+
+    public function deleted()
+    {
+        $data = User::with(['role'])
+        ->select('users.*')
+        ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+        ->get();
+        
+        $page_links = [];
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('user.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Felhasználók' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
 
     public function r_index()
     {
@@ -130,8 +155,19 @@ class UserController extends Controller
 
         $userCredentials = $request->only('email', 'password');
 
+        $isDeletedUser = User::where('email', $request->email)  
+        -> select('users.deleted_at')
+        -> value('deleted_at') != NULL; 
+
+        if ($isDeletedUser)
+        {
+            return back()->with('error', 'Hoppá! Ezt a fiókot megszüntettük.');    
+        }
+
         if (Auth::attempt($userCredentials)) 
         {
+           
+
             User::where('email', $request->email) -> update([
                 'last_login_date' => date('Y-m-d H:i:s'),
             ]);
@@ -394,8 +430,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = User::where('id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+        }
+        return redirect()->to('/user');
+    }
+     
     public function destroy($id)
     {
-        //
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = User::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
+        }
+        return redirect()->to('/user');
     }
 }

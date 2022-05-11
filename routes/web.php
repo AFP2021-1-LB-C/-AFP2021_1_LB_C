@@ -77,6 +77,7 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/profile/{id}', [UserController::class, 'profile']);
+Route::get('/admin/user/delete/{id}', [UserController::class, 'destroy']);
 
 //Registration
 Route::get('/registration', [UserController::class, 'r_index']);
@@ -125,3 +126,6 @@ Route::get('/admin/quiz/undo_delete/{id}', [QuizController::class, 'undo_delete'
 
 Route::get('/admin/schedule/deleted', [ScheduleController::class, 'deleted']);
 Route::get('/admin/schedule/undo_delete/{id}', [ScheduleController::class, 'undo_delete']);
+
+Route::get('/admin/user/deleted', [UserController::class, 'deleted']);
+Route::get('/admin/user/undo_delete/{id}', [UserController::class, 'undo_delete']);
