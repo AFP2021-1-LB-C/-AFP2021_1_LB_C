@@ -433,7 +433,7 @@ class UserController extends Controller
     
     public function undo_delete($id)
     {
-        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+        if ($this->auth('role_id') == 1) {
             $delete = User::where('id', $id)->update([
                 'deleted_at' => NULL
             ]);
@@ -443,7 +443,9 @@ class UserController extends Controller
      
     public function destroy($id)
     {
-        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+        if ($this->auth('role_id') == 1 
+        && User::where('id', $id)->select('users.role_id')->value('role_id') != 1) 
+        {
             $delete = User::where('id', $id)->update([
                 'deleted_at' => Carbon::now()
             ]);

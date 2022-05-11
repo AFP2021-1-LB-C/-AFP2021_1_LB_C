@@ -34,13 +34,14 @@
     <td>{{$item -> role -> name}}</td>
     <td>{{$item -> username}}</td>
     <td>{{$item -> email}}</td>
-    
     <td>{{$item -> registration_date}}</td>
     <td>{{$item -> last_login_date}}</td>
     <td>
     @if($isAdmin)
     <a href="/admin/user/edit/{{$item -> id}}">Szerkesztés</a>
-    <a href="/admin/user/delete/{{$item -> id}}">Törlés</a>
+      @if(($item -> role -> id) != 1)
+        <a href="/admin/user/delete/{{$item -> id}}">Törlés</a>
+      @endif
     @endif
     <a href="/user/profile/{{$item -> id}}">Profil megtekintése</a>
     </td>
