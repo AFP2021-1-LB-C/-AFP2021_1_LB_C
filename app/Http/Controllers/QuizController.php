@@ -193,14 +193,14 @@ class QuizController extends Controller
         -> get();
 
         foreach ($data as &$grade) {
-            echo $grade->user_id, $id;
+            //echo $grade->user_id, $id;
             $detailedQuizResult = Quiz_Result::with(['quiz_question'])
             ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
             ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
             ->where('quiz_results.user_id','=',$grade->user_id)
             ->where('quizzes.id','=',$id)
-            -> get()
-            -> dump();
+            -> get();
+           // -> dump();
                 //;
                 // $query = str_replace(array('?'), array('\'%s\''), $detailedQuizResult->toSql());
                 // $query = vsprintf($query, $detailedQuizResult->getBindings());
