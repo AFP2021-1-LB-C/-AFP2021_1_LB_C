@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Carbon\Carbon;
-use App\Models\Course;
+use ErrorException;
 use App\Models\Grade;
+use App\Models\Course;
 use App\Models\Quizze;
 use App\Models\QuizType;
 use App\Models\Quiz_result;
 use Illuminate\Http\Request;
 use App\Models\Quiz_question;
-use ErrorException;
-use Exception;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -93,8 +94,8 @@ class QuizController extends Controller
         -> get();
 
         foreach ($questions as $question) {
-            Quiz_result::where('quiz_question_id', $question -> id)
-            ->delete();
+            // Quiz_result::where('quiz_question_id', $question -> id)
+            // ->delete();
          
             //üresen hagyott válaszok esetén catch fut le
             try{$answer = $_POST[$question -> id];}
@@ -155,14 +156,24 @@ class QuizController extends Controller
         -> get();
 
         foreach ($data as &$grade) {
+            echo $grade->user_id, $id;
             $detailedQuizResult = Quiz_Result::with(['quiz_question'])
             ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
             ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
             ->where('quiz_results.user_id','=',$grade->user_id)
             ->where('quizzes.id','=',$id)
-            -> get();
+            -> get()
+            -> dump();
+                //;
+                // $query = str_replace(array('?'), array('\'%s\''), $detailedQuizResult->toSql());
+                // $query = vsprintf($query, $detailedQuizResult->getBindings());
+                // dd($query);
+                //print($grade->user_id);
+                
+             // dump($detailedQuizResult, $grade->user_id, $id );
             $grade->{"quiz_result"} =  $detailedQuizResult;
-        
+            // $grade->{"tdani"} =  $grade->user_id;
+           // echo($grade->user_id);
         }
 
 
