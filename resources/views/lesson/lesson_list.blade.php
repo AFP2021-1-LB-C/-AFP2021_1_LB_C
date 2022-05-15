@@ -20,7 +20,7 @@
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> topic}}</td>
-    <td>{{substr($item -> content, 0, 50)."..."}}</td>
+    <td>{!! substr(strip_tags($item->content), 0, 50 ) ."..." !!}</td>
     <td>{{$item -> course -> name}}</td>
     
     @if($isAdmin || $isTeacher)
