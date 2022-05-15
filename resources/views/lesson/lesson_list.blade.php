@@ -16,6 +16,7 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @if (($item -> deleted_at) == NULL)
   <tr>
     <td>{{$item -> id}}</td>
     <td>{{$item -> topic}}</td>
@@ -32,6 +33,7 @@
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @endif
   </tr>  
+  @endif
   @endforeach
 
 </tbody>

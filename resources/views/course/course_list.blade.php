@@ -1,4 +1,4 @@
-<?php use App\Models\Courses_user;?>
+<?php use App\Models\Courses_user;use App\Models\Course;?>
 @include('layout.header')
 <?php $subbed = false; ?>
 <table class="table">
@@ -22,6 +22,7 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @if (($item -> deleted_at) == NULL)
   @inject('logged', 'App\Http\Controllers\Controller')
   @if (!$isTeacher && ($item -> status) == 1 || $isAdmin 
   || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
@@ -86,6 +87,7 @@
     @endif
   @endif
   </tr>
+  @endif
   @endif
   @endforeach
 
