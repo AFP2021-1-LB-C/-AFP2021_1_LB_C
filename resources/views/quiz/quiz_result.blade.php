@@ -1,3 +1,4 @@
+@include('layout.sidebar')
 <?php
 use App\Models\Grade;
 ?>

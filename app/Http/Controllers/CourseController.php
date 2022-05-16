@@ -428,11 +428,73 @@ class CourseController extends Controller
             'page_subtitle' => 'Homepage',
             'homepage' =>  $homepage,
             'items' => $data,
+            'course_id' => $id,
             'page_links' => [
                 (object)['label' => 'Vissza', 'link' => '/lesson'] ,
             ] ,
         ]);
-    }    
+    } 
+    
+    public function lesson_list($id)
+    {
+        $data = Lesson::where('course_id', $id)
+        ->select('lessons.*')
+        ->get();
+
+        $page_links = [];
+
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $page_links = array_merge($page_links, [
+              (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'],
+            ]);
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
+        return view('lesson.lesson_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data,
+            'course_id' => $id,
+            'page_title' => 'Tananyagok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
+    public function quiz_list($id)
+    {
+        $data = Quizze::with(['course', 'type'])
+        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id')
+        ->select('quizzes.*')
+        ->where('course_id', $id)
+        ->get();
+        
+        $page_links = [];
+        
+        if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+            $page_links = array_merge($page_links, [
+                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
+            ] ,
+            );
+        }elseif($this->auth('role_id') == null) {
+            return redirect()->to('/');
+        }
+
+        return view('quiz.quiz_list',[
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'course_id' => $id,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Lista' ,
+            'page_links' => $page_links,
+        ]);
+    }
 
 }
 

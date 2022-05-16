@@ -39,7 +39,6 @@
     <td>{{$item -> topic}}</td>
     <td>{{substr($item -> content, 0, 50)."..."}}</td>
     
-    
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
   </tr>  
   @endforeach

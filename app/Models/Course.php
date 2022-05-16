@@ -19,4 +19,9 @@ class Course extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function lessons()
+    {
+        return $this->belongsTo('App\Models\Lesson');
+    }
 }
