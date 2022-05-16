@@ -18,8 +18,8 @@
         <label for="inputEmail3" class="col-sm-2 col-form-label">Tananyag</label>
         <div class="col-sm-10">
 
-        {{-- <textarea name="content" class="form-control" placeholder="Tananyag">{{$content}}</textarea> --}}
-        
+      
+        <!--Embed youtube video linket kell feltölteni-->
         <textarea id="editor" name="content" >{{$content}}</textarea>
         <script>
             ClassicEditor
