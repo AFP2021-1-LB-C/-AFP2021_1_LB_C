@@ -183,7 +183,7 @@ Az adatbázis adattáblái:
 | description 	| text    	| kurzus leírása                        |
 | status        | boolean 	| kurzus láthatósága                    |
 | teacher_id   	| int     	| kurzust létrehozó tanár azonosítója   |
-
+| longDescription 	| text 	| kurzus részletes leírása              |
 
 **Users Tábla** (A felhasználók adatait leíró tábla)<br>
 | Mező              	| Típus  	|        Leírás                	        |
