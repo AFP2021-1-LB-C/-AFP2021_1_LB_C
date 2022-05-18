@@ -287,6 +287,7 @@ Az adatbázis adattáblái:
 | submitted_at     	| datetime  | befejezés időpontja                       |
 | type_id           | int       | típusa                                    |
 | course_id         | int       | kurzus azonosítója                        |
+| quizType         | tinyint       | jegyszerzős-e 0 = gyakorló teszt, 1 = jegyszerzős                         |
 | deleted_at  	| datetime 	| törlés dátuma                         |
 
 # 10. Implementációs terv
