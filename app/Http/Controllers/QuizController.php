@@ -289,6 +289,7 @@ class QuizController extends Controller
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
+            'quizType' => $request->quizType,
         ]);
         if (!is_null($new)) {        
             $new->save();
@@ -393,6 +394,7 @@ class QuizController extends Controller
             'types' => $types,
             'courses' => $courses,
             'questions' => $questions,
+            'quizType' => $data -> quizType,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Szerkesztés' ,
         ]);
@@ -428,6 +430,7 @@ class QuizController extends Controller
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
+            'quizType' => $request->quizType,
         ]);
 
         for($i = 0; $i<10;$i++){
