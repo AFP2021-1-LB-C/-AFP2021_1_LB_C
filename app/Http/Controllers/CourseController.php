@@ -283,6 +283,7 @@ class CourseController extends Controller
                 'teacher_id' => $data -> teacher_id,
                 'name' => $data -> name,
                 'description' => $data -> description,
+                'lonDescription' => $data -> lonDescription,
                 'status' => $data -> status,
                 'id' => $data -> id,
                 'page_title' => 'Kurzusok' ,
