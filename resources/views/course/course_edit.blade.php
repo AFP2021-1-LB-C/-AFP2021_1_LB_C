@@ -39,14 +39,6 @@
         </div>
 
         <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Részletes leírás</label>
-            <div class="col-sm-10">
-            <textarea name="longDescription" class="form-control" placeholder="Részletes leírás">{{$longDescription}}</textarea>
-            </div>
-            {!! $errors->first('longDescription', '<small class="text-danger">A kurzus részletes leírása :message</small>') !!}
-        </div>
-
-        <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Láthatóság</label>
         <div class="col-sm-10">
         <select name="status" class="form-select">                   
