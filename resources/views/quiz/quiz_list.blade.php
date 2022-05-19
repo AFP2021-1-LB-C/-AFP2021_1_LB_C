@@ -10,6 +10,7 @@
     <th>Befejező dátum</th>
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
+    <th>Értékelés</th>
     <th>Műveletek</th>
     @if ($isStudent)
     <th>Jegyek</th>
@@ -36,6 +37,7 @@
     <td>{{$item -> submitted_at	}}</td>
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
+    <td>{{$item -> quizType == 0 ? "Gyakorló" : "Jegyszerzős"}}</td>
     <td>
     @if($isAdmin || $isTeacher)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
