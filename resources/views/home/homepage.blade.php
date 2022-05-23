@@ -1,4 +1,5 @@
 @include('layout.header')
+
 <div>
 <h1 style="position: relative;">Üdvözlünk az oldalon</h1>
 </div>

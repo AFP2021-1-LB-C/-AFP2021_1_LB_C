@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 @include('layout.header')
 
     {{-- Módosítás --}}
@@ -15,5 +17,5 @@
             <button type="submit" class="btn btn-primary">Módosítás</button>
         </div>
     </form>
-
+</div>
 @include('layout.footer')

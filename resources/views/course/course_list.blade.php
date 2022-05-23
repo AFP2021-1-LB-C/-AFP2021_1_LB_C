@@ -29,7 +29,7 @@
   || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
   <tr>
     <td>{{$item -> id}}</td>
-    <td>{{$item -> name}}</td> 
+    <td><a href="/course/{{$item -> id}}/homepage/">{{$item -> name}}</a></td> 
     <td>{{$item -> description}}</td>
     <td>
       <button id="myBtn-{{$item -> id}}" class="modalButton"><div class="arrow-right"></div></button>

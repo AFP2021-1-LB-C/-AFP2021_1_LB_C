@@ -1,3 +1,4 @@
+@include('layout.sidebar')
 @include('layout.header')
 
 <table class="table">

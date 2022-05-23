@@ -42,6 +42,7 @@ Route::get('/quiz/result/{quiz_id}/{user_id}', [QuizController::class, 'show_qui
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
 Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
 Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);
+Route::get('/course/{id}/quiz', [CourseController::class, 'quiz_list']);
 
 // Course
 Route::get('/admin/course/edit/{id}', [CourseController::class, 'edit']);
@@ -61,6 +62,7 @@ Route::post('/admin/lesson/create', [LessonController::class, 'create']);
 Route::get('/lesson/content/{id}', [LessonController::class, 'show']);
 Route::get('/lesson', [LessonController::class, 'index']);
 Route::get('/admin/lesson/delete/{id}', [LessonController::class, 'destroy']);
+Route::get('/course/{id}/lesson', [CourseController::class, 'lesson_list']);
 
 //Role
 Route::get('/admin/role/create', [RoleController::class, 'create_form']);
@@ -98,7 +100,7 @@ Route::post('/admin/schedule/edit/{id}', [ScheduleController::class, 'update']);
 Route::get('/schedule', [ScheduleController::class, 'index']);
 Route::get('/admin/schedule/delete/{id}', [ScheduleController::class, 'destroy']);
 
-// Homepage
+//Site Homepage
 Route::get('/', function() {
     return view('home.homepage',[
         'page_title' => 'Kezdőlap',
@@ -108,10 +110,12 @@ Route::get('/', function() {
 // Subscribe/Unsubscribe
 Route::get('/course/subscribe/{id}', [CourseController::class, 'subscribe']);
 Route::get('/course/unsubscribe/{id}', [CourseController::class, 'unsubscribe']);
-
 Route::get('/course/students/accept/{id}', [CourseController::class, 'accept']);
 Route::get('/course/students/reject/{id}', [CourseController::class, 'reject']);
 Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
+
+//Course Homepage
+Route::get('/course/{id}/homepage/', [CourseController::class, 'homepage']);
 
 // deleted course list
 

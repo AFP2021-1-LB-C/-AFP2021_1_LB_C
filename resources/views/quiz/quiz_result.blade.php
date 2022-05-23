@@ -1,3 +1,4 @@
+@include('layout.sidebar')
 @php
 use App\Models\Grade;
 @endphp
@@ -226,6 +227,8 @@ $graderesult = ($grade->grade);
      @endif 
 
 </table>
+</div>
+@include('layout.footer')
 @php
  
 $pieDataPoints = array( 
@@ -265,7 +268,7 @@ $chartDataPoints = array(
         data: [{
             type: "pie",    
             indexLabel: "{label} ({y})",
-            dataPoints: @php echo json_encode($pieDataPoints, JSON_NUMERIC_CHECK); @endphp
+            dataPoints: @php echo json_encode($piaPoints, JSON_NUMERIC_CHECK); @endphp
         }]
     });
     piechart.render();

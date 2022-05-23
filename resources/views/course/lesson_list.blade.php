@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 @include('layout.header')
 <h2>{{$course_name}}
 @if ($public == false && $exists != null)
@@ -37,7 +39,6 @@
     <td>{{$item -> topic}}</td>
     <td>{{substr($item -> content, 0, 50)."..."}}</td>
     
-    
     <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
   </tr>  
   @endforeach
@@ -45,4 +46,5 @@
 </tbody>
 </table>
 @endif
+</div>
 @include('layout.footer')

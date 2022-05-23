@@ -1,3 +1,5 @@
+@include('layout.sidebar')
+<div class="adj-pagecontent">
 <?php 
 use App\Models\Quiz_question;
 use App\Models\Grade;
@@ -87,4 +89,5 @@ $new = Grade::create([
             'date' => $submitted_at
         ]);
 ?>
+</div>
 @include('layout.footer')

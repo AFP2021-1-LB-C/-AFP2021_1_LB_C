@@ -114,6 +114,7 @@ class QuizController extends Controller
             'started_at' => Quizze::where('id', $id) -> select('quizzes.*')
             -> value('started_at'),
             'items' => $data ,
+            'course_id' => $id,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Lista' ,
         ]);
@@ -167,6 +168,7 @@ class QuizController extends Controller
             'submitted_at' => Quizze::where('id', $id) -> select('quizzes.*')
             -> value('submitted_at'),
             'items' => $data ,
+            'course_id' => $id,
             'page_title' => 'Válaszok' ,
             'page_subtitle' => 'Lista' ,
         ]);
@@ -223,6 +225,7 @@ class QuizController extends Controller
             'user_id' => ($this->auth('id')),
             'items' => $quiz_results ,
             'grades' => $data,
+            'course_id' => $id,
             'quiz' => $detailedQuizResult,
             'page_title' => 'Eredmeny' ,
             'page_subtitle' => 'Lista' ,
@@ -337,7 +340,7 @@ class QuizController extends Controller
                 'types' => $types,
                 'courses' => $courses,
                 'page_title' => 'Feladatok' ,
-                'page_subtitle' => 'Létrehozás' ,
+                'page_subtitle' => 'Létrehozás',
             ]);
             
 
@@ -374,7 +377,7 @@ class QuizController extends Controller
     public function edit($id)
     {
         if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
-            return redirect()->to('/');
+            return redirect()->to('lesson_list');
         }
 
         $data = Quizze::where('id', $id)->first();
@@ -410,7 +413,7 @@ class QuizController extends Controller
     public function update(Request $request, $id)
     {
         if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
-            return redirect()->to('/');
+            return redirect()->to('lesson_list');
         }
 
 
