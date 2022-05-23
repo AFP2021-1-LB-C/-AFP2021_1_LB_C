@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Carbon\Carbon;
-use App\Models\Course;
+use ErrorException;
 use App\Models\Grade;
+use App\Models\Course;
 use App\Models\Quizze;
 use App\Models\QuizType;
 use App\Models\Quiz_result;
 use Illuminate\Http\Request;
 use App\Models\Quiz_question;
-use ErrorException;
-use Exception;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -41,6 +42,7 @@ class QuizController extends Controller
             $page_links = array_merge($page_links, [
                 (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
                 (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
+                (object)['label' => 'Törölt feladatok listája', 'link' => 'admin/quiz/deleted'] ,
             ] ,
             );
         }elseif($this->auth('role_id') == null) {
@@ -58,15 +60,51 @@ class QuizController extends Controller
         ]);
     }
 
+    public function deleted()
+    {
+        $data = Quizze::with(['course', 'type'])
+        ->select('quizzes.*')
+        ->leftJoin('courses', 'courses.id', '=', 'quizzes.course_id')
+        ->leftJoin('quiz_types', 'quiz_types.id', '=', 'quizzes.type_id');
+        
+        $data = $data->get();
+
+        $page_links = [];
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('quiz.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Feladatok' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
     public function completion($id){
         $quiz = Quizze::where('id', $id)
         -> update(['started_at' => Carbon::now()]);
-        
 
         $data = Quiz_question::where('quiz_id', $id)
         -> select('quiz_questions.*')
         -> get();
 
+
+        
+        $data = $data->map(function($item) {
+            $item->answers = collect([
+               (object)[ 'num' => 1, 'answer' => $item->answer_1 ],
+               (object)[ 'num' => 2, 'answer' => $item->answer_2 ],
+               (object)[ 'num' => 3, 'answer' => $item->answer_3 ],
+               (object)[ 'num' => 4, 'answer' => $item->answer_4 ], 
+            ])->shuffle();
+            return $item;
+        })->shuffle();
+ 
         return view('quiz.quiz_completion',[
             'id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
@@ -94,8 +132,8 @@ class QuizController extends Controller
         -> get();
 
         foreach ($questions as $question) {
-            Quiz_result::where('quiz_question_id', $question -> id)
-            ->delete();
+            // Quiz_result::where('quiz_question_id', $question -> id)
+            // ->delete();
          
             //üresen hagyott válaszok esetén catch fut le
             try{$answer = $_POST[$question -> id];}
@@ -157,14 +195,24 @@ class QuizController extends Controller
         -> get();
 
         foreach ($data as &$grade) {
+            //echo $grade->user_id, $id;
             $detailedQuizResult = Quiz_Result::with(['quiz_question'])
             ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
             ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
             ->where('quiz_results.user_id','=',$grade->user_id)
             ->where('quizzes.id','=',$id)
             -> get();
+           // -> dump();
+                //;
+                // $query = str_replace(array('?'), array('\'%s\''), $detailedQuizResult->toSql());
+                // $query = vsprintf($query, $detailedQuizResult->getBindings());
+                // dd($query);
+                //print($grade->user_id);
+                
+             // dump($detailedQuizResult, $grade->user_id, $id );
             $grade->{"quiz_result"} =  $detailedQuizResult;
-        
+            // $grade->{"tdani"} =  $grade->user_id;
+           // echo($grade->user_id);
         }
 
 
@@ -244,6 +292,7 @@ class QuizController extends Controller
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
+            'quizType' => $request->quizType,
         ]);
         if (!is_null($new)) {        
             $new->save();
@@ -348,6 +397,7 @@ class QuizController extends Controller
             'types' => $types,
             'courses' => $courses,
             'questions' => $questions,
+            'quizType' => $data -> quizType,
             'page_title' => 'Feladatok' ,
             'page_subtitle' => 'Szerkesztés' ,
         ]);
@@ -383,6 +433,7 @@ class QuizController extends Controller
             'submitted_at' => $request->submitted_at,
             'type_id' => $request->type_id,
             'course_id' => $request->course_id,
+            'quizType' => $request->quizType,
         ]);
 
         for($i = 0; $i<10;$i++){
@@ -442,11 +493,31 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            Quiz_question::where('quiz_id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+            
+            Quizze::where('id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+        }
+        return redirect()->to('/quiz');
+    }
+
     public function destroy($id)
     {
         if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
-            Quiz_question::where('quiz_id', $id)->delete();
-            Quizze::where('id', $id)->delete();
+            Quiz_question::where('quiz_id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
+
+            Quizze::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
         }
         return redirect()->to('/quiz');
     }

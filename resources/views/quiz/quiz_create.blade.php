@@ -43,6 +43,16 @@
         </div>
         </div>
 
+        <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Jegyszerzős-e</label>
+        <div class="col-sm-10">
+        <select name="quizType" class="form-select">               
+            <option value="0">Gyakorló</option>       
+            <option value="1">Jegyszerzős</option>
+         </select>
+        </div>
+        </div>
+
         @for ($i = 1; $i < 11; $i++ )  
             <div class="form-group">
                 <label for="question[{{$i}}]" class="col-sm-2 col-form-label">Kérdés</label>

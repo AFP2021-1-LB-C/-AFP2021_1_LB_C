@@ -79,6 +79,7 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/edit/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/profile/{id}', [UserController::class, 'profile']);
+Route::get('/admin/user/delete/{id}', [UserController::class, 'destroy']);
 
 //Registration
 Route::get('/registration', [UserController::class, 'r_index']);
@@ -97,6 +98,7 @@ Route::post('/admin/schedule/create', [ScheduleController::class, 'create']);
 Route::get('/admin/schedule/edit/{id}', [ScheduleController::class, 'edit']);
 Route::post('/admin/schedule/edit/{id}', [ScheduleController::class, 'update']);
 Route::get('/schedule', [ScheduleController::class, 'index']);
+Route::get('/admin/schedule/delete/{id}', [ScheduleController::class, 'destroy']);
 
 //Site Homepage
 Route::get('/', function() {
@@ -114,3 +116,20 @@ Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
 
 //Course Homepage
 Route::get('/course/{id}/homepage/', [CourseController::class, 'homepage']);
+
+// deleted course list
+
+Route::get('/admin/course/deleted', [CourseController::class, 'deleted']);
+Route::get('/admin/course/undo_delete/{id}', [CourseController::class, 'undo_delete']);
+
+Route::get('/admin/lesson/deleted', [LessonController::class, 'deleted']);
+Route::get('/admin/lesson/undo_delete/{id}', [LessonController::class, 'undo_delete']);
+
+Route::get('/admin/quiz/deleted', [QuizController::class, 'deleted']);
+Route::get('/admin/quiz/undo_delete/{id}', [QuizController::class, 'undo_delete']);
+
+Route::get('/admin/schedule/deleted', [ScheduleController::class, 'deleted']);
+Route::get('/admin/schedule/undo_delete/{id}', [ScheduleController::class, 'undo_delete']);
+
+Route::get('/admin/user/deleted', [UserController::class, 'deleted']);
+Route::get('/admin/user/undo_delete/{id}', [UserController::class, 'undo_delete']);

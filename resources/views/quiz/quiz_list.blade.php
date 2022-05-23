@@ -12,6 +12,7 @@
     <th>Befejező dátum</th>
     <th>Feladat típus neve</th>
     <th>Kurzus neve</th>
+    <th>Értékelés</th>
     <th>Műveletek</th>
     @if ($isStudent)
     <th>Jegyek</th>
@@ -21,6 +22,7 @@
 </thead>
 <tbody>
   @foreach ($items as $item)
+  @if (($item -> deleted_at) == NULL)
 @if ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) == null)
@@ -37,6 +39,7 @@
     <td>{{$item -> submitted_at	}}</td>
     <td>{{$item -> type -> name}}</td>
     <td>{{$item -> course -> name}}</td>
+    <td>{{$item -> quizType == 0 ? "Gyakorló" : "Jegyszerzős"}}</td>
     <td>
     @if($isAdmin || $isTeacher)
     <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
@@ -58,6 +61,7 @@
     @endif
     </td>
   </tr>  
+  @endif
   @endforeach
 
 </tbody>

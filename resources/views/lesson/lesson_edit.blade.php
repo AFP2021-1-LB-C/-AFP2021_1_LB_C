@@ -4,6 +4,9 @@
     {{-- Módosítás --}}
     <form action="/admin/lesson/edit/{{$id}}" method="post">
         @csrf
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Tananyag megnevezése</label>
         <div class="col-sm-10">
@@ -15,11 +18,21 @@
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Tananyag</label>
         <div class="col-sm-10">
-        <textarea name="content" class="form-control" placeholder="Tananyag">{{$content}}</textarea>
+
+      
+        <!--Embed youtube video linket kell feltölteni-->
+        <textarea id="editor" name="content" >{{$content}}</textarea>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
         </div>
         {!! $errors->first('content', '<small class="text-danger">A tananyag :message</small>') !!}
         </div>
-
+ 
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Kurzus</label>
         <div class="col-sm-10">

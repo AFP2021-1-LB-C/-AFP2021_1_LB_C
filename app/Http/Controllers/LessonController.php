@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Lesson;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class LessonController extends Controller
         if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
               (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'],
+              (object)['label' => 'Törölt tananyagok listája', 'link' => '/admin/lesson/deleted'],
             ]);
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
@@ -37,6 +39,28 @@ class LessonController extends Controller
             'items' => $data ,
             'page_title' => 'Tananyagok' ,
             'page_subtitle' => 'Lista' ,
+            'page_links' => $page_links,
+        ]);
+    }
+
+    public function deleted()
+    {
+        $data = Lesson::with(['course'])
+        ->select('lessons.*')
+        ->get();
+        
+        $page_links = [];
+
+        if ($this->auth('role_id') === 3)
+        return redirect()->to('/');
+
+        return view('lesson.deleted_list',[            
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
+            'items' => $data ,
+            'page_title' => 'Tananyagok' ,
+            'page_subtitle' => 'Törölt elemek listája' ,
             'page_links' => $page_links,
         ]);
     }
@@ -191,10 +215,23 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function undo_delete($id)
+    {
+        if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
+            $delete = Lesson::where('id', $id)->update([
+                'deleted_at' => NULL
+            ]);
+        }
+        return redirect()->to('/lesson');
+    }
+     
     public function destroy($id)
     {
         if ($this->auth('role_id') == 1 || $this->auth('role_id') == 2) {
-            $delete = Lesson::where('id', $id)->delete();
+            $delete = Lesson::where('id', $id)->update([
+                'deleted_at' => Carbon::now()
+            ]);
         }
         return redirect()->to('/lesson');
     }
