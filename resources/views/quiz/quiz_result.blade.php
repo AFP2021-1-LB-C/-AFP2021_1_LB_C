@@ -238,7 +238,7 @@ $graderesult = ($grade->grade);
 @endif
 </div>
 
-@include('layout.footer')
+{{-- @include('layout.footer') --}}
 @php
  
  $studentmark =""; 
