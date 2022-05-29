@@ -184,15 +184,17 @@ class QuizController extends Controller
             $quiz_results = Quiz_result::with(['quiz_question'])
             -> where('user_id', $this->auth('id'))
             -> leftJoin('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
-            
-            -> get();
+            -> get();          
         }
 
         $data = Grade::with(['user'])
         ->where('quiz_id', $id) 
         //->select('grades.*')
         ->leftJoin('users', 'users.id', '=', 'grades.user_id')
-        -> get();
+        ->get();
+        $user_grade = Grade::where('quiz_id', $id)->where('user_id', $this->auth('id'))->first();
+        $user_grade = $user_grade != null ? $user_grade->grade : null;
+        //dd($data, $user_grade);
 
         foreach ($data as &$grade) {
             //echo $grade->user_id, $id;
@@ -229,6 +231,7 @@ class QuizController extends Controller
             'quiz' => $detailedQuizResult,
             'page_title' => 'Eredmeny' ,
             'page_subtitle' => 'Lista' ,
+            'user_grade' => $user_grade , 
         ]);
     }   
 /*

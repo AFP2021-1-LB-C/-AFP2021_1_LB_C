@@ -15,13 +15,16 @@ class User extends Authenticatable
     // Időbélyeg használata (updated_at és created_at mezők a táblában)
     public $timestamps = false;
 
+    // Minden mező engedelyézese, kivéve...
+    protected $guarded = [];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'age', 'email', 'password', 'role_id', 'registration_date', 'last_login_date'
+        'id', 'name', 'username', 'age', 'email', 'password', 'role_id', 'registration_date', 'last_login_date'
     ];
 
     /**
@@ -51,7 +54,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\User');
     }
-
     
 }
 
