@@ -1,4 +1,4 @@
-@include('layout.sidebar')
+
 <div class="adj-pagecontent">
 @include('layout.header')
 

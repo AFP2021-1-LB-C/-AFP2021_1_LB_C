@@ -2,7 +2,7 @@
 @include('layout.header')
 
     {{-- LÉTREHOZÁS --}}
-    <form action="/admin/lesson/create" method="post">
+    <form action="/course/{{$course_id}}/lesson/create" method="post">
         @csrf
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Tananyag megnevezése</label>
