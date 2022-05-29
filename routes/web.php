@@ -116,6 +116,8 @@ Route::get('/course/students/remove/{id}', [CourseController::class, 'remove']);
 
 //Course Homepage
 Route::get('/course/{id}/homepage/', [CourseController::class, 'homepage']);
+Route::get('/course/{id}/homepage/edit', [CourseController::class, 'editHomepage']);
+Route::post('/course/{id}/homepage/edit', [CourseController::class, 'updateHomepage']);
 
 // deleted course list
 

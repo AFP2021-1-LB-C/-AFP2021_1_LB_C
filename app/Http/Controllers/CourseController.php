@@ -240,7 +240,9 @@ class CourseController extends Controller
         $new = Course::create([
             'name' => $request->name,
             'description' => $request->description,
-            'teacher_id' => $this->auth('id')
+            'teacher_id' => $this->auth('id'),
+            'homepage' => '',
+            'longDescription' => ''
         ]);
         
         if (!is_null($new)) {
@@ -512,6 +514,9 @@ class CourseController extends Controller
         ->value('homepage');    
 
         return view('course.course_homepage',[ 
+            'isAdmin' => ($this->auth('role_id') === 1),
+            'isTeacher' => ($this->auth('role_id') === 2),
+            'isStudent' => ($this->auth('role_id') === 3),
             'course_name' => $course_name,
             'page_title' => 'Homepage',
             'page_subtitle' => 'Homepage',
@@ -519,11 +524,46 @@ class CourseController extends Controller
             'items' => $data,
             'course_id' => $id,
             'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/lesson'] ,
+                (object)['label' => 'Vissza', 'link' => '/course'] ,
             ] ,
         ]);
     } 
-    
+
+    public function editHomepage($id)
+    {
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2)  {
+            return redirect()->to('/');
+        }
+
+        $courses = Course::where('id', $id) -> first();
+
+        return view('course.homepage_edit',[
+            'homepage' => $courses -> homepage,
+            'course_id' => $courses -> id,
+            'page_title' => 'Kezdőlap' ,
+            'page_subtitle' => 'Módosítás' ,
+        ]);
+    }
+
+    public function updateHomepage(Request $request)
+    {
+
+        if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2)  {
+            return redirect()->to('/');
+        }
+
+        $new = Course::where('id', $request -> id) -> update([
+            
+            'homepage' => $request->homepage,
+        ]);
+        
+        if (!is_null($new)) {
+        return redirect()->to('/course/'.$request -> id.'/homepage/');
+        } else {
+            return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
+        }
+    }
+
     public function lesson_list($id)
     {
         $data = Lesson::where('course_id', $id)
@@ -584,6 +624,5 @@ class CourseController extends Controller
             'page_links' => $page_links,
         ]);
     }
-
 }
 

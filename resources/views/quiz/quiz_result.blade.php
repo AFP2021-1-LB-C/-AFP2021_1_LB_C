@@ -268,7 +268,7 @@ $chartDataPoints = array(
         data: [{
             type: "pie",    
             indexLabel: "{label} ({y})",
-            dataPoints: @php echo json_encode($piaPoints, JSON_NUMERIC_CHECK); @endphp
+            dataPoints: @php echo json_encode($pieDataPoints, JSON_NUMERIC_CHECK); @endphp
         }]
     });
     piechart.render();
