@@ -29,7 +29,7 @@
   || ($isTeacher && $item -> teacher_id == $logged->auth('id')))
   <tr>
     <td>{{$item -> id}}</td>
-    <td><a href="/course/{{$item -> id}}/homepage/">{{$item -> name}}</a></td> 
+    <td>{{$item -> name}}</td> 
     <td>{{$item -> description}}</td>
     <td>
       <button id="myBtn-{{$item -> id}}" class="modalButton"><div class="arrow-right"></div></button>
@@ -58,6 +58,7 @@
     @endif
     <td>
     @if($isAdmin||$isTeacher)
+    <a href="/course/{{$item -> id}}/homepage/">Kurzus Megtekintése</a>
     <a href="/admin/course/edit/{{$item -> id}}">Szerkesztés</a>
     <a href="/admin/course/delete/{{$item -> id}}">Törlés</a>
     <td>
@@ -83,7 +84,7 @@
           @endif
     @endforeach
    @if($subbed)
-    <a href="/course/{{$item -> id}}">Megtekintés</a>
+    <a href="/course/{{$item -> id}}/homepage/">Megtekintés</a>
     @elseif ($logged->auth('id') != null)
     <a href="/course/subscribe/{{$item -> id}}">Jelentkezés</a>
     @endif
@@ -157,7 +158,7 @@
     padding: 30px;
   }
   .modalButton{
-        border: none;
+    border: none;
     background: none;
   }
 
@@ -179,9 +180,9 @@
   .arrow-right {
   width: 0; 
   height: 0; 
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left: 30px solid green;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 13px solid #1FB693;
 }
   </style>
 

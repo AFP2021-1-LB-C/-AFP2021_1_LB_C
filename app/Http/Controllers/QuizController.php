@@ -323,13 +323,13 @@ class QuizController extends Controller
                 }
             }
 
-            return redirect()->to('/quiz');
+            return redirect()->to('/course/'.$request->course_id.'/quiz/');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }
     }
 
-    public function create_form()
+    public function create_form($course_id)
     {
         if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2) {
             return redirect()->to('/');
@@ -342,6 +342,7 @@ class QuizController extends Controller
 
                 'types' => $types,
                 'courses' => $courses,
+                'course_id' => $course_id,
                 'page_title' => 'Feladatok' ,
                 'page_subtitle' => 'Létrehozás',
             ]);
@@ -484,7 +485,7 @@ class QuizController extends Controller
         }
 
         if (!is_null($new)) {
-        return redirect()->to('/quiz');
+        return redirect()->to('/course/'.$request->course_id.'/quiz/');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }

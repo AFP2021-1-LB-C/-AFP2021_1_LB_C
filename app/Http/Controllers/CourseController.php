@@ -518,8 +518,7 @@ class CourseController extends Controller
             'isTeacher' => ($this->auth('role_id') === 2),
             'isStudent' => ($this->auth('role_id') === 3),
             'course_name' => $course_name,
-            'page_title' => 'Homepage',
-            'page_subtitle' => 'Homepage',
+            'page_title' => 'Kezdőlap',
             'homepage' =>  $homepage,
             'items' => $data,
             'course_id' => $id,
@@ -574,7 +573,7 @@ class CourseController extends Controller
 
         if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
-              (object)['label' => 'Létrehozás', 'link' => '/admin/lesson/create'],
+              (object)['label' => 'Létrehozás', 'link' => '/course/'.$id.'/lesson/create/'],
             ]);
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
@@ -605,8 +604,8 @@ class CourseController extends Controller
         
         if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
             $page_links = array_merge($page_links, [
-                (object)['label' => 'Létrehozás', 'link' => '/admin/quiz/create'] ,
-                (object)['label' => 'Feladat típusok listája', 'link' => 'admin/quiz-type'] ,
+                (object)['label' => 'Létrehozás', 'link' => '/course/'.$id.'/quiz/create/'] ,
+                (object)['label' => 'Feladat típusok listája', 'link' => '/admin/quiz-type'] ,
             ] ,
             );
         }elseif($this->auth('role_id') == null) {
