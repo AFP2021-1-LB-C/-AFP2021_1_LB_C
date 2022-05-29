@@ -226,19 +226,42 @@ $graderesult = ($grade->grade);
     @endforeach
      @endif 
 
-     @if ($isStudent)
-        <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
-     @else
-        <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-     @endif
+
 
 </table>
+
+@if ($isStudent)
+    <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
+@else
+    <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+@endif
 </div>
+
 @include('layout.footer')
 @php
  
-$toolTipContent = $isStudent ? "Tanuló eredménye" : "";
+ $studentmark =""; 
+ switch ($user_grade) {
+                        case "1":
+                        $studentmark = "1-es érdemjegy, ELÉGTELEN";
+                            
+                            break;
+                        case "2":
+                        $studentmark = "2-es érdemjegy, ELÉGSÉGES";
+                            break;
+                        case "3":
+                        $studentmark = "3-as érdemjegy, KÖZEPES";
+                            break;
+                        case "4":
+                        $studentmark = "4-es érdemjegy, JÓ";
+                        case "5":
+                        $studentmark = "5-ös érdemjegy, KIVÁLÓ";
+                            break;
+                        }
+ 
+                       
+$toolTipContent = $isStudent ? "Az Ön eredménye: ".$studentmark : "";
 
 $pieDataPoints = array( 
 	array("label"=>"5 (Jeles)",     "y"=>$marks[4], "toolTipContent"=> $user_grade == 5 ? $toolTipContent : ""),
