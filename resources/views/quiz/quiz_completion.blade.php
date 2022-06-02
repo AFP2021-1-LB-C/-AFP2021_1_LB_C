@@ -1,7 +1,7 @@
 @include('layout.sidebar')
 <div class="adj-pagecontent">
 @include('layout.header')
-<form action="/quiz/rating/{{$id}}" method="post">
+<form action="/quiz/rating_save/{{$id}}" method="post">
     @csrf
 
 <h2>A teszt elkezdve ekkor: {{$started_at}}</h2>

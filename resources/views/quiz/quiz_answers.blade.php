@@ -82,12 +82,15 @@ if ($percent < 40){
 <h2>Érdemjegy: {{$grade}}</h2>
 
 <?php 
-$new = Grade::create([
+if (!$saved)
+{
+  $new = Grade::create([
             'user_id' => $user_id,
             'quiz_id' => $quiz_id,
             'grade' => $grade,
             'date' => $submitted_at
         ]);
+}
 ?>
 </div>
 @include('layout.footer')

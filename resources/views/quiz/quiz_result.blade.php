@@ -14,6 +14,7 @@ use App\Models\Grade;
     @csrf
 
     @if ($isStudent)
+    
 <label for="inputEmail3" class="col-sm-2 col-form-label"><b>Kérdések, válaszok:</b></label>
     @else
 <label for="inputEmail3" class="col-sm-2 col-form-label"><b></b></label>
@@ -336,4 +337,5 @@ chart.render();
 
 {{-- <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div> --}}
+
 @include('layout.footer')
