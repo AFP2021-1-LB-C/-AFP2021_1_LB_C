@@ -32,7 +32,7 @@
         <li class="nav-item dropdown">
         @inject('logged', 'App\Http\Controllers\Controller')
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">{{$logged->auth('name') == null ? "Profil":$logged->auth('name');}}</a>
-          <ul class="dropdown-menu" style="right:0;" aria-labelledby="dropdown01">
+          <ul class="dropdown-menu dropdown-menu-dark" style="right:0;" aria-labelledby="dropdown01">
           @if ($logged->auth('name') == null)
             <li><a class="dropdown-item" href="/login">Bejelentkezés</a></li>
             <li><a class="dropdown-item" href="/registration">Regisztráció</a></li>
@@ -40,8 +40,9 @@
             <li><a class="dropdown-item" href="/user/profile/{{$logged->auth('id');}}">Adataim</a></li>
             <li><a class="dropdown-item" href="/user/edit/{{$logged->auth('id');}}">Adataim megváltoztatása</a></li>
             <li><a class="dropdown-item" href="/logout">Kijelentkezés</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="javascript:;" id="switchtheme" class="dropdown-item btn switch">Halvány/Sötét</a></li>
           @endif
-            <li class="nav-item ml-md-auto"><a href="javascript:;" id="switchtheme" class="btn btn-success switch">Halvány/Sötét</a></li>
           </ul>
         </li>
       </ul>
@@ -56,8 +57,9 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         if (document.cookie.indexOf("theme=dark") > -1) {
-
+        
             $("body").toggleClass("bg-dark bg-light")
+            
         }
         $("#switchtheme").click(function () {
             $("body").toggleClass("bg-dark bg-light");
@@ -67,9 +69,8 @@
                 document.cookie = "theme=light";
             }
         })
+
     });
 </script>
-
-
 
 </nav>
