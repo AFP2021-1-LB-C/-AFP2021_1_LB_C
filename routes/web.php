@@ -40,7 +40,8 @@ Route::get('/quiz', [QuizController::class, 'index']);
 Route::get('/quiz/result/{id}', [QuizController::class, 'show_result']);
 Route::get('/quiz/result/{quiz_id}/{user_id}', [QuizController::class, 'show_quiz_result']);
 Route::get('/quiz/completion/{id}', [QuizController::class, 'completion']);
-Route::post('/quiz/rating/{id}', [QuizController::class, 'save_answers']);
+Route::post('/quiz/rating_save/{id}', [QuizController::class, 'save_answers']);
+Route::get('/quiz/rating/{id}', [QuizController::class, 'show_answers']);
 Route::get('/admin/quiz/delete/{id}', [QuizController::class, 'destroy']);
 Route::get('/course/{id}/quiz', [CourseController::class, 'quiz_list']);
 

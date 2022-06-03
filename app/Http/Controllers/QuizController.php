@@ -132,10 +132,7 @@ class QuizController extends Controller
         -> get();
 
         foreach ($questions as $question) {
-            // Quiz_result::where('quiz_question_id', $question -> id)
-            // ->delete();
-         
-            //üresen hagyott válaszok esetén catch fut le
+
             try{$answer = $_POST[$question -> id];}
             catch (ErrorException $e){$answer = 0;}
 
@@ -157,6 +154,38 @@ class QuizController extends Controller
 
         }   
 
+        return redirect()->to('quiz/rating/'.$id);
+    } 
+
+    public function show_answers($id)
+    {
+  
+        $data = array();
+
+        $quiz = Quizze::where('id', $id)
+        -> update(['submitted_at' => Carbon::now()]);
+
+        $questions = Quiz_question::where('quiz_id', $id)
+        -> select('quiz_questions.*')
+        -> get();
+
+          $data = null;
+            if ($this->auth('role_id') === 1 || $this->auth('role_id') === 2){
+                $data = Quiz_result::join('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')->get();
+            } else if($this->auth('role_id') === 3){
+                $data = Quiz_result::with(['quiz_question'])
+                -> where('user_id', $this->auth('id'))
+                -> leftJoin('quiz_questions', 'quiz_results.quiz_question_id', '=', 'quiz_questions.id')
+                -> get();
+            }
+
+         $isGradeExists = false;
+
+         $isGradeExists = Grade::where('quiz_id', $id)
+         -> where('user_id', $this->auth('id'))
+         -> get()
+         -> count() != 0;
+
         return view('quiz.quiz_answers',[
             'quiz_id' => $id,
             'isAdmin' => ($this->auth('role_id') === 1),
@@ -171,8 +200,9 @@ class QuizController extends Controller
             'course_id' => $id,
             'page_title' => 'Válaszok' ,
             'page_subtitle' => 'Lista' ,
+            'saved' => $isGradeExists
         ]);
-    } 
+    }
 
     public function show_result($id){
 
@@ -189,35 +219,22 @@ class QuizController extends Controller
 
         $data = Grade::with(['user'])
         ->where('quiz_id', $id) 
-        //->select('grades.*')
         ->leftJoin('users', 'users.id', '=', 'grades.user_id')
         ->get();
         $user_grade = Grade::where('quiz_id', $id)->where('user_id', $this->auth('id'))->first();
         $user_grade = $user_grade != null ? $user_grade->grade : null;
-        //dd($data, $user_grade);
 
         foreach ($data as &$grade) {
-            //echo $grade->user_id, $id;
+
             $detailedQuizResult = Quiz_Result::with(['quiz_question'])
             ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
             ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
             ->where('quiz_results.user_id','=',$grade->user_id)
             ->where('quizzes.id','=',$id)
             -> get();
-           // -> dump();
-                //;
-                // $query = str_replace(array('?'), array('\'%s\''), $detailedQuizResult->toSql());
-                // $query = vsprintf($query, $detailedQuizResult->getBindings());
-                // dd($query);
-                //print($grade->user_id);
-                
-             // dump($detailedQuizResult, $grade->user_id, $id );
+                    
             $grade->{"quiz_result"} =  $detailedQuizResult;
-            // $grade->{"tdani"} =  $grade->user_id;
-           // echo($grade->user_id);
         }
-
-
 
         return view('quiz.quiz_result',[
             'id' => $id,
@@ -234,38 +251,6 @@ class QuizController extends Controller
             'user_grade' => $user_grade , 
         ]);
     }   
-/*
-    public function show_quiz_result($quiz_id , $user_id){
-        
-        
-        function consoleLog($msg) {
-                echo '<script type=text/javascript>' .
-                'console.log(' . $msg . ');</script>';
-            }
-
-        $quiz_results = null;
-        // AUTH
-        echo "teszt";
-        consoleLog('Hello, console!');
-
-
-
-        $data = Quiz_Result::table('quiz_results')
-        ->select('quiz_questions.question', 'quiz_questions.answer_1', 'quiz_questions.answer_2', 'quiz_questions.answer_3', 'quiz_questions.answer_4', 'quiz_questions.correct_answer', 'quiz_results.answer')
-        ->join('quiz_questions','quiz_results.quiz_question_id','=','quiz_questions.id')
-        ->join('quizzes','quizzes.id','=','quiz_questions.quiz_id')
-        ->where('quiz_results.user_id','=', $user_id) // user_id
-        ->where('quizzes.id','=',$quiz_id)//quiz_id
-        ->get();
-
-        return view('quiz.quiz__detailed_result',[
-            'quiz_id' => $quiz_id,
-            'user_id' => $user_id,
-            'items' => $data ,
-            'page_title' => 'Eredmeny todo' ,
-            'page_subtitle' => 'Lista' ,
-        ]);
-    }   */
 
     /**
      * Show the form for creating a new resource.

@@ -52,6 +52,7 @@
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) != null)
     <label><a href="/quiz/result/{{$item -> id}}">Eredmény</a></label>
+    <label><a href="/quiz/rating/{{$item -> id}}">Válaszok</a></label>
     <td>{{Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade');}}</td>
