@@ -8,6 +8,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuizTypeController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\GradebookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,9 @@ Route::get('/course', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'lesson']);
 Route::get('/admin/course/delete/{id}', [CourseController::class, 'destroy']);
 Route::get('/admin/course/students/{id}', [CourseController::class, 'students']);
+
+//Grades
+Route::get('/course/{id}/grades', [GradebookController::class, 'index']);
 
 //Lesson
 Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'edit']);
