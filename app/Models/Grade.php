@@ -19,4 +19,19 @@ class Grade extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function quiz_result()
+    {
+        return $this->belongsTo('App\Models\Quiz_result');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\QuizType');
+    }
 }
