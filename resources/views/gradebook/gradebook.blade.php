@@ -6,33 +6,32 @@ use App\Models\Grade;
 @include('layout.header')
 @inject('logged', 'App\Http\Controllers\Controller')
 
-
-<table class="table">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
     @if ($isStudent)
-        <thead> 
+        <thead class="thead-light"> 
             <tr>
-                <td style="text-align:center">Quiz azonosító </td>
-                <td style="text-align:center">Diak Neve</td>
-                <td style="text-align:center">Érdemjegy</td>
+                <th style="text-align:left" width="50%">Quiz azonosító </th>
+                <th style="text-align:left" width="50%">Érdemjegy</th>
             </tr>
         </thead>
-        @foreach ($items as $item)
-            <tbody>
+        
+        <tbody>
+            @foreach ($items as $item)
                 <tr>
-                    <td style="text-align:center">{{$item -> quiz_name}} </td>
-                    <td style="text-align:center">{{$item -> user_name}}</td>
-                    <td style="text-align:center">{{$item -> grade}}</td>
+                    <td style="text-align:left" width="50%">{{$item -> quiz_name}} </td>
+                    <td style="text-align:left" width="50%">{{$item -> grade}}</td>
                 </tr>
-            </tbody>  
-        @endforeach
-
+            @endforeach
+        </tbody>  
+        
     @elseif ($isAdmin || $isTeacher)
 
-        <thead> 
+        <thead class="thead-light"> 
             <tr>
-            <td style="text-align:center">Jegyek</td>
+            <th style="text-align:center">Jegyek</th>
             @foreach ($quizzes as $quiz)
-                <td style="text-align:center">{{$quiz}}</td>
+                <th style="text-align:center">{{$quiz}}</th>
             @endforeach
             </tr>
         </thead>
@@ -52,5 +51,6 @@ use App\Models\Grade;
         @endforeach 
         </tbody>   
     @endif
-
+</table>
+</div>
 @include('layout.footer')

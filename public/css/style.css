@@ -82,3 +82,7 @@ body {
 .adj-pagecontent{
   margin-right: -135;
 }
+
+.td{ 
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
