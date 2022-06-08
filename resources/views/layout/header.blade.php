@@ -43,6 +43,7 @@
     
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/calendar.css" rel="stylesheet" type="text/css">
   </head>
   <body class="bg-light">
   @include('layout.menu') 

@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Calendar;
 
 class ScheduleController extends Controller
 {
@@ -27,17 +28,27 @@ class ScheduleController extends Controller
         }elseif($this->auth('role_id') == null) {
             return redirect()->to('/');
         }
-
+        
         $data = Schedule::with(['course'])
-        ->select('schedules.*');
+                ->select(['courses.name AS course_name', 'schedules.date AS date'])
+                ->join('courses', 'schedules.course_id', '=', 'courses.id');
+        
         if ($this->auth('role_id') == 3) {
             $data = $data
             ->leftJoin('courses_users', 'courses_users.course_id', '=', 'schedules.course_id')
             ->where('courses_users.user_id', $this->auth('id'));
         }
-        $data = $data->get();
+
+        $data = $data->pluck('course_name', 'date');
 
         $courses = Course::get();
+
+        $calendar = new Calendar(date('Y-m-d'));
+
+        foreach ($data as $date => $exam) {
+            $calendar -> add_event($exam , $date);
+        }
+        
 
         $types = [
             (object)['id' => 1, 'name' => 'írásbeli'],
@@ -55,6 +66,7 @@ class ScheduleController extends Controller
             'courses' => $courses ,
             'page_subtitle' => 'Lista' ,
             'page_links' => $page_links,
+            'calendar' => $calendar
         ]);
 
         
