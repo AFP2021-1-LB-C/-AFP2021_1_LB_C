@@ -57,16 +57,27 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         if (document.cookie.indexOf("theme=dark") > -1) {
+<<<<<<< Updated upstream
         
             $("body").toggleClass("bg-dark bg-light")
             
+=======
+
+            $("body").addClass("bg-dark")
+        }
+        else{
+            $("body").addClass("bg-light")
+>>>>>>> Stashed changes
         }
         $("#switchtheme").click(function () {
-            $("body").toggleClass("bg-dark bg-light");
-            if ($("body").hasClass("bg-dark")) {
+            if ($("body").hasClass("bg-light")) {
                 document.cookie = "theme=dark";
+                $("body").removeClass("bg-light");
+                $("body").addClass("bg-dark")
             } else {
                 document.cookie = "theme=light";
+                $("body").removeClass("bg-dark");
+                $("body").addClass("bg-light")
             }
         })
 
