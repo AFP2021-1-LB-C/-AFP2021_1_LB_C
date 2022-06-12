@@ -30,9 +30,9 @@
 @elseif((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) != 1)
-  <tr style='background-color:#cbf6cd'>  
+  <tr style='background-color:#408736'>  
 @else
-  <tr style='background-color:#f4b9b8'>
+  <tr style='background-color:#ff3333'>
 @endif
     <td>{{$item -> id}}</td>
     <td>{{$item -> started_at}}</td>
@@ -42,21 +42,21 @@
     <td>{{$item -> quizType == 0 ? "Gyakorló" : "Jegyszerzős"}}</td>
     <td>
     @if($isAdmin || $isTeacher)
-    <a href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
-    <a href="/admin/quiz/delete/{{$item -> id}}">Törlés</a>
+    <a class="linking" href="/admin/quiz/edit/{{$item -> id}}">Szerkesztés</a>
+    <a class="linking" href="/admin/quiz/delete/{{$item -> id}}">Törlés</a>
     @endif
    
     @if($isAdmin || $isTeacher)
-    <a href="/quiz/result/{{$item -> id}}">Eredmények</a>
+    <a class="linking" href="/quiz/result/{{$item -> id}}">Eredmények</a>
     @elseif ((Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade')) != null)
-    <label><a href="/quiz/result/{{$item -> id}}">Eredmény</a></label>
+    <label><a class="linking" href="/quiz/result/{{$item -> id}}">Eredmény</a></label>
     <td>{{Grade::where('quiz_id', ($item -> id))
     ->where('user_id', $logged->auth('id'))
     ->value('grade');}}</td>
     @else
-    <a href="/quiz/completion/{{$item -> id}}">Kitöltés</a>
+    <a class="linking" href="/quiz/completion/{{$item -> id}}">Kitöltés</a>
     <td>-</td>
     @endif
     </td>

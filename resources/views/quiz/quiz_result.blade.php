@@ -51,23 +51,23 @@ $graderesult = ($grade->grade);
 
 
     <tr>
-        <td style="width:50%; background-color:{{$item -> correct_answer == 1 ? '#63d256':''}};
-                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 1 ? '#ff3333':''}};
+        <td style="width:50%; background-color:{{$item -> correct_answer == 1 ? '#408736':''}};
+                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 1 ? '#bf0f0f':''}};
                         text-align:center"><b> 1) </b>{{$item -> answer_1}} 
                         
                     
 
                     </td>
-        <td style="width:50%; background-color:{{$item -> correct_answer == 2 ? '#63d256':''}};
-                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 2 ? '#ff3333':''}};
+        <td style="width:50%; background-color:{{$item -> correct_answer == 2 ? '#408736':''}};
+                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 2 ? '#bf0f0f':''}};
                         text-align:center"><b> 2) </b>{{$item -> answer_2}}</td>
     </tr>
     <tr>
-        <td style="width:50%; background-color:{{$item -> correct_answer == 3 ? '#63d256':''}};
-                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 3 ? '#ff3333':''}};
+        <td style="width:50%; background-color:{{$item -> correct_answer == 3 ? '#408736':''}};
+                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 3 ? '#bf0f0f':''}};
                         text-align:center"><b> 3) </b>{{$item -> answer_3}}</td>
-        <td style="width:50%; background-color:{{$item -> correct_answer == 4 ? '#63d256':''}};
-                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 4 ? '#ff3333':''}};
+        <td style="width:50%; background-color:{{$item -> correct_answer == 4 ? '#408736':''}};
+                        background-color:{{$item -> answer != $item -> correct_answer && $item -> answer == 4 ? '#bf0f0f':''}};
                         text-align:center"><b> 4) </b>{{$item -> answer_4}}</td>
     </tr>
 
@@ -98,7 +98,7 @@ $graderesult = ($grade->grade);
 </thead>
 <tbody>
     @php
-(($grade->grade) == null || ($grade->grade) == 1) ? $color = '#f4b9b8' : $color = '#cbf6cb';
+(($grade->grade) == null || ($grade->grade) == 1) ? $color= ' #f70905' : $color = '#19b519';
 @endphp
 
     <tr style='background-color:{{$color}}'>
@@ -140,34 +140,34 @@ $graderesult = ($grade->grade);
                     switch ($quiz_result->answer) {
                         case "1":
                             if ($quiz_result->answer == $quiz_result->correct_answer) {
-                               $studentanswer =  "<span style='color:rgb(0, 128, 0);'>$quiz_result->answer_1</span>";
+                               $studentanswer =  "<span style='color:rgb(31, 87, 31);'>$quiz_result->answer_1</span>";
                            // $studentanswer = $quiz_result->answer_1;
                            
                             } elseif ($quiz_result->answer != $quiz_result->correct_answer) {
-                                $studentanswer =  "<span style='color:rgb(255, 0, 55);'>$quiz_result->answer_1</span>"; 
+                                $studentanswer =  "<span style='color:rgb(120, 8, 32);'>$quiz_result->answer_1</span>"; 
                             }
 
                             break;
                         case "2":
                             if ($quiz_result->answer == $quiz_result->correct_answer) {
-                               $studentanswer =  "<span style='color:rgb(0, 128, 0);'>$quiz_result->answer_2</span>";
+                               $studentanswer =  "<span style='color:rgb(31, 87, 31);'>$quiz_result->answer_2</span>";
                             } elseif ($quiz_result->answer != $quiz_result->correct_answer) {
-                                $studentanswer =  "<span style='color:rgb(255, 0, 55);'>$quiz_result->answer_2</span>"; 
+                                $studentanswer =  "<span style='color:rgb(120, 8, 32);'>$quiz_result->answer_2</span>"; 
                             }
                             break;
                         case "3":
                         if ($quiz_result->answer == $quiz_result->correct_answer) {
-                               $studentanswer =  "<span style='color:rgb(0, 128, 0);'>$quiz_result->answer_3</span>";
+                               $studentanswer =  "<span style='color:rgb(31, 87, 31);'>$quiz_result->answer_3</span>";
                             } elseif ($quiz_result->answer != $quiz_result->correct_answer) {
-                                $studentanswer =  "<span style='color:rgb(255, 0, 55);'>$quiz_result->answer_3</span>"; 
+                                $studentanswer =  "<span style='color:rgb(120, 8, 32);'>$quiz_result->answer_3</span>"; 
                             }
                             break;
                         case "4":
                         //$studentanswer = $quiz_result->answer_4;
                         if ($quiz_result->answer == $quiz_result->correct_answer) {
-                               $studentanswer =  "<span style='color:rgb(0, 128, 0);'>$quiz_result->answer_4</span>";
+                               $studentanswer =  "<span style='color:rgb(31, 87, 31);'>$quiz_result->answer_4</span>";
                             } elseif ($quiz_result->answer != $quiz_result->correct_answer) {
-                                $studentanswer =  "<span style='color:rgb(255, 0, 55);'>$quiz_result->answer_4</span>"; 
+                                $studentanswer =  "<span style='color:rgb(120, 8, 32);'>$quiz_result->answer_4</span>"; 
                             }
                             break;
                     }

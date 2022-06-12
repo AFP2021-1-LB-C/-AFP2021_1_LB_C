@@ -47,14 +47,14 @@ $correct_answer_count = 0;
   }
   ?>
   @if (($item -> answer) == ($question -> correct_answer))
-    <td style='background-color:#cbf6cd'>{{$question -> question}}</td>
-    <td style='background-color:#cbf6cd'>{{$chosen}}</td>
-    <td style='background-color:#cbf6cd'>{{$correct}}</td>
+    <td style='background-color:#408736'>{{$question -> question}}</td>
+    <td style='background-color:#408736'>{{$chosen}}</td>
+    <td style='background-color:#408736'>{{$correct}}</td>
     <?php $correct_answer_count++; ?>
   @else
-    <td style='background-color:#f4b9b8'>{{$question -> question}}</td>
-    <td style='background-color:#f4b9b8'>{{$chosen}}</td>
-    <td style='background-color:#f4b9b8'>{{$correct}}</td>
+    <td style='background-color:#bf0f0f'>{{$question -> question}}</td>
+    <td style='background-color:#bf0f0f'>{{$chosen}}</td>
+    <td style='background-color:#bf0f0f'>{{$correct}}</td>
   @endif
   </tr> 
   <?php $question_count++; ?> 
