@@ -83,6 +83,10 @@ body {
   margin-right: -135;
 }
 
+.linking{
+  color: #03465c;
+}
+
 .td{ 
   border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
@@ -146,3 +150,4 @@ body {
   border-bottom: 1px solid #ebebeb;
   color: #666666;
 }
+
