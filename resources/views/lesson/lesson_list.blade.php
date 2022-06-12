@@ -29,9 +29,9 @@
     <a href="/admin/lesson/edit/{{$item -> id}}">Szerkesztés</a>
     <a href="/admin/lesson/delete/{{$item -> id}}">Törlés</a>
     </td>
-    <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
+    <td><a href="/course/{{$course_id}}/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @else
-    <td><a href="/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
+    <td><a href="/course/{{$course_id}}/lesson/content/{{$item -> id}}">Teljes Tananyag</a></td>
     @endif
   </tr>  
   @endif

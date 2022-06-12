@@ -14,11 +14,11 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($course_id, $lesson_id)
     {
         $data = Lesson::with(['course'])
         ->select('lessons.*')
-        ->where('course_id', $id)
+        ->where('course_id', $course_id)
         ->get();
 
         $page_links = [];
@@ -92,13 +92,13 @@ class LessonController extends Controller
         if (!is_null($new)) {
         $new->save();
 
-        return redirect()->to('/lesson');
+        return redirect()->to('/course/'.$request->course_id.'/lesson/');
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }
     }
 
-    public function create_form()
+    public function create_form($course_id)
     {
         if ($this->auth('role_id') !== 1 && $this->auth('role_id') !== 2)  {
             return redirect()->to('/');
@@ -108,6 +108,7 @@ class LessonController extends Controller
             
         return view('lesson.lesson_create',[ 
             'courses' => $courses,
+            'course_id' => $course_id,
             'page_title' => 'Tananyagok' ,
             'page_subtitle' => 'Létrehozás' ,
         ]);
@@ -130,21 +131,25 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course_id, $lesson_id)
     {
 
         if ($this->auth('role_id') == null) {
             return redirect()->to('/');
         }
 
-        $data = Lesson::where('id', $id) -> first();    
+        $data = Lesson::where('id', $lesson_id) 
+        -> select('lessons.*')
+        -> first();   
+
         return view('lesson.lesson_content',[ 
-            'topic' => $data -> topic,
             'page_title' => 'Tananyag',
             'page_subtitle' => 'Tartalom',
+            'course_id' => $course_id,
+            'topic' => $data -> topic,
             'content' => preg_replace('/[\r\n]+/msi', '<br>', $data -> content),
             'page_links' => [
-                (object)['label' => 'Vissza', 'link' => '/lesson'] ,
+                (object)['label' => 'Vissza', 'link' => '/course/'.$course_id.'/lesson/'] ,
             ] ,
         ]);
     }
@@ -203,7 +208,7 @@ class LessonController extends Controller
         ]);
         
         if (!is_null($new)) {
-        return redirect()->to('/lesson');
+            return redirect()->to('course/'.$request->course_id.'/lesson/content/'.$id);
         } else {
             return back()->with('error', 'Hoppá, hiba történt. Próbáld újra.');
         }

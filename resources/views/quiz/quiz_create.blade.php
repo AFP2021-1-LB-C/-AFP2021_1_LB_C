@@ -3,7 +3,7 @@
 @include('layout.header')
 
     {{-- LÉTREHOZÁS --}}
-    <form action="/admin/quiz/create" method="post">
+    <form action="/course/{{$course_id}}/quiz/create" method="post">
         @csrf
         <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Kezdő dátum</label>

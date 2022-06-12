@@ -16,7 +16,7 @@
                         </a>
                     </li>
                     <li class="nav-item" style="display:block; text-align:center;">
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <a href="/course/{{$course_id}}/grades" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <img class="me-3" src="/images/grade.png" alt="" width="40" height="40" style="margin-top:10px; margin-left:15px; text-align:center;">
                             <i class="fs-4"></i> <span class="ms-1 d-none d-sm-inline">Napló</span>
                         </a>

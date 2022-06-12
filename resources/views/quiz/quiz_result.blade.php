@@ -14,6 +14,7 @@ use App\Models\Grade;
     @csrf
 
     @if ($isStudent)
+    
 <label for="inputEmail3" class="col-sm-2 col-form-label"><b>Kérdések, válaszok:</b></label>
     @else
 <label for="inputEmail3" class="col-sm-2 col-form-label"><b></b></label>
@@ -226,17 +227,49 @@ $graderesult = ($grade->grade);
     @endforeach
      @endif 
 
+
+
 </table>
+
+@if ($isStudent)
+    <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
+@else
+    <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+@endif
 </div>
-@include('layout.footer')
+
+{{-- @include('layout.footer') --}}
 @php
  
+ $studentmark =""; 
+ switch ($user_grade) {
+                        case "1":
+                        $studentmark = "1-es érdemjegy, ELÉGTELEN";
+                            
+                            break;
+                        case "2":
+                        $studentmark = "2-es érdemjegy, ELÉGSÉGES";
+                            break;
+                        case "3":
+                        $studentmark = "3-as érdemjegy, KÖZEPES";
+                            break;
+                        case "4":
+                        $studentmark = "4-es érdemjegy, JÓ";
+                        case "5":
+                        $studentmark = "5-ös érdemjegy, KIVÁLÓ";
+                            break;
+                        }
+ 
+                       
+$toolTipContent = $isStudent ? "Az Ön eredménye: ".$studentmark : "";
+
 $pieDataPoints = array( 
-	array("label"=>"5 (Jeles)", "y"=>$marks[4]),
-	array("label"=>"4 (Jó)", "y"=>$marks[3]),
-	array("label"=>"3 (Közepes)", "y"=>$marks[2]),
-	array("label"=>"2 (Elégséges)", "y"=>$marks[1]),
-	array("label"=>"1 (Elégtelen)", "y"=>$marks[0])
+	array("label"=>"5 (Jeles)",     "y"=>$marks[4], "toolTipContent"=> $user_grade == 5 ? $toolTipContent : ""),
+ 	array("label"=>"4 (Jó)",        "y"=>$marks[3], "toolTipContent"=> $user_grade == 4 ? $toolTipContent : ""),  
+	array("label"=>"3 (Közepes)",   "y"=>$marks[2], "toolTipContent"=> $user_grade == 3 ? $toolTipContent : ""),
+	array("label"=>"2 (Elégséges)", "y"=>$marks[1], "toolTipContent"=> $user_grade == 2 ? $toolTipContent : ""),
+	array("label"=>"1 (Elégtelen)", "y"=>$marks[0], "toolTipContent"=> $user_grade == 1 ? $toolTipContent : ""),
 );
 
 $chartDataPoints = array(
@@ -260,7 +293,7 @@ $chartDataPoints = array(
     var piechart = new CanvasJS.Chart("pieChartContainer", {
         animationEnabled: true,
         title: {
-            text: "Eredmények eloszlása"
+            text: "A feladatot kitöltött hallgatók eredményei érdemjegyek szerinti bontásban"
         },
         // subtitles: [{
         //     text: "2022"
@@ -278,7 +311,7 @@ $chartDataPoints = array(
 	exportEnabled: true,
 	theme: "light1", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Kérdésekre érkezett helyes válaszok száma"
+		text: "Hallgatók helyes válaszadásai egy egy feladatra"
 	},
 	axisY:{
 		includeZero: true,
@@ -302,6 +335,7 @@ chart.render();
     }
 </script>
 
-<div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+{{-- <div id="pieChartContainer" style="height: 370px; width: 100%;"></div>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div> --}}
+
 @include('layout.footer')
