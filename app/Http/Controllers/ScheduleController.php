@@ -16,8 +16,13 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($year = null, $month = null)
     {
+
+        $day   = $year  === null && $month === null ? date('d') : 1;
+        $year  = $year  === null ? date('Y') : $year;
+        $month = $month === null ? date('m') : $month;
+
         $page_links = [];
 
         if ($this->auth('role_id') == 1){
@@ -43,7 +48,7 @@ class ScheduleController extends Controller
 
         $courses = Course::get();
 
-        $calendar = new Calendar(date('Y-m-d'));
+        $calendar = new Calendar(date(sprintf('%s-%s-%s', $year, $month, $day)));
 
         foreach ($data as $date => $exam) {
             $calendar -> add_event($exam , $date);
