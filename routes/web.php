@@ -103,7 +103,7 @@ Route::get('/admin/schedule/create', [ScheduleController::class, 'create_form'])
 Route::post('/admin/schedule/create', [ScheduleController::class, 'create']);
 Route::get('/admin/schedule/edit/{id}', [ScheduleController::class, 'edit']);
 Route::post('/admin/schedule/edit/{id}', [ScheduleController::class, 'update']);
-Route::get('/schedule', [ScheduleController::class, 'index']);
+Route::get('/schedule/{year?}/{month?}', [ScheduleController::class, 'index']);
 Route::get('/admin/schedule/delete/{id}', [ScheduleController::class, 'destroy']);
 
 //Site Homepage
