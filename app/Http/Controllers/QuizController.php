@@ -224,8 +224,9 @@ class QuizController extends Controller
         $user_grade = Grade::where('quiz_id', $id)->where('user_id', $this->auth('id'))->first();
         $user_grade = $user_grade != null ? $user_grade->grade : null;
 
+        $detailedQuizResult = null;
         foreach ($data as &$grade) {
-
+            
             $detailedQuizResult = Quiz_Result::with(['quiz_question'])
             ->join('quiz_questions', 'quiz_questions.id', '=', 'quiz_results.quiz_question_id')
             ->join('quizzes', 'quiz_questions.quiz_id', '=', 'quizzes.id')
